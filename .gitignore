@@ -3,3 +3,4 @@
 /**/.parcel-cache/
 .DS_Store
 .env.development
+package-lock.json
