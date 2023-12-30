@@ -1,3 +1,5 @@
 /**/node_modules/
 /**/.dfx/
 /**/.parcel-cache/
+.DS_Store
+.env.development
