@@ -1,0 +1,33 @@
+type Vector = vec int;
+type TransformArgs = 
+ record {
+   context: blob;
+   response: HttpResponsePayload;
+ };
+type NestedArray = vec Vector;
+type HttpResponsePayload = 
+ record {
+   body: vec nat8;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type CanisterHttpResponsePayload = 
+ record {
+   body: vec nat8;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+service : {
+  getCanisterBalance: () -> (nat) query;
+  getIcpId: () -> (text) query;
+  getMapping: (text, int) -> (opt NestedArray) query;
+  pushToArray: (text, vec int, int) -> () oneway;
+  send_http_blueberry_proxy_get_raw_data: (text, text, text, text) -> (text);
+  send_http_blueberry_proxy_login: (text, text) -> (text);
+  transform: (TransformArgs) -> (CanisterHttpResponsePayload) query;
+}

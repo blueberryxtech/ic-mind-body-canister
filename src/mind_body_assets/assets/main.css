@@ -1,0 +1,785 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'helvetica';
+}
+
+
+.absolute-container {
+  position: relative;
+  height: 100vh; /* Full height of the viewport */
+}
+.absolute-container button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* 
+button {
+  width: 150px;
+  background-color: #43B8F7;
+} */
+
+button {
+  /* if the button is not already inline-block, you can add: */
+  display: inline-block;
+}
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.top-row {
+  align-items: center;
+  margin: auto;
+  width: 100%;
+}
+
+.image-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+/* 
+.card {
+  padding: 2em;
+} */
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.input-general {
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #00ABFF;
+  padding: 8px;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  color: black;
+}
+
+
+.absolute-container {
+  position: relative;
+  height: 100vh; /* Full height of the viewport */
+}
+.absolute-container button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  color: black
+}
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.App-header {
+  background-color: #FFF;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: HelveticaNeue-Light;
+  line-height: 1.5;
+  background-color: #ECFAFF;
+  padding: 0 2rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input {
+  appearance: none;
+  border-radius: 0;
+  font-family: 'helvetica';
+}
+
+.logo-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.card {
+  font-family: 'helvetica';
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 425px;
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px 0 rgba(#999, .25);
+  padding: .75rem;
+}
+
+.card-image {
+  border-radius: 8px;
+  overflow: hidden;
+  padding-bottom: 65%;
+  background-repeat: no-repeat;
+  background-size: 10%;
+  background-position: 0 5%;
+  position: relative;
+}
+
+.card-heading {
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  right: 10%;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #735400;
+  line-height: 1.222;
+  small {
+    display: block;
+    font-size: .75em;
+    font-weight: 400;
+    margin-top: .25em;
+  }
+}
+
+.card-form {
+  padding: 2rem 1rem 0;
+
+}
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+  font-family: 'helvetica';
+  &+.input {
+    margin-top: 1.5rem;
+  }
+}
+
+.input-label {
+  color: #00ABFF !important;
+  position: absolute;
+  top: 1.5rem;
+  transition: .25s ease;
+  font-family: 'helvetica';
+}
+
+.input-field {
+  border: 0;
+  z-index: 1;
+  font-family: HelveticaNeue-Light;
+  background-color: transparent;
+  border-bottom: 2px solid #eee; 
+  font: inherit;
+  font-size: 1.125rem;
+  padding: .25rem 0;
+  &:focus, &:valid {
+    outline: 0;
+    border-bottom-color: #00ABFF;
+    &+.input-label {
+      color: #00ABFF;
+      transform: translateY(-1.5rem);
+    }
+  }
+}
+
+.action {
+  margin-top: 2rem;
+}
+
+.action-button {
+  font: inherit;
+  font-size: 1.25rem;
+  padding: 1em;
+  width: 100%;
+  font-weight: 500;
+  font-family: HelveticaNeue-Light;
+  background-color: #43B8F7;
+  border-radius: 6px;
+  color: #FFF;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.card-info {
+  padding: 1rem 1rem;
+  text-align: center;
+  font-size: .875rem;
+  color: #8597a3;
+  a {
+    display: block;
+    color: #6658d3;
+    text-decoration: none;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.h100{
+  font-family: HelveticaNeue-Light;
+  font-size:24px;
+  color: #000;
+}
+
+.app {
+  text-align: left;
+}
+
+/* Style the header with a grey background and some padding */
+.header {
+  padding: 5px 5px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+.row {
+  align-items: left;
+  margin: auto;
+  width: 93%;
+}
+
+.orangeButton {
+  background-color:#ff9900;
+  border:1px solid #ff9900;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.yellowButton {
+  background-color:#FFE933;
+  border:1px solid #FFE933;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.cyanButton {
+  background-color:#33F9FF;
+  border:1px solid #33F9FF;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.purpleButton {
+  background-color:#CA9EFF;
+  border:1px solid #CA9EFF;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.blueInputButton {
+  background-color:#53BEF7;
+  border:1px solid #53BEF7;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.greyButton {
+  background-color: lightgrey;
+  border:1px solid white;
+  cursor:pointer;
+  color:#000000;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.greenButton {
+  background-color:#7FE683;
+  border:1px solid #7FE683;
+  cursor:pointer;
+  color:#000000;
+  font-family: HelveticaNeue-Light;
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:28px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.whiteButton {
+  background-color:#FFF;
+  border:1px solid lightgrey;
+  cursor:pointer;
+  color:lightgrey;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+.whiteButton {
+  cursor:default;
+}
+
+.blueButton:hover {
+  background-color:#53BEF7;
+}
+
+.blueButton {
+  background-color:#43B8F7;
+  border:1px solid #43B8F7;
+  cursor:pointer;
+  color:#ffffff;
+  font-family: 'helvetica';
+  padding:16px 31px;
+  margin: 5px;
+  marker-left: 20px;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:0.875;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+form {
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+}
+
+.tab {
+  padding-left: 100px;
+  margin: 20px;
+  padding: 10px;
+  color: #00ABFF;
+  cursor: pointer;  
+}
+
+.tabs {
+  padding-left: 100px;
+  margin: 20px;
+  padding: 10px;
+  color: #00ABFF;
+  cursor: pointer;  
+}
+
+.tabs:hover {
+  padding: 10px;
+  color: #00ABFF;
+  cursor: pointer;  
+  border-bottom: 1px solid #00ABFF;
+}
+
+.tabs-disabled {
+  padding-left: 100px;
+  margin: 20px;
+  padding: 10px;
+  color: lightgrey;
+  cursor: pointer;  
+}
+
+.total-space {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.total-space-left{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adjust the space between buttons as needed */
+}
+
+
+/* button {
+  -webkit-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-align: inherit;
+  text-transform: inherit;
+  -webkit-tap-highlight-color: transparent;
+} */
+
+.toggle-button-cover {
+  display: table-cell;
+  position: relative;
+  width: 200px;
+  height: 140px;
+  box-sizing: border-box;
+}
+
+.button-cover {
+  height: 100px;
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px -8px #c5d6d6;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #d7e3e3;
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button-tog {
+  position: relative;
+  top: 50%;
+  width: 111px; /* Increase the width by 50% */
+  height: 54px; /* Increase the height by 50% */
+  margin: -30px auto 0 auto; /* Adjust margin accordingly */
+  overflow: hidden;
+}
+
+.button-tog.r,
+.button-tog.r .layer {
+  border-radius: 100px;
+}
+
+.button-tog.b2 {
+  border-radius: 2px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: white;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "";
+  font-size: 9px;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 40px;
+  height: 20px;
+  color: #fff;
+  margin-top: 4px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 20px 8px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  font-size: 9px;
+  content: "";
+  left: 42px;
+  background-color: grey;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+
+
+/* Adjust the position and width for the upload knob */
+#button-1 .knobs:before {
+  left: 4px;
+}
+
+/* Adjust the position for the local knob when checked */
+#button-1 .checkbox:checked + .knobs:before {
+  left: calc(100% - 48px); /* Adjust position */
+}
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: white;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "upload";
+  font-size: 9px;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 40px;
+  height: 20px;
+  color: #fff;
+  margin-top: 4px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 20px 8px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  font-size: 9px;
+  content: "local";
+  left: 42px;
+  background-color: grey;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+
+
+/* Adjust the position and width for the upload knob */
+#button-1 .knobs:before {
+  left: 4px;
+}
+
+/* Adjust the position for the local knob when checked */
+#button-1 .checkbox:checked + .knobs:before {
+  left: calc(100% - 48px); /* Adjust position */
+}

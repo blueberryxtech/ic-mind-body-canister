@@ -1,0 +1,65 @@
+{
+  "name": "mind_body_assets",
+  "version": "0.1.1",
+  "description": "wearable data network",
+  "keywords": [
+    "Internet Computer",
+    "Motoko",
+    "JavaScript",
+    "Canister"
+  ],
+  "scripts": {
+    "build": "parcel build src/mind_body_assets/src/index.html",
+    "prebuild": "npm run generate",
+    "start": "npm run dev",
+    "dev": "parcel src/mind_body_assets/src/index.html",
+    "predev": "dfx start --background --clean; dfx deploy mind_body; node setupEnv.js; npm run generate;",
+    "postdev": "dfx stop",
+    "generate": "dfx generate mind_body"
+  },
+  "devDependencies": {
+    "@dfinity/agent": "^0.19.3",
+    "@dfinity/candid": "^0.19.3",
+    "@dfinity/principal": "^0.19.3",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.13",
+    "@mui/x-data-grid": "^6.18.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react-modal": "^3.16.3",
+    "0xsequence": "^1.2.9",
+    "chart.js": "^4.4.0",
+    "ethers": "5.7.2",
+    "numeral": "^2.0.6",
+    "parcel": "^2.10.3",
+    "process": "^0.11.10",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-bootstrap": "^2.9.1",
+    "react-burger-menu": "^3.0.9",
+    "react-datetime-picker": "^5.5.3",
+    "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-modal": "^3.16.1",
+    "react-pro-sidebar": "^1.0.0-alpha.7",
+    "react-router-dom": "^6.21.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "browserslist": [
+    "last 2 chrome version",
+    "last 2 firefox version",
+    "last 2 safari version",
+    "last 2 edge version"
+  ],
+  "dependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3"
+  }
+}
