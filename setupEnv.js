@@ -46,8 +46,8 @@ const [localCanisters, prodCanisters] = initCanisterEnv();
 
 if (localCanisters) {
   const localTemplate = Object.entries(localCanisters).reduce((start, next) => {
-    const [key, val] = next;
-    if (!start) return `${key}=${val}`;
+  const [key, val] = next;
+  if (!start) return `${key}=${val}`;
     return `${start ?? ""}
           ${key}=${val}`;
   }, ``);

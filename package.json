@@ -9,7 +9,7 @@
     "Canister"
   ],
   "scripts": {
-    "build": "parcel build src/mind_body_assets/src/index.html",
+    "build": "",
     "prebuild": "npm run generate",
     "start": "npm run dev",
     "dev": "parcel src/mind_body_assets/src/index.html",
@@ -18,14 +18,15 @@
     "generate": "dfx generate mind_body"
   },
   "devDependencies": {
-    "@dfinity/agent": "^0.19.3",
-    "@dfinity/candid": "^0.19.3",
-    "@dfinity/principal": "^0.19.3",
+    "@dfinity/agent": "^0.20.1",
+    "@dfinity/candid": "^0.20.1",
+    "@dfinity/principal": "^0.20.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.13",
     "@mui/x-data-grid": "^6.18.1",
+    "@parcel/transformer-image": "^2.0.0-rc.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

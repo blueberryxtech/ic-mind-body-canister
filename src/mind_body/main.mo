@@ -10,7 +10,7 @@ import Error "mo:base/Error";
 import Random "mo:base/Random";
 
 //import the custom types you have in Types.mo
-import Types "Types";
+import Types "types";
 
 actor {
 

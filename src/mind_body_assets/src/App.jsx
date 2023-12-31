@@ -19,8 +19,8 @@ const App = () => {
 
     const loadICPData = async () => {
       // get ICP-ID
-      const icpIdValue = await mind_body.getIcpId();
-      setIcpId(icpIdValue);
+      // const icpIdValue = await mind_body.getIcpId();
+      // setIcpId(icpIdValue);
 
       //get canister cycle balance
       const canisterBalanceValue = await mind_body.getCanisterBalance();

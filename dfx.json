@@ -24,16 +24,21 @@
       "packtool": ""
     }
   },
+  "internet_identity": {
+    "type": "custom",
+    "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+    "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+    "remote": {
+      "id": {
+        "ic": "pa64a-oqaaa-aaaan-qllka-cai"
+      }
+    },
+    "frontend": {}
+  },
   "networks": {
     "local": {
       "bind": "localhost:8000",
       "type": "ephemeral"
-    },
-    "ic": {
-      "providers": [
-        "https://mainnet.dfinity.network"
-      ],
-      "type": "persistent"
     }
   },
   "version": 1
