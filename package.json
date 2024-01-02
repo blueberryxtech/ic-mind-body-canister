@@ -9,9 +9,10 @@
     "Canister"
   ],
   "scripts": {
-    "build": "",
+    "build": "parcel src/mind_body_assets/src/index.html",
     "prebuild": "npm run generate",
     "start": "npm run dev",
+    "cleanup": "rm -rf .dfx; rm -rf dist; rm -rf .parcel-cache",
     "dev": "parcel src/mind_body_assets/src/index.html",
     "predev": "dfx start --background --clean; dfx deploy mind_body; node setupEnv.js; npm run generate;",
     "postdev": "dfx stop",
@@ -21,6 +22,8 @@
     "@dfinity/agent": "^0.20.1",
     "@dfinity/candid": "^0.20.1",
     "@dfinity/principal": "^0.20.1",
+    "@dfinity/auth-client": "^0.20.1",
+    "@dfinity/identity": "^0.20.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.10.9",

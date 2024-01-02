@@ -142,7 +142,7 @@ actor {
     };
 
     //1 node
-    Cycles.add(1_603_500_000);
+    Cycles.add(1_605_000_000);
     //13 nodes
     // Cycles.add(20_865_000_000);
     
@@ -190,7 +190,7 @@ actor {
     };
 
     //1 node
-    Cycles.add(1_603_500_000);
+    Cycles.add(1_605_000_000);
     //13 nodes
     // Cycles.add(20_865_000_000);
     
