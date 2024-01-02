@@ -18,19 +18,23 @@ actor {
   type NestedArray = [Vector];
   type AddressMap = HashMap.HashMap<Text, NestedArray>;
 
-  // stable var storedNetworkData : [(Text, Nat)] = [];
+  // stable var storedNetworkData : [(Text, NestedArray)] = [];
 
   // Initialize the HashMap
   // stable storage - set mapping to per month hashmaps - potentially segment to weeks or days depending on sizing/timing requirements
   var addressMap : AddressMap = HashMap.HashMap<Text, NestedArray>(10, Text.equal, Text.hash);
 
-  //https://internetcomputer.org/docs/current/motoko/main/upgrades
-  // system func preupgrade() {
-  //   storedNetworkData := Iter.toArray(map.entries());
+  // //https://internetcomputer.org/docs/current/motoko/main/upgrades
+  // public func updateStableDataMap() {
+  //   storedNetworkData := Iter.toArray(addressMap.entries());
   // };
 
-  // system func postupgrade() {
+  // public func resetStableDataMap() {
   //   storedNetworkData := [];
+  // };
+
+  // public func loadStoreNetworkData() {
+  //   addressMap : AddressMap = HashMap.HashMap.fromIter<Text,NestedArray>(storedNetworkData.vals(), 10, Text.equal, Text.hash);
   // };
 
   public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
@@ -42,6 +46,7 @@ actor {
       case (?arrays) { Array.append(arrays, [encryptedWindow]) }; // If an entry exists, append the new array
     };
     addressMap.put(address, updatedArrays);
+    // updateStableDataMap();
   };
 
   // Function to retrieve the array of arrays for a given address.

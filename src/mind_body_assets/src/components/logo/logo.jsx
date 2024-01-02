@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
-import { RouterLink } from 'src/routes/components';
+import { RouterLink } from '../../routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   const logo = (
     <Box
       component="img"
-      src="/assets/logo.svg"
+      src="https://cdn.shopify.com/s/files/1/0304/7905/7027/files/logo_751c0d51-c8ff-410e-9597-5b27ae561b98_180x.png?v=1598187965"
       sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }}
     />
   );

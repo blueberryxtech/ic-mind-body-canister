@@ -65,8 +65,8 @@ export const menuItem = (theme) => ({
 
 export function bgBlur(props) {
   const color = props?.color || '#000000';
-  const blur = props?.blur || 6;
-  const opacity = props?.opacity || 0.8;
+  const blur = 0;
+  const opacity = 0.01;
   const imgUrl = props?.imgUrl;
 
   if (imgUrl) {
