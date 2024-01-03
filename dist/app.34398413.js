@@ -17121,8 +17121,7 @@ const idlFactory = ({ IDL })=>{
             "query"
         ]),
         "getMapping": IDL.Func([
-            IDL.Text,
-            IDL.Int
+            IDL.Text
         ], [
             IDL.Opt(NestedArray)
         ], [

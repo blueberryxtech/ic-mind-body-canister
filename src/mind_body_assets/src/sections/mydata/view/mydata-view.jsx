@@ -28,6 +28,7 @@ import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
+import { DictionaryToIntArray, IntArrayToDictionary, AverageDictionaryToIntArray, IntArrayToAverageDictionary } from '../../../blueberry/BlueberryDictionaryCompression'
 
 // ----------------------------------------------------------------------
 
@@ -46,6 +47,8 @@ export default function MyDataPage() {
 
   const [devicesDropdown, setDevicesDropdown] = useState('select device');
 
+  const [web3Id, setWeb3Id] = useState('');
+
   const [timeDataLabels, setTimeDataLabels] = useState([
                     '12/21/2023 8:45 AM',
                     '12/21/2023 8:46 AM',
@@ -62,6 +65,14 @@ export default function MyDataPage() {
   const [heartRateData, setHeartRateData] = useState([54, 55, 57, 67, 72, 63, 60, 65, 56, 60, 70]);
 
   const [flowActivityData, setFlowActivityData] = useState([30, 25, 30, 32, 34, 39, 48, 61, 55, 47, 40]);
+
+  //
+  var user_state_1 = "active";
+  var user_state_2 = "dynamic";
+  var user_state_3 = "increasing";
+  var user_state_4 = "variable";
+  var user_state_5 = "resting";
+  var user_state_6 = "intense";
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -290,6 +301,146 @@ export default function MyDataPage() {
       return returnArray;
   };
 
+  async function processBlueberryData(dataRaw, userId) {
+    var timestampData = [];
+    var flowActivityData = [];
+    var heartRateData = [];
+    var hrIntData = []
+
+    let options = {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    for (let i = 0; i < dataRaw.length; i++) {
+      let tmpDictionary = dataRaw[i];
+      let tmpTimestamp = tmpDictionary.timestamp*1000.0;
+      let tmpFlowActivity = tmpDictionary.flow_activity;
+      let tmpHeartRate = tmpDictionary.heartrate;
+      let tmpHumanTime = new Intl.DateTimeFormat("en-US", options).format(new Date(tmpTimestamp)); 
+      timestampData.push(tmpHumanTime);
+      flowActivityData.push(tmpFlowActivity);
+      heartRateData.push(tmpHeartRate);
+      hrIntData.push(parseInt(tmpHeartRate));
+    }
+
+    let encryptedVector = await encryptData(dataRaw);
+    // console.log(encryptedVector);
+    //check if icpId is not null
+    var tmpIcpId = window.$icpId;
+    var tmpEthereumId = window.$ethereumId;
+    if (tmpIcpId != null){
+      if (!tmpIcpId.includes("default")){
+        setWeb3Id(tmpIcpId);
+        writeICP(window.$icpId, encryptedVector);
+      }
+    } else if (tmpEthereumId != null) {
+      if (!tmpEthereumId.includes("default")){
+        setWeb3Id(tmpEthereumId);
+        writeICP(window.$ethereumId, encryptedVector);
+      } 
+    } else {
+      //display error popup
+      console.log("web3 id not set!");
+    }
+  };
+
+  async function writeICP(userStringId, vectorArray){
+    // console.log(vectorArray);
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    const timeConcatenateString = '' + year + month;
+    const timeConcatenteInt = parseInt(timeConcatenateString, 10);
+
+    const storedValue = await mind_body.pushToArray(userStringId, vectorArray, timeConcatenteInt);
+  };
+
+  const readICP = async () => {
+    var userStringId = web3Id;
+    const returnValueArray = await mind_body.getMapping(userStringId);
+    // console.log(returnValueArray);
+    if (returnValueArray.length > 0){
+      let reverseArray = returnValueArray.reverse();
+      let lastValue = reverseArray[0].reverse();
+      let tmpDecryptValues = await decryptData(lastValue[0]);
+      let tmpLastValue = tmpDecryptValues[0];
+      console.log(tmpLastValue);
+    }
+  };
+
+  async function encryptData(dataRaw){
+
+    let userCategoryEnum = {
+      "state1": user_state_1, 
+      "state2": user_state_2, 
+      "state3": user_state_3,
+      "state4": user_state_4,
+      "state5": user_state_5,
+      "state6": user_state_6
+    };
+
+    const compressedVectors = [];
+    var passcodeKey = 1;
+    if(localStorage.getItem('passcodeKey') === null){
+      passcodeKey = 1;
+    } else {
+      passcodeKey = localStorage.getItem('passcodeKey');
+    }
+
+    for (var i = 0; i < dataRaw.length; i++) {
+        let tmpDictionary = dataRaw[i];
+        var encryptedVector = [];
+        let tmpIntArray = DictionaryToIntArray(tmpDictionary, userCategoryEnum);
+        for (let i = 0; i < tmpIntArray.length; i++) {
+          let tmpEncrypt = tmpIntArray[i]*passcodeKey;
+          compressedVectors.push(tmpEncrypt);
+        }
+    }
+
+    return compressedVectors
+  };
+
+  async function decryptData(vector_iv){
+    let userCategoryEnum = {
+      "state1": user_state_1, 
+      "state2": user_state_2, 
+      "state3": user_state_3,
+      "state4": user_state_4,
+      "state5": user_state_5,
+      "state6": user_state_6
+    }
+
+    const data = [];
+    var passcodeKey = 1;
+    if(localStorage.getItem('passcodeKey') === null){
+      passcodeKey = 1;
+    } else {
+      passcodeKey = localStorage.getItem('passcodeKey');
+    }
+
+    // console.log(vector_iv);
+    for (var i = 0; i < vector_iv.length-3; i+=3) {
+        var tmpVector = vector_iv.slice(i, i+2);
+        var decryptedVector = [];
+        for (let i = 0; i < tmpVector.length; i++) {
+          const largeInt = BigInt(tmpVector[i]);
+          const convertedInt = parseInt(largeInt);
+          let tmpConversion = convertedInt/passcodeKey;
+          let tmpInt = parseInt(tmpConversion, 10);
+          decryptedVector.push(tmpInt);
+        }
+        let tmpDictionary = IntArrayToDictionary(decryptedVector, userCategoryEnum);
+        data.push(tmpDictionary);
+    }
+    // display in chart
+    console.log(data);
+    return data;
+  };
+
   async function sendLoginInfo(email, password) {
     
     const responseLogin = await mind_body.send_http_blueberry_proxy_login(email,password);
@@ -314,11 +465,7 @@ export default function MyDataPage() {
     // console.log(responseDataObject);
     const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
     console.log(outputArray);
-    // console.log(outputArray[0]);
-    // created ICP + blueberry email login
-    // e.g. 1123513 + "blueberryUserIdString"
-    // await processBlueberryData(outputArray[0], localId);
-    // document.getElementById("chartDiv").innerText = outputArray[1];
+    await processBlueberryData(outputArray[0], localId);
 
     if (token != ""){
       setIsOpen(false);
@@ -376,6 +523,9 @@ export default function MyDataPage() {
         <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
         </Link>
+        <Button variant="contained" color="inherit" startIcon={<Iconify icon=""/>} onClick={readICP}>
+          get most recent record
+        </Button>
       </Stack>
       <Card>
         <UserTableToolbar

@@ -1,4 +1,4 @@
-export function DictionaryToIntArray(dictionary: any, userCategoryEnum: any, cb: any) {
+export function DictionaryToIntArray(dictionary, userCategoryEnum, cb) {
     // let tmpValues = {
     // 4 bytes, integer 1               "timestamp": timestamp, 
     // 1 byte, integer 2 - byte 1       "category": user_current_state, 
@@ -50,10 +50,10 @@ export function DictionaryToIntArray(dictionary: any, userCategoryEnum: any, cb:
 
     let intArray = [integer1, integer2, integer3];
     // console.log(intArray);
-    cb(intArray);
+    return intArray;
 }
 
-export function IntArrayToDictionary(intArray: any, userCategoryEnum: any, cb: any) {
+export function IntArrayToDictionary(intArray, userCategoryEnum, cb) {
     // let tmpValues = {
     // 4 bytes, integer 1               "timestamp": timestamp, 
     // 1 byte, integer 2 - byte 1       "category": user_current_state, 
@@ -86,13 +86,13 @@ export function IntArrayToDictionary(intArray: any, userCategoryEnum: any, cb: a
 
     var flowActivityByteArray = [int2ByteArray[1],int2ByteArray[2]];
     let user_flow_activity = byteArrayToInt(flowActivityByteArray);
-    let user_heart_rate = parseInt(int2ByteArray[3] as any, 10);
+    let user_heart_rate = parseInt(int2ByteArray[3], 10);
 
     var int3ByteArray = intToByteArray(intArray[2]);
-    let user_strain_intensity = parseInt(int3ByteArray[0] as any, 10);
-    let user_eye_blink_rate =  parseInt(int3ByteArray[1] as any, 10);
-    let user_steps = parseInt(int3ByteArray[2] as any, 10);
-    let user_data_quality = parseInt(int3ByteArray[3] as any, 10);
+    let user_strain_intensity = parseInt(int3ByteArray[0], 10);
+    let user_eye_blink_rate =  parseInt(int3ByteArray[1], 10);
+    let user_steps = parseInt(int3ByteArray[2], 10);
+    let user_data_quality = parseInt(int3ByteArray[3], 10);
 
     let tmpValues = {
         "timestamp": timestamp, 
@@ -105,10 +105,10 @@ export function IntArrayToDictionary(intArray: any, userCategoryEnum: any, cb: a
         "data_quality": user_data_quality
     }
     // console.log(tmpValues);
-    cb(tmpValues);
+    return tmpValues;
 }
 
-export function AverageDictionaryToIntArray(dictionary: any, cb: any) {
+export function AverageDictionaryToIntArray(dictionary, cb) {
     // let tmpValues = {
     // 4 bytes - "timestamp_start": query_start_time, 
     // 4 bytes - "timestamp_end": query_end_time,
@@ -141,10 +141,10 @@ export function AverageDictionaryToIntArray(dictionary: any, cb: any) {
 
     let intArray = [integer1, integer2, integer3, integer4];
     // console.log(intArray);
-    cb(intArray);
+    return intArray;
 }
 
-export function IntArrayToAverageDictionary(intArray: any, cb: any) {
+export function IntArrayToAverageDictionary(intArray, cb) {
     // let tmpValues = {
     // 4 bytes - "timestamp_start": query_start_time, 
     // 4 bytes - "timestamp_end": query_end_time,
@@ -163,30 +163,30 @@ export function IntArrayToAverageDictionary(intArray: any, cb: any) {
 
     var flowActivityByteArray = [int3ByteArray[0],int3ByteArray[1]];
     let average_flow_activity = byteArrayToInt(flowActivityByteArray);
-    let average_heart_rate = parseInt(int3ByteArray[2] as any, 10);
-    let average_strain_intensity = parseInt(int3ByteArray[3]as any, 10);
+    let average_heart_rate = parseInt(int3ByteArray[2], 10);
+    let average_strain_intensity = parseInt(int3ByteArray[3], 10);
 
     var int4ByteArray = intToByteArray(intArray[3]);
-    let average_eye_blink_rate =  parseInt(int4ByteArray[0]as any, 10);
+    let average_eye_blink_rate =  parseInt(int4ByteArray[0], 10);
     var stepsByteArray = [int4ByteArray[1],int4ByteArray[2]];
     let total_steps = byteArrayToInt(stepsByteArray);
-    let average_data_quality = parseInt(int4ByteArray[3] as any, 10);
+    let average_data_quality = parseInt(int4ByteArray[3], 10);
 
     let tmpValues = {
         "timestamp_start": timestamp_start, 
         "timestamp_end": timestamp_start,
-        "average_flow_activity": parseInt(average_flow_activity as any, 10),
-        "average_heartrate": parseInt(average_heart_rate as any, 10),
-        "average_strain_intensity": parseInt(average_strain_intensity as any, 10),
-        "average_eye_blink_rate": parseInt(average_eye_blink_rate as any, 10),
-        "total_steps": parseInt(total_steps as any, 10),
-        "average_data_quality": parseInt(average_data_quality as any, 10)
+        "average_flow_activity": parseInt(average_flow_activity, 10),
+        "average_heartrate": parseInt(average_heart_rate, 10),
+        "average_strain_intensity": parseInt(average_strain_intensity, 10),
+        "average_eye_blink_rate": parseInt(average_eye_blink_rate, 10),
+        "total_steps": parseInt(total_steps, 10),
+        "average_data_quality": parseInt(average_data_quality, 10)
     }
     // console.log(tmpValues);
-    cb(tmpValues);
+    return tmpValues;
 }
 
-function shortToByteArray(short: any) {
+function shortToByteArray(short) {
     // we want to represent the input as a 8-bytes array
     var byteArray = [0, 0];
 
@@ -198,7 +198,7 @@ function shortToByteArray(short: any) {
     return byteArray;
 }
 
-function intToByteArray(integer: any) {
+function intToByteArray(integer) {
     // we want to represent the input as a 8-bytes array
     var byteArray = [0, 0, 0, 0];
 
@@ -210,7 +210,7 @@ function intToByteArray(integer: any) {
     return byteArray;
 }
 
-function byteArrayToInt(byteArray: any) {
+function byteArrayToInt(byteArray) {
     var value = 0;
     for (var i = byteArray.length - 1; i >= 0; i--) {
         value = (value * 256) + byteArray[i];

@@ -51,7 +51,7 @@ actor {
 
   // Function to retrieve the array of arrays for a given address.
   // Only callable by allowed identities.
-  public query func getMapping(address: Text, dateInt: Int) : async ?NestedArray {
+  public query func getMapping(address: Text) : async ?NestedArray {
     return addressMap.get(address);
   };
 
