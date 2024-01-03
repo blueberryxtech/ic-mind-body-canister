@@ -120,8 +120,10 @@ export default function MyDataPage() {
     }
     //get data for row 
     // console.log(selectedIndex);
-    let tmpVectorData = icpStoredData[tmpIndex];
-    readICPRow(tmpVectorData);
+    if (tmpIndex != -1){
+      let tmpVectorData = icpStoredData[tmpIndex];
+      readICPRow(tmpVectorData);
+    }
 
     setSelected(newSelected);
   };
@@ -129,6 +131,11 @@ export default function MyDataPage() {
   const readICPRow = async (tmpVectorData) => {
 
     var tmpDecryptValues =  await decryptData(tmpVectorData);
+
+    //export data
+    if (tmpDecryptValues.length > 0){
+      export_metric_csv(tmpDecryptValues);
+    }
     // console.log(tmpDecryptValues);
     const heartRateArray = tmpDecryptValues.flatMap(({ heartrate }) => heartrate);
     const flowActivityArray = tmpDecryptValues.flatMap(({ flow_activity }) => flow_activity);
@@ -357,7 +364,59 @@ const updatePasswordKey = () => {
       newDate.setHours(hours - offset);
 
       return newDate;   
+  };
+
+  function joinArray(array, separator) {
+    return array.reduce((p, c, idx) => {
+        if (idx === 0)
+            return [c];
+        else
+            return [...p, separator, c];
+    }, []);
   }
+
+  const export_metric_csv = (dictionaryArrayData) => {
+
+    var arrayMetricHeader = ["timestamp","category","flow_activity","heartrate","strain_intensity","eye_blink_rate","steps","data_quality"];
+    var arrayMetricData = [];
+    let tLen = dictionaryArrayData.length;
+    for (let i = 0; i < tLen; i++) {
+      arrayMetricData.push([
+        dictionaryArrayData[i].timestamp,
+        dictionaryArrayData[i].category,
+        dictionaryArrayData[i].flow_activity,
+        dictionaryArrayData[i].heartrate,
+        dictionaryArrayData[i].strain_intensity,
+        dictionaryArrayData[i].eye_blink_rate,
+        dictionaryArrayData[i].steps,
+        dictionaryArrayData[i].data_quality]);
+    }
+
+    let header = arrayMetricHeader.join(",") + '\n';
+    let csv = header;
+    for (let j = 0; j < arrayMetricData.length; j++) {
+      var tmpValArray = arrayMetricData[j];
+      // console.log(tmpValArray);
+      var tmpLine = "";
+      for (let k = 0; k < tmpValArray.length; k++) {
+          var tmpVal = tmpValArray[k].toString();
+          tmpLine += tmpVal+","
+      }
+      csv += tmpLine + '\n';
+    }
+
+    let csvData = new Blob([csv], { type: 'text/csv' });  
+    let csvUrl = URL.createObjectURL(csvData);
+
+    const nowDate = new Date(dictionaryArrayData[0].timestamp*1000);
+    var csvTime = nowDate.toISOString(); // "2020-06-13T18:30:00.000Z"
+    let hiddenElement = document.createElement('a');
+    hiddenElement.href = csvUrl;
+    hiddenElement.target = '_blank';
+    hiddenElement.download = csvTime + '_metric_data.csv';
+    hiddenElement.click();
+    // console.log("metric - csv saved");
+  };
 
   function processBlueberryResponse(data, query_start_time, query_end_time){
 
@@ -638,8 +697,7 @@ const updatePasswordKey = () => {
         let tmpDictionary = IntArrayToDictionary(decryptedVector, userCategoryEnum);
         data.push(tmpDictionary);
     }
-    // display in chart
-    console.log(data);
+    // console.log(data);
     return data;
   };
 

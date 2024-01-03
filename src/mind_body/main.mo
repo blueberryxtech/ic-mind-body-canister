@@ -38,11 +38,10 @@ actor {
   // };
 
   public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
-    // todo: implement this for restricting who can add data
-    // assert(isCallerAllowed()); // Ensure the caller is allowed to call this method
+    // assert(isCallerAllowed());                                 // Ensure the caller is allowed to call this method
     let currentArrays = addressMap.get(address);
     let updatedArrays : NestedArray = switch (currentArrays) {
-      case (null) { [encryptedWindow] }; // If no entry exists, start a new array
+      case (null) { [encryptedWindow] };                          // If no entry exists, start a new array
       case (?arrays) { Array.append(arrays, [encryptedWindow]) }; // If an entry exists, append the new array
     };
     addressMap.put(address, updatedArrays);

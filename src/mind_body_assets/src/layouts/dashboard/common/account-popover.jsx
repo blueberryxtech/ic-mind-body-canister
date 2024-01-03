@@ -1,6 +1,10 @@
+import React from 'react';
 import { useState } from 'react';
 
+import { RouterLink } from '../../../routes/components';
+
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
@@ -21,9 +25,8 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
-    window.$icpId = "";
-    window.$ethereumId = "";
-
+    window.$icpId = "demo";
+    window.$ethereumId = "demo";
     setOpen(null);
   };
 
@@ -78,7 +81,9 @@ export default function AccountPopover() {
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
+        <Link component={RouterLink} href="/login" >
           Logout
+        </Link>
         </MenuItem>
       </Popover>
     </>
