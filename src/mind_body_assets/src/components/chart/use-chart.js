@@ -87,7 +87,7 @@ export default function useChart(options) {
     // Stroke
     stroke: {
       width: 3,
-      curve: 'smooth',
+      curve: 'straight',
       lineCap: 'round',
     },
 

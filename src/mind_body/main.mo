@@ -142,9 +142,9 @@ actor {
     };
 
     //1 node
-    Cycles.add(1_605_000_000);
+    // Cycles.add(1_605_000_000);
     //13 nodes
-    // Cycles.add(20_865_000_000);
+    Cycles.add(20_870_000_000);
     
     //4. MAKE HTTPS REQUEST AND WAIT FOR RESPONSE
     //Since the cycles were added above, we can just call the IC management canister with HTTPS outcalls below
@@ -190,9 +190,9 @@ actor {
     };
 
     //1 node
-    Cycles.add(1_605_000_000);
+    // Cycles.add(1_605_000_000);
     //13 nodes
-    // Cycles.add(20_865_000_000);
+    Cycles.add(20_870_000_000);
     
     //4. MAKE HTTPS REQUEST AND WAIT FOR RESPONSE
     //Since the cycles were added above, we can just call the IC management canister with HTTPS outcalls below

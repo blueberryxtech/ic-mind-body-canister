@@ -641,7 +641,7 @@ $RefreshReg$(_c, "LearnMorePage");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-helmet-async":"hTtyd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../sections/learnmore/view":"baO9z"}],"baO9z":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-helmet-async":"hTtyd","../sections/learnmore/view":"baO9z","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"baO9z":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LearnMoreView", ()=>(0, _learnmoreViewDefault.default));
@@ -1043,6 +1043,6 @@ $RefreshReg$(_c, "LearnMoreView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Container":"75pQf","@mui/material/styles":"1lzai","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../../theme/css":"jJA8o","../../../components/logo":"cezYn","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5"}]},["9Geau","1xC6H"], null, "parcelRequire4831")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","../../../../../declarations/mind_body":"1DbUn","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Container":"75pQf","@mui/material/styles":"1lzai","../../../theme/css":"jJA8o","../../../components/logo":"cezYn","../../../theme":"4MQu5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["9Geau","1xC6H"], null, "parcelRequire4831")
 
 //# sourceMappingURL=learnmore.9dfcd510.js.map

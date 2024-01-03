@@ -71,12 +71,12 @@ export default function MyDataPage() {
   const [flowActivityData, setFlowActivityData] = useState([30, 25, 30, 32, 34, 39, 48, 61, 55, 47, 40]);
 
   //
-  var user_state_1 = "active";
-  var user_state_2 = "dynamic";
-  var user_state_3 = "increasing";
-  var user_state_4 = "variable";
-  var user_state_5 = "resting";
-  var user_state_6 = "intense";
+  const [user_state_1, setUser_state_1] = useState("active");
+  const [user_state_2, setUser_state_2] = useState("dynamic");
+  const [user_state_3, setUser_state_3] = useState("increasing");
+  const [user_state_4, setUser_state_4] = useState("variable");
+  const [user_state_5, setUser_state_5] = useState("resting");
+  const [user_state_6, setUser_state_6] = useState("intense");
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -129,7 +129,7 @@ export default function MyDataPage() {
   const readICPRow = async (tmpVectorData) => {
 
     var tmpDecryptValues =  await decryptData(tmpVectorData);
-    console.log(tmpDecryptValues);
+    // console.log(tmpDecryptValues);
     const heartRateArray = tmpDecryptValues.flatMap(({ heartrate }) => heartrate);
     const flowActivityArray = tmpDecryptValues.flatMap(({ flow_activity }) => flow_activity);
     const timeStampArray = tmpDecryptValues.flatMap(({ timestamp }) => timestamp);
@@ -220,6 +220,7 @@ export default function MyDataPage() {
       setWeb3Id(tmpEthereumId);
       initialLoadICP();
     }
+    loadLocalState();
   }
 
   useEffect(() =>{
@@ -237,6 +238,107 @@ export default function MyDataPage() {
   const uploadBlueberryAction = () => {
     setIsOpen(true);
   };
+
+  const updateBlueberryStates = () => {
+
+    var tmpS1_ = document.getElementById("userState1")
+    var tmpS1 = tmpS1_.value;
+
+    if (tmpS1 != ""){
+      localStorage.setItem('userState1', tmpS1);
+      setUser_state_1(tmpS1);
+    }
+
+    var tmpS2_ = document.getElementById("userState2")
+    var tmpS2 = tmpS2_.value;
+
+    if (tmpS2 != ""){
+      localStorage.setItem('userState2', tmpS2);
+      setUser_state_2(tmpS2);
+    }
+
+    var tmpS3_ = document.getElementById("userState3")
+    var tmpS3 = tmpS3_.value;
+
+    if (tmpS3 != ""){
+      localStorage.setItem('userState3', tmpS3);
+      setUser_state_3(tmpS3);
+    }
+
+    var tmpS4_ = document.getElementById("userState4")
+    var tmpS4 = tmpS4_.value;
+    if (tmpS4 != ""){
+      localStorage.setItem('userState4', tmpS4);
+      setUser_state_4(tmpS4);
+    }
+
+    var tmpS5_ = document.getElementById("userState5")
+    var tmpS5 = tmpS5_.value;
+
+    if (tmpS5 != ""){
+      localStorage.setItem('userState5', tmpS5);
+      setUser_state_5(tmpS5);
+    }
+
+    var tmpS6_ = document.getElementById("userState6")
+    var tmpS6 = tmpS6_.value;
+    if (tmpS6 != ""){
+      localStorage.setItem('userState6', tmpS6);
+      setUser_state_6(tmpS6);
+    }
+    console.log(tmpS6);
+};
+
+function loadLocalState() {
+
+  if(localStorage.getItem('userState1') == null){
+    setUser_state_1("active");
+  } else {
+    var tmp_user_state_1 = localStorage.getItem('userState1');
+    setUser_state_1(tmp_user_state_1);
+  }
+  if(localStorage.getItem('userState2') == null){
+    setUser_state_2("dynamic");
+  } else {
+    var tmp_user_state_2 = localStorage.getItem('userState2');
+    setUser_state_2(tmp_user_state_2);
+  }
+  if(localStorage.getItem('userState3') == null){
+    setUser_state_3("increasing");
+  } else {
+    var tmp_user_state_3 = localStorage.getItem('userState3');
+    setUser_state_3(tmp_user_state_3);
+  }
+  if(localStorage.getItem('userState4') == null){
+    setUser_state_4("variable");
+  } else {
+    var tmp_user_state_4 = localStorage.getItem('userState4');
+    setUser_state_4(tmp_user_state_4);
+  }
+  if(localStorage.getItem('userState5') == null){
+    setUser_state_5("resting");
+  } else {
+    var tmp_user_state_5 = localStorage.getItem('userState5');
+    setUser_state_5(tmp_user_state_5);
+  }
+  if(localStorage.getItem('userState6') == null){
+    setUser_state_6("intense");
+  } else {
+    var tmp_user_state_6 = localStorage.getItem('userState6');
+    setUser_state_6(tmp_user_state_6);
+  }
+};
+
+const updatePasswordKey = () => {
+
+    var tmpKey_ = document.getElementById("passcodeKey")
+    var tmpKey = tmpKey_.value;
+
+    if (tmpKey != 0){
+      localStorage.setItem('passcodeKey', tmpKey);
+      console.log(tmpKey);
+    }
+};
 
   const handleSubmitBlueberryLogin = useCallback(async (e) => {
     e.preventDefault();
@@ -435,7 +537,7 @@ export default function MyDataPage() {
       var tmpIcpNetworkData = [];
       var tmpArray = returnValueArray[0];
       setIcpStoredData(tmpArray);
-      for (var i = 0; i < tmpArray.length-1; i++) { 
+      for (var i = 0; i < tmpArray.length; i++) { 
         var tmpValueArray = tmpArray[i];
         // console.log(tmpValueArray);
         var tmpDecryptValues = await decryptData(tmpValueArray);
@@ -494,7 +596,6 @@ export default function MyDataPage() {
 
     for (var i = 0; i < dataRaw.length; i++) {
         let tmpDictionary = dataRaw[i];
-        var encryptedVector = [];
         let tmpIntArray = DictionaryToIntArray(tmpDictionary, userCategoryEnum);
         for (let i = 0; i < tmpIntArray.length; i++) {
           let tmpEncrypt = tmpIntArray[i]*passcodeKey;
@@ -525,7 +626,7 @@ export default function MyDataPage() {
 
     // console.log(vector_iv);
     for (var i = 0; i < vector_iv.length-3; i+=3) {
-        var tmpVector = vector_iv.slice(i, i+2);
+        var tmpVector = vector_iv.slice(i, i+3);
         var decryptedVector = [];
         for (let i = 0; i < tmpVector.length; i++) {
           const largeInt = BigInt(tmpVector[i]);
@@ -538,7 +639,7 @@ export default function MyDataPage() {
         data.push(tmpDictionary);
     }
     // display in chart
-    // console.log(data);
+    console.log(data);
     return data;
   };
 
@@ -628,6 +729,20 @@ export default function MyDataPage() {
           request device 
         </Button>
       </Stack>
+      <Stack>
+        <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
+          <div>
+            <span style={{fontSize: "1.0em"}}>encryption key:</span>
+            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
+            <input type="number" placeholder="1" id="passcodeKey"></input>
+            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
+            <Button variant="contained" color="primary" id="updatePasswordKey" style={{width: "150px"}} onClick={updatePasswordKey}>update key</Button>
+          </div>
+        </div>
+      </Stack>
+      <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+      </Link>
       <Card>
         <UserTableToolbar
           numSelected={selected.length}
@@ -699,16 +814,16 @@ export default function MyDataPage() {
           <span style={{fontSize: '0.5em'}}>blueberry category labels:</span>
           <div><span style={{fontSize: '0.5em'}}>manually enter from what you have set in your mobile app, required for proper encoding</span></div>
           <div class="row">
-            <div><span style={{color: '#FFE933'}}>⬤</span><input type="text" placeholder="active" id="userState1"></input></div>
-            <div><span style={{color: '#7FE683'}}>⬤</span><input type="text" placeholder="dynamic" id="userState2"></input></div>
-            <div><span style={{color: '#33F9FF'}}>⬤</span><input type="text" placeholder="increasing" id="userState3"></input></div>
+            <div><span style={{color: '#FFE933'}}>⬤</span><input type="text" placeholder={user_state_1} id="userState1"></input></div>
+            <div><span style={{color: '#7FE683'}}>⬤</span><input type="text" placeholder={user_state_2} id="userState2"></input></div>
+            <div><span style={{color: '#33F9FF'}}>⬤</span><input type="text" placeholder={user_state_3} id="userState3"></input></div>
           </div>
           <div class="row">
-            <div><span style={{color: '#CA9EFF'}}>⬤</span><input type="text" placeholder="variable" id="userState4"></input></div>
-            <div><span style={{color: '#53BEF7'}}>⬤</span><input type="text" placeholder="resting" id="userState5"></input></div>
-            <div><span style={{color: '#ff9900'}}>⬤</span><input type="text" placeholder="intense" id="userState6"></input></div>
+            <div><span style={{color: '#CA9EFF'}}>⬤</span><input type="text" placeholder={user_state_4} id="userState4"></input></div>
+            <div><span style={{color: '#53BEF7'}}>⬤</span><input type="text" placeholder={user_state_5} id="userState5"></input></div>
+            <div><span style={{color: '#ff9900'}}>⬤</span><input type="text" placeholder={user_state_6} id="userState6"></input></div>
           </div>
-          <Button id="updateBlueberryStates" variant="contained" color="primary" style={{width: "150px"}}>update</Button>
+          <Button variant="contained" color="primary" style={{width: "150px"}} onClick={updateBlueberryStates}>update</Button>
         </div>
       </Card>
       <Modal
