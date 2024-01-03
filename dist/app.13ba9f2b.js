@@ -677,12 +677,15 @@ var _appWidgetSummaryDefault = parcelHelpers.interopDefault(_appWidgetSummary);
 var _s = $RefreshSig$();
 function AppView() {
     _s();
-    const [canisterBalance, setCanisterBalance] = _react.useState("");
+    const [canisterBalance, setCanisterBalance] = _react.useState(0);
+    const [storedNetworkDataTotal, setStoredNetworkDataTotal] = _react.useState(0);
     const [web3Id, setWeb3Id] = _react.useState("");
     const loadICPData = async ()=>{
         //get canister cycle balance
         const canisterBalanceValue = await (0, _mindBody.mind_body).getCanisterBalance();
-        setCanisterBalance(canisterBalanceValue.toString());
+        setCanisterBalance(canisterBalanceValue);
+        const storedNetworkDataTotal = await (0, _mindBody.mind_body).getStoredDataNetworkSize();
+        setStoredNetworkDataTotal(storedNetworkDataTotal);
         var tmpIcpId = window.$icpId;
         var tmpEthereumId = window.$ethereumId;
         if (tmpIcpId === undefined && tmpEthereumId === undefined) //display error popup
@@ -712,12 +715,30 @@ function AppView() {
                             color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 46,
+                            lineNumber: 50,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 45,
+                        lineNumber: 49,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                        xs: 12,
+                        md: 6,
+                        lg: 3,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                            total: storedNetworkDataTotal,
+                            subtitle: "bytes stored",
+                            color: "success"
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 57,
+                            columnNumber: 15
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                        lineNumber: 56,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -730,32 +751,32 @@ function AppView() {
                             color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 53,
+                            lineNumber: 64,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 52,
+                        lineNumber: 63,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                lineNumber: 44,
+                lineNumber: 48,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-            lineNumber: 43,
+            lineNumber: 47,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-        lineNumber: 42,
+        lineNumber: 46,
         columnNumber: 7
     }, this);
 }
-_s(AppView, "GTP+IZkqAI184N4jrMTMqkoCg8U=");
+_s(AppView, "Sx0/BtBA3zJVDqdnmkesTFlV4pY=");
 _c = AppView;
 var _c;
 $RefreshReg$(_c, "AppView");

@@ -6,12 +6,13 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
+import Container from '@mui/material/Container';
 
 import Iconify from '../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableToolbar({ numSelected, filterName, onFilterName }) {
+export default function UserTableToolbar({ numSelected, filterName, onFilterName, exportData, deleteData }) {
   return (
     <Toolbar
       sx={{
@@ -35,11 +36,18 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
       )}
 
       {numSelected > 0 ? (
+        <Container>
         <Tooltip title="Delete">
           <IconButton>
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>
+        <Tooltip title="Export">
+          <IconButton onClick={exportData}>
+            <Iconify icon="material-symbols:download" />
+          </IconButton>
+        </Tooltip>
+        </Container>
       ) : (
         <Tooltip title="Filter list">
           <IconButton>
@@ -55,4 +63,6 @@ UserTableToolbar.propTypes = {
   numSelected: PropTypes.number,
   filterName: PropTypes.string,
   onFilterName: PropTypes.func,
+  exportData: PropTypes.func,
+  deleteData: PropTypes.func
 };

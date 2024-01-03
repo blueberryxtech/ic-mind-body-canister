@@ -18,7 +18,7 @@ actor {
   type NestedArray = [Vector];
   type AddressMap = HashMap.HashMap<Text, NestedArray>;
 
-  // stable var storedNetworkData : [(Text, NestedArray)] = [];
+  stable var storedNetworkDataSize : Nat = 0;
 
   // Initialize the HashMap
   // stable storage - set mapping to per month hashmaps - potentially segment to weeks or days depending on sizing/timing requirements
@@ -37,25 +37,38 @@ actor {
   //   addressMap : AddressMap = HashMap.HashMap.fromIter<Text,NestedArray>(storedNetworkData.vals(), 10, Text.equal, Text.hash);
   // };
 
+  // public func removeFromAddress(address: Text, removeIndex: Int) {
+  //   let currentArrays = addressMap.get(address);
+  //   let arrayIndexSize = currentArrays.size() - removeIndex;
+  //   let startIndex = removeIndex;
+  //   let subArray = Array.subArray<NestedArray>(currentArrays, startIndex, arrayIndexSize);
+  //   addressMap.put(address, updatedArrays);
+  // };
+
   public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
-    // assert(isCallerAllowed());                                 // Ensure the caller is allowed to call this method
+    // assert(isCallerAllowed());                                   // Ensure the caller is allowed to call this method
+    let tmpArraySize = Array.size(encryptedWindow) * 4;
+    storedNetworkDataSize += tmpArraySize;
+
     let currentArrays = addressMap.get(address);
     let updatedArrays : NestedArray = switch (currentArrays) {
-      case (null) { [encryptedWindow] };                          // If no entry exists, start a new array
-      case (?arrays) { Array.append(arrays, [encryptedWindow]) }; // If an entry exists, append the new array
+      case (null) { [encryptedWindow] };                            // If no entry exists, start a new array
+      case (?arrays) { Array.append(arrays, [encryptedWindow]) };   // If an entry exists, append the new array
     };
     addressMap.put(address, updatedArrays);
-    // updateStableDataMap();
   };
 
   // Function to retrieve the array of arrays for a given address.
-  // Only callable by allowed identities.
   public query func getMapping(address: Text) : async ?NestedArray {
     return addressMap.get(address);
   };
 
   public query func getCanisterBalance() : async Nat {
     return Cycles.balance();
+  };
+
+  public query func getStoredDataNetworkSize() : async Nat {
+    return storedNetworkDataSize;
   };
 
   public query (message) func getIcpId() : async Text {

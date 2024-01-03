@@ -807,7 +807,7 @@ function LoginView() {
                                         sx: {
                                             borderColor: (0, _styles.alpha)(theme.palette.grey[500], 0.16)
                                         },
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _linkDefault.default), {
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
                                             variant: "subtitle2",
                                             sx: {
                                                 ml: 0.5
@@ -831,7 +831,7 @@ function LoginView() {
                                         sx: {
                                             borderColor: (0, _styles.alpha)(theme.palette.grey[500], 0.16)
                                         },
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _linkDefault.default), {
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
                                             variant: "subtitle2",
                                             sx: {
                                                 ml: 0.5

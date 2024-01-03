@@ -13,14 +13,18 @@ import AppWidgetSummary from '../../../modules/app-widget-summary';
 // ----------------------------------------------------------------------
 export default function AppView() {
 
-  const [canisterBalance, setCanisterBalance] = React.useState("");
+  const [canisterBalance, setCanisterBalance] = React.useState(0);
+  const [storedNetworkDataTotal, setStoredNetworkDataTotal] = React.useState(0);
   const [web3Id, setWeb3Id] = React.useState("");
 
   const loadICPData = async () => {
     //get canister cycle balance
     const canisterBalanceValue = await mind_body.getCanisterBalance();
-    setCanisterBalance(canisterBalanceValue.toString());
+    setCanisterBalance(canisterBalanceValue);
     
+    const storedNetworkDataTotal = await mind_body.getStoredDataNetworkSize();
+    setStoredNetworkDataTotal(storedNetworkDataTotal);
+
     var tmpIcpId = window.$icpId;
     var tmpEthereumId = window.$ethereumId;
     if (tmpIcpId === undefined && tmpEthereumId === undefined){
@@ -46,6 +50,13 @@ export default function AppView() {
               <AppWidgetSummary
                 total={canisterBalance}
                 subtitle="ICP Cycles Available"
+                color="success"
+              />
+            </Grid>
+            <Grid xs={12} md={6} lg={3}>
+              <AppWidgetSummary
+                total={storedNetworkDataTotal}
+                subtitle="bytes stored"
                 color="success"
               />
             </Grid>

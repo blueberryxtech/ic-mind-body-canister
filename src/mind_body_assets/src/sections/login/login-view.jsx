@@ -103,9 +103,9 @@ export default function LoginView() {
               onClick={loginAction}
               sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             >
-              <Link variant="subtitle2" sx={{ ml: 0.5 }}>
+              <Typography variant="subtitle2" sx={{ ml: 0.5 }}>
                 ICP
-              </Link>
+              </Typography>
             </Button>
 
             <Button
@@ -115,9 +115,9 @@ export default function LoginView() {
               variant="outlined"
               sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             >
-              <Link variant="subtitle2" sx={{ ml: 0.5 }}>
+              <Typography variant="subtitle2" sx={{ ml: 0.5 }}>
                 ethereum
-              </Link>
+              </Typography>
             </Button>
           </Stack>
         </Card>

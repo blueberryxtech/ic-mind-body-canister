@@ -20,6 +20,7 @@ export const idlFactory = ({ IDL }) => {
     'getCanisterBalance' : IDL.Func([], [IDL.Nat], ['query']),
     'getIcpId' : IDL.Func([], [IDL.Text], ['query']),
     'getMapping' : IDL.Func([IDL.Text], [IDL.Opt(NestedArray)], ['query']),
+    'getStoredDataNetworkSize' : IDL.Func([], [IDL.Nat], ['query']),
     'pushToArray' : IDL.Func(
         [IDL.Text, IDL.Vec(IDL.Int), IDL.Int],
         [],

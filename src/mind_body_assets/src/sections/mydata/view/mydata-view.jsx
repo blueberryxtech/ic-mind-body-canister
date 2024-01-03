@@ -70,6 +70,8 @@ export default function MyDataPage() {
 
   const [flowActivityData, setFlowActivityData] = useState([30, 25, 30, 32, 34, 39, 48, 61, 55, 47, 40]);
 
+  const [rowDecryptData, setRowDecryptData] = useState({});
+
   //
   const [user_state_1, setUser_state_1] = useState("active");
   const [user_state_2, setUser_state_2] = useState("dynamic");
@@ -131,11 +133,8 @@ export default function MyDataPage() {
   const readICPRow = async (tmpVectorData) => {
 
     var tmpDecryptValues =  await decryptData(tmpVectorData);
+    setRowDecryptData(tmpDecryptValues);
 
-    //export data
-    if (tmpDecryptValues.length > 0){
-      export_metric_csv(tmpDecryptValues);
-    }
     // console.log(tmpDecryptValues);
     const heartRateArray = tmpDecryptValues.flatMap(({ heartrate }) => heartrate);
     const flowActivityArray = tmpDecryptValues.flatMap(({ flow_activity }) => flow_activity);
@@ -186,6 +185,13 @@ export default function MyDataPage() {
     setHeartRateData(tmpHeartRateData);
     setFlowActivityData(tmpFlowActivityData);
 
+  }
+
+  const exportRowData = async(indexRow) => {
+    //export data
+    if (rowDecryptData.length > 0){
+      export_metric_csv(rowDecryptData);
+    }
   }
 
   const handleChangePage = (event, newPage) => {
@@ -298,37 +304,37 @@ export default function MyDataPage() {
 
 function loadLocalState() {
 
-  if(localStorage.getItem('userState1') == null){
+  if(localStorage.getItem('userState1') === null){
     setUser_state_1("active");
   } else {
     var tmp_user_state_1 = localStorage.getItem('userState1');
     setUser_state_1(tmp_user_state_1);
   }
-  if(localStorage.getItem('userState2') == null){
+  if(localStorage.getItem('userState2') === null){
     setUser_state_2("dynamic");
   } else {
     var tmp_user_state_2 = localStorage.getItem('userState2');
     setUser_state_2(tmp_user_state_2);
   }
-  if(localStorage.getItem('userState3') == null){
+  if(localStorage.getItem('userState3') === null){
     setUser_state_3("increasing");
   } else {
     var tmp_user_state_3 = localStorage.getItem('userState3');
     setUser_state_3(tmp_user_state_3);
   }
-  if(localStorage.getItem('userState4') == null){
+  if(localStorage.getItem('userState4') === null){
     setUser_state_4("variable");
   } else {
     var tmp_user_state_4 = localStorage.getItem('userState4');
     setUser_state_4(tmp_user_state_4);
   }
-  if(localStorage.getItem('userState5') == null){
+  if(localStorage.getItem('userState5') === null){
     setUser_state_5("resting");
   } else {
     var tmp_user_state_5 = localStorage.getItem('userState5');
     setUser_state_5(tmp_user_state_5);
   }
-  if(localStorage.getItem('userState6') == null){
+  if(localStorage.getItem('userState6') === null){
     setUser_state_6("intense");
   } else {
     var tmp_user_state_6 = localStorage.getItem('userState6');
@@ -806,6 +812,7 @@ const updatePasswordKey = () => {
           numSelected={selected.length}
           filterName={filterName}
           onFilterName={handleFilterByName}
+          exportData={exportRowData}
         />
 
         <Scrollbar>
