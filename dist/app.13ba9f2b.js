@@ -678,10 +678,19 @@ var _s = $RefreshSig$();
 function AppView() {
     _s();
     const [canisterBalance, setCanisterBalance] = _react.useState("");
+    const [web3Id, setWeb3Id] = _react.useState("");
     const loadICPData = async ()=>{
         //get canister cycle balance
         const canisterBalanceValue = await (0, _mindBody.mind_body).getCanisterBalance();
-        setCanisterBalance(canisterBalanceValue);
+        setCanisterBalance(canisterBalanceValue.toString());
+        var tmpIcpId = window.$icpId;
+        var tmpEthereumId = window.$ethereumId;
+        if (tmpIcpId === undefined) {
+            //display error popup
+            setWeb3Id("demo");
+            console.log("web3 id not set!");
+        } else if (!tmpIcpId.includes("demo")) setWeb3Id(tmpIcpId);
+        else if (!tmpEthereumId.includes("demo")) setWeb3Id(tmpEthereumId);
     };
     (0, _react.useEffect)(()=>{
         loadICPData();
@@ -697,58 +706,58 @@ function AppView() {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                         xs: 12,
-                        md: 12,
-                        lg: 12,
+                        md: 6,
+                        lg: 3,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            title: "ICP Cycles Available",
                             total: canisterBalance,
+                            subtitle: "ICP Cycles Available",
                             color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 33,
+                            lineNumber: 46,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 32,
+                        lineNumber: 45,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                         xs: 12,
-                        md: 12,
-                        lg: 12,
+                        md: 6,
+                        lg: 3,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            title: window.$icpId,
+                            title: icpId,
                             subtitle: "icp identity",
                             color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 40,
+                            lineNumber: 53,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 39,
+                        lineNumber: 52,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                lineNumber: 31,
+                lineNumber: 44,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-            lineNumber: 30,
+            lineNumber: 43,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-        lineNumber: 29,
+        lineNumber: 42,
         columnNumber: 7
     }, this);
 }
-_s(AppView, "e/qDzJp1mpYJ+GvBaDLBqk5u1WU=");
+_s(AppView, "GTP+IZkqAI184N4jrMTMqkoCg8U=");
 _c = AppView;
 var _c;
 $RefreshReg$(_c, "AppView");

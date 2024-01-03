@@ -91,11 +91,11 @@ export default function MyDataPage() {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -328,22 +328,18 @@ export default function MyDataPage() {
 
     let encryptedVector = await encryptData(dataRaw);
     // console.log(encryptedVector);
-    //check if icpId is not null
+    //check if icpId is not undefined
     var tmpIcpId = window.$icpId;
     var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId != null){
-      if (!tmpIcpId.includes("default")){
-        setWeb3Id(tmpIcpId);
-        writeICP(window.$icpId, encryptedVector);
-      }
-    } else if (tmpEthereumId != null) {
-      if (!tmpEthereumId.includes("default")){
-        setWeb3Id(tmpEthereumId);
-        writeICP(window.$ethereumId, encryptedVector);
-      } 
-    } else {
+    if (tmpIcpId === undefined){
       //display error popup
       console.log("web3 id not set!");
+    } else if (!tmpIcpId.includes("demo")){
+      setWeb3Id(tmpIcpId);
+      writeICP(window.$icpId, encryptedVector);
+    } else if (!tmpEthereumId.includes("demo")){
+      setWeb3Id(tmpEthereumId);
+      writeICP(window.$ethereumId, encryptedVector);
     }
   };
 
@@ -564,8 +560,8 @@ export default function MyDataPage() {
                       date={row.date}
                       dataSize={row.dataSize}
                       isVerified={row.isVerified}
-                      selected={selected.indexOf(row.name) !== -1}
-                      handleClick={(event) => handleClick(event, row.name)}
+                      selected={selected.indexOf(row.uniqueId) !== -1}
+                      handleClick={(event) => handleClick(event, row.uniqueId)}
                     />
                   ))}
 

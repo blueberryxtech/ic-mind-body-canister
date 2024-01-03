@@ -14,11 +14,24 @@ import AppWidgetSummary from '../../../modules/app-widget-summary';
 export default function AppView() {
 
   const [canisterBalance, setCanisterBalance] = React.useState("");
+  const [web3Id, setWeb3Id] = React.useState("");
 
   const loadICPData = async () => {
     //get canister cycle balance
     const canisterBalanceValue = await mind_body.getCanisterBalance();
-    setCanisterBalance(canisterBalanceValue);
+    setCanisterBalance(canisterBalanceValue.toString());
+    
+    var tmpIcpId = window.$icpId;
+    var tmpEthereumId = window.$ethereumId;
+    if (tmpIcpId === undefined){
+      //display error popup
+      setWeb3Id("demo");
+      console.log("web3 id not set!");
+    } else if (!tmpIcpId.includes("demo")){
+      setWeb3Id(tmpIcpId);
+    } else if (!tmpEthereumId.includes("demo")){
+      setWeb3Id(tmpEthereumId);
+    }
   }
 
   useEffect(() =>{
@@ -29,16 +42,16 @@ export default function AppView() {
       <div className="App" id="outer-container">
         <Container maxWidth="xl">
           <Grid container spacing={3}>
-            <Grid xs={12} md={12} lg={12}>
+            <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary
-                title="ICP Cycles Available" 
                 total={canisterBalance}
+                subtitle="ICP Cycles Available"
                 color="success"
               />
             </Grid>
-            <Grid xs={12} md={12} lg={12}>
+            <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary
-                title={window.$icpId}
+                title={icpId}
                 subtitle="icp identity"
                 color="success">
               </AppWidgetSummary>

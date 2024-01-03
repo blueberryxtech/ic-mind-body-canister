@@ -15,10 +15,12 @@ export default function AppWidgetSummary({ title, subtitle, total, icon, color =
       component={Stack}
       spacing={3}
       direction="row"
+      justifyContent="center"
       sx={{
         px: 3,
         py: 5,
         borderRadius: 2,
+        textAlign: 'center',
         ...sx,
       }}
       {...other}
@@ -26,11 +28,11 @@ export default function AppWidgetSummary({ title, subtitle, total, icon, color =
       {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}
 
       <Stack spacing={0.5}>
-        <Typography variant="h4">{fShortenNumber(total)}</Typography>
-        <Typography variant="title" sx={{ color: 'text.disabled' }}>
+        <Typography variant="h4" sx={{ color: 'black'}}>{fShortenNumber(total)}</Typography>
+        <Typography variant="h4" sx={{ color: 'black' }}>
           {title}
         </Typography>
-        <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
+        <Typography variant="subtitle" sx={{ color: 'text.disabled' }}>
           {subtitle}
         </Typography>
       </Stack>

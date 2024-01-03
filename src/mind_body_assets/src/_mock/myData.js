@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 // ----------------------------------------------------------------------
 
-export const myData = [...Array(24)].map((_, index) => ({
+export const myData = [...Array(4)].map((_, index) => ({
   id: faker.string.uuid(),
   uniqueId: faker.string.uuid(),
   dataType: "blueberry",
