@@ -220,8 +220,8 @@ export default function MyDataPage() {
 
   const loadICPData = () => {
     var tmpIcpId = window.$icpId;
-    var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId === undefined && tmpEthereumId === undefined){
+    var tmpWeb3AddressId = window.$web3AddressId;
+    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
       //display error popup
       setWeb3Id("demo");
       // console.log("web3 id not set!");
@@ -229,8 +229,8 @@ export default function MyDataPage() {
       setWeb3Id(tmpIcpId);
       initialLoadICP();
       // console.log("load icp data");
-    } else if (tmpEthereumId !== "demo"){
-      setWeb3Id(tmpEthereumId);
+    } else if (tmpWeb3AddressId !== "demo"){
+      setWeb3Id(tmpWeb3AddressId);
       initialLoadICP();
     }
     loadLocalState();
@@ -560,16 +560,16 @@ const updatePasswordKey = () => {
     // console.log(encryptedVector);
     //check if icpId is not undefined
     var tmpIcpId = window.$icpId;
-    var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId === undefined && tmpEthereumId === undefined){
+    var tmpWeb3AddressId = window.$web3AddressId;
+    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
       //display error popup
       console.log("web3 id not set!");
     } else if (tmpIcpId !== "demo"){
       setWeb3Id(tmpIcpId);
       writeICP(window.$icpId, encryptedVector);
-    } else if (tmpEthereumId !== "demo"){
-      setWeb3Id(tmpEthereumId);
-      writeICP(window.$ethereumId, encryptedVector);
+    } else if (tmpWeb3AddressId !== "demo"){
+      setWeb3Id(tmpWeb3AddressId);
+      writeICP(window.$web3AddressId, encryptedVector);
     }
   };
 

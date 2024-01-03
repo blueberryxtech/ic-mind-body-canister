@@ -687,11 +687,11 @@ function AppView() {
         const storedNetworkDataTotal = await (0, _mindBody.mind_body).getStoredDataNetworkSize();
         setStoredNetworkDataTotal(storedNetworkDataTotal);
         var tmpIcpId = window.$icpId;
-        var tmpEthereumId = window.$ethereumId;
-        if (tmpIcpId === undefined && tmpEthereumId === undefined) //display error popup
+        var tmpWeb3AddressId = window.$web3AddressId;
+        if (tmpIcpId === undefined && tmpWeb3AddressId === undefined) //display error popup
         setWeb3Id("demo");
         else if (tmpIcpId !== "demo") setWeb3Id(tmpIcpId);
-        else if (tmpEthereumId !== "demo") setWeb3Id(tmpEthereumId);
+        else if (tmpWeb3AddressId !== "demo") setWeb3Id(tmpWeb3AddressId);
     };
     (0, _react.useEffect)(()=>{
         loadICPData();
@@ -747,7 +747,7 @@ function AppView() {
                         lg: 3,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
                             title: web3Id,
-                            subtitle: "icp identity",
+                            subtitle: "web3 identity",
                             color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",

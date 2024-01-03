@@ -3,7 +3,9 @@ import * as React from 'react';
 import { useState, useEffect } from "react";
 import { AuthClient } from "@dfinity/auth-client";
 import { HttpAgent } from "@dfinity/agent";
-import { mind_body, createActor } from "../../../../declarations/mind_body"
+import { mind_body, createActor } from "../../../../declarations/mind_body";
+import { sequence } from '0xsequence';
+import socketIOClient from "socket.io-client";
 
 //UI
 import Box from '@mui/material/Box';
@@ -24,7 +26,13 @@ export default function LoginView() {
   const theme = useTheme();
 
   const [icpId, setIcpId] = React.useState("");
-  const [ethereumId, setEthereumId] = React.useState("");
+
+  //web3 wallet
+  const [proof, setProof] = React.useState("");
+  const [web3Address, setWeb3Address] = React.useState("");
+  const [socket, setSocket] = React.useState(null);
+
+  sequence.initWallet({defaultNetwork: 'mainnet'})
 
   const loginAction = async () => {
     // create an auth client
@@ -59,6 +67,17 @@ export default function LoginView() {
     setIcpId(icpIdValue);
   }
 
+  const loginWeb3 = async () => {
+    const wallet = sequence.getWallet()
+    const details = await wallet.connect({app: 'blueberry', authorize: true})
+    if (details.connected) {
+      window.$web3AddressId = details.session?.accountAddress;
+      console.log(details.session?.accountAddress);
+      setProof(details.proof?.proofString);
+      setWeb3Address(details.session?.accountAddress);
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -83,9 +102,10 @@ export default function LoginView() {
             p: 5,
             width: 1,
             maxWidth: 420,
+            height: 420,
           }}
         >
-          <Typography variant="h4">connect</Typography>
+          <Typography variant="h4">connect web3 identity</Typography>
 
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             Don’t have an ICP account?
@@ -113,6 +133,7 @@ export default function LoginView() {
               size="large"
               color="inherit"
               variant="outlined"
+              onClick={loginWeb3}
               sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             >
               <Typography variant="subtitle2" sx={{ ml: 0.5 }}>
@@ -124,20 +145,21 @@ export default function LoginView() {
         <Card sx={{
             p: 5,
             width: 1,
+            marginTop: 5,
             maxWidth: 420,
-            marginTop: 10
+            height: 620,
           }}>
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             icp identity: 
             <AppWidgetSummary
-              title={window.$icpId}
+              subtitle={window.$icpId}
               color="success"
             />
           </Typography>
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             ethereum identity: 
             <AppWidgetSummary
-              title={window.$ethereumId}
+              subtitle={window.$web3AddressId}
               color="success"
             />
           </Typography>

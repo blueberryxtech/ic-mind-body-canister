@@ -26,15 +26,15 @@ export default function AppView() {
     setStoredNetworkDataTotal(storedNetworkDataTotal);
 
     var tmpIcpId = window.$icpId;
-    var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId === undefined && tmpEthereumId === undefined){
+    var tmpWeb3AddressId = window.$web3AddressId;
+    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
       //display error popup
       setWeb3Id("demo");
       // console.log("web3 id not set!");
     } else if (tmpIcpId !== "demo"){
       setWeb3Id(tmpIcpId);
-    } else if (tmpEthereumId !== "demo"){
-      setWeb3Id(tmpEthereumId);
+    } else if (tmpWeb3AddressId !== "demo"){
+      setWeb3Id(tmpWeb3AddressId);
     }
   }
 
@@ -63,7 +63,7 @@ export default function AppView() {
             <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary
                 title={web3Id}
-                subtitle="icp identity"
+                subtitle="web3 identity"
                 color="success">
               </AppWidgetSummary>
             </Grid>
