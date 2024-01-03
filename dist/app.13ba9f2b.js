@@ -672,53 +672,12 @@ var _unstableGrid2Default = parcelHelpers.interopDefault(_unstableGrid2);
 var _typography = require("@mui/material/Typography");
 var _typographyDefault = parcelHelpers.interopDefault(_typography);
 var _reactBootstrap = require("react-bootstrap");
-var _appUserChart = require("../../../modules/app-user-chart");
-var _appUserChartDefault = parcelHelpers.interopDefault(_appUserChart);
 var _appWidgetSummary = require("../../../modules/app-widget-summary");
 var _appWidgetSummaryDefault = parcelHelpers.interopDefault(_appWidgetSummary);
 var _s = $RefreshSig$();
 function AppView() {
     _s();
     const [canisterBalance, setCanisterBalance] = _react.useState("");
-    var timeDataLabels = [
-        "12/21/2023 8:45 AM",
-        "12/21/2023 8:46 AM",
-        "12/21/2023 8:47 AM",
-        "12/21/2023 8:48 AM",
-        "12/21/2023 8:49 AM",
-        "12/21/2023 8:50 AM",
-        "12/21/2023 8:51 AM",
-        "12/21/2023 8:52 AM",
-        "12/21/2023 8:53 AM",
-        "12/21/2023 8:54 AM",
-        "12/21/2023 8:55 AM"
-    ];
-    var heartRateData = [
-        54,
-        55,
-        57,
-        67,
-        72,
-        63,
-        60,
-        65,
-        56,
-        60,
-        70
-    ];
-    var flowActivityData = [
-        30,
-        25,
-        30,
-        32,
-        34,
-        39,
-        48,
-        61,
-        55,
-        47,
-        40
-    ];
     const loadICPData = async ()=>{
         //get canister cycle balance
         const canisterBalanceValue = await (0, _mindBody.mind_body).getCanisterBalance();
@@ -732,106 +691,60 @@ function AppView() {
         id: "outer-container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
             maxWidth: "xl",
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                    container: true,
-                    spacing: 3,
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                            xs: 12,
-                            md: 12,
-                            lg: 12,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                title: "ICP Cycles Available",
-                                total: canisterBalance,
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 50,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 49,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                            xs: 12,
-                            md: 12,
-                            lg: 12,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                title: window.$icpId,
-                                subtitle: "icp identity",
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 57,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 56,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 48,
-                    columnNumber: 11
-                }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                    container: true,
-                    spacing: 3,
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                container: true,
+                spacing: 3,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                         xs: 12,
                         md: 12,
                         lg: 12,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appUserChartDefault.default), {
-                            title: "",
-                            subheader: "",
-                            chart: {
-                                labels: timeDataLabels,
-                                series: [
-                                    {
-                                        name: "heart rate (bpm)",
-                                        type: "area",
-                                        fill: "gradient",
-                                        color: "red",
-                                        data: heartRateData
-                                    },
-                                    {
-                                        name: "flow activity (%)",
-                                        type: "area",
-                                        fill: "gradient",
-                                        color: "blue",
-                                        data: flowActivityData
-                                    }
-                                ]
-                            }
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                            title: "ICP Cycles Available",
+                            total: canisterBalance,
+                            color: "success"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 66,
+                            lineNumber: 33,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 65,
+                        lineNumber: 32,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                        xs: 12,
+                        md: 12,
+                        lg: 12,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                            title: window.$icpId,
+                            subtitle: "icp identity",
+                            color: "success"
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 40,
+                            columnNumber: 15
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                        lineNumber: 39,
                         columnNumber: 13
                     }, this)
-                }, void 0, false, {
-                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 64,
-                    columnNumber: 11
-                }, this)
-            ]
-        }, void 0, true, {
+                ]
+            }, void 0, true, {
+                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                lineNumber: 31,
+                columnNumber: 11
+            }, this)
+        }, void 0, false, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-            lineNumber: 47,
+            lineNumber: 30,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-        lineNumber: 46,
+        lineNumber: 29,
         columnNumber: 7
     }, this);
 }
@@ -845,6 +758,6 @@ $RefreshReg$(_c, "AppView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-user-chart":"auEXC","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["8Oqxv","1xC6H"], null, "parcelRequire4831")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["8Oqxv","1xC6H"], null, "parcelRequire4831")
 
 //# sourceMappingURL=app.13ba9f2b.js.map

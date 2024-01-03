@@ -9,6 +9,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import Link from '@mui/material/Link';
@@ -16,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
 import { myData } from '../../../_mock/myData';
+import AppUserChart from '../../../modules/app-user-chart';
 
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
@@ -43,6 +45,23 @@ export default function MyDataPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [devicesDropdown, setDevicesDropdown] = useState('select device');
+
+  const [timeDataLabels, setTimeDataLabels] = useState([
+                    '12/21/2023 8:45 AM',
+                    '12/21/2023 8:46 AM',
+                    '12/21/2023 8:47 AM',
+                    '12/21/2023 8:48 AM',
+                    '12/21/2023 8:49 AM',
+                    '12/21/2023 8:50 AM',
+                    '12/21/2023 8:51 AM',
+                    '12/21/2023 8:52 AM',
+                    '12/21/2023 8:53 AM',
+                    '12/21/2023 8:54 AM',
+                    '12/21/2023 8:55 AM',]);
+
+  const [heartRateData, setHeartRateData] = useState([54, 55, 57, 67, 72, 63, 60, 65, 56, 60, 70]);
+
+  const [flowActivityData, setFlowActivityData] = useState([30, 25, 30, 32, 34, 39, 48, 61, 55, 47, 40]);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -129,6 +148,17 @@ export default function MyDataPage() {
 
   }, []);
 
+  function convertUTCDateToLocalDate(date) {
+      var newDate = new Date(date.getTime());
+
+      var offset = date.getTimezoneOffset() / 60;
+      var hours = date.getHours();
+
+      newDate.setHours(hours - offset);
+
+      return newDate;   
+  }
+
   function processBlueberryResponse(data, query_start_time, query_end_time){
 
       var dictionaryHistoryArray = []
@@ -141,10 +171,18 @@ export default function MyDataPage() {
       var sumDataQuality = 0.0
       var returnArray = []
 
+      var tmpTimeDataLabels = [];
+      var tmpHeartRateData = [];
+      var tmpFlowActivityData = [];
+
+      setTimeDataLabels([]);
+      setHeartRateData([]);
+      setFlowActivityData([]);
+
       // data.reverse();
       //console.log(data)
       if (data.length > 1) {
-        for (let i = 1; i < data.length - 2; i++) {
+        for (let i = 0; i < data.length - 1; i++) {
           var timestamp = data[i + 1].document.fields.timestamp.doubleValue;
           // console.log(timestamp);
           var user_current_state = data[i + 1].document.fields.category.stringValue
@@ -178,6 +216,31 @@ export default function MyDataPage() {
             data_quality: parseInt(user_data_quality, 10)
           }
 
+          //time conversion for chart
+          var tmpDateTimeUTC = new Date(timestamp*1000);
+          var tmpDateTime = convertUTCDateToLocalDate(tmpDateTimeUTC);
+          var stringTime="";
+          if (tmpDateTime.getHours() >= 12){
+            if (tmpDateTime.getMinutes() < 10){
+              stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+               ' '+ (tmpDateTime.getHours()-12) +':0'+tmpDateTime.getMinutes()+' PM';
+            } else {
+              stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+               ' '+ (tmpDateTime.getHours()-12) +':'+tmpDateTime.getMinutes()+' PM';
+            }
+          } else {
+            if (tmpDateTime.getMinutes() < 10){
+              stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+               ' '+ (tmpDateTime.getHours()-12) +':0'+tmpDateTime.getMinutes()+' AM';
+            } else {
+              stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+               ' '+ (tmpDateTime.getHours()-12) +':'+tmpDateTime.getMinutes()+' AM';
+            }
+          }
+          tmpTimeDataLabels.push(stringTime);
+          tmpHeartRateData.push(parseInt(user_heart_rate, 10));
+          tmpFlowActivityData.push(parseInt(user_flow_activity, 10));
+
           if (timestamp >= query_start_time && timestamp <= query_end_time) {
             recordCount += 1.0
             sumHeartRate += user_heart_rate
@@ -190,6 +253,11 @@ export default function MyDataPage() {
           }
         }
       }
+
+      //sets chart to data on upload completion
+      setTimeDataLabels(tmpTimeDataLabels);
+      setHeartRateData(tmpHeartRateData);
+      setFlowActivityData(tmpFlowActivityData);
 
       //calculate query averages
       if (recordCount > 0.0) {
@@ -218,7 +286,7 @@ export default function MyDataPage() {
         returnArray.push(tmpAverageValues)
         // console.log(dictionaryHistoryArray);
         // console.log(data);
-      } 
+      }       
       return returnArray;
   };
 
@@ -263,6 +331,38 @@ export default function MyDataPage() {
 
   return (
     <Container>
+        <Card>
+          <Grid container spacing={3}>
+            <Grid xs={12} md={12} lg={12}>
+              <AppUserChart
+                title=""
+                subheader=""
+                chart={{
+                  labels: timeDataLabels,
+                  series: [
+                    {
+                      name: 'heart rate (bpm)',
+                      type: 'area',
+                      fill: 'gradient',
+                      color: 'red',
+                      data: heartRateData,
+                    },
+                    {
+                      name: 'flow activity (%)',
+                      type: 'area',
+                      fill: 'gradient',
+                      color: 'blue',
+                      data: flowActivityData,
+                    },
+                  ],
+                }}
+              />
+          </Grid>
+        </Grid>
+      </Card>
+      <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+      </Link>
       <Stack direction="row" alignItems="center"  mb={5}>
         <Button variant="contained" color="secondary" startIcon={<Iconify icon="" />}>
           <Dropdown options={options} onChange={_onSelect} value={devicesDropdown} placeholder="select an option" />
@@ -277,7 +377,6 @@ export default function MyDataPage() {
               
         </Link>
       </Stack>
-
       <Card>
         <UserTableToolbar
           numSelected={selected.length}
@@ -345,6 +444,7 @@ export default function MyDataPage() {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
+        ariaHideApp={false}
       >
         <Card>
           <div className="card">
