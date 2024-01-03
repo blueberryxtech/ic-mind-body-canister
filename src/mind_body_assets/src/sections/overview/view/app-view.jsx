@@ -23,13 +23,13 @@ export default function AppView() {
     
     var tmpIcpId = window.$icpId;
     var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId === undefined){
+    if (tmpIcpId === undefined && tmpEthereumId === undefined){
       //display error popup
       setWeb3Id("demo");
-      console.log("web3 id not set!");
-    } else if (!tmpIcpId.includes("demo")){
+      // console.log("web3 id not set!");
+    } else if (tmpIcpId !== "demo"){
       setWeb3Id(tmpIcpId);
-    } else if (!tmpEthereumId.includes("demo")){
+    } else if (tmpEthereumId !== "demo"){
       setWeb3Id(tmpEthereumId);
     }
   }
@@ -51,7 +51,7 @@ export default function AppView() {
             </Grid>
             <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary
-                title={icpId}
+                title={web3Id}
                 subtitle="icp identity"
                 color="success">
               </AppWidgetSummary>

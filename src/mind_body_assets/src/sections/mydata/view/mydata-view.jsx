@@ -45,7 +45,11 @@ export default function MyDataPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [devicesDropdown, setDevicesDropdown] = useState('select device');
+  const [devicesDropdown, setDevicesDropdown] = useState('connect and upload');
+
+  const [icpStoredData, setIcpStoredData] = useState([]);
+
+  const [icpStoredSummaryData, setIcpStoredSummaryData] = useState([]);
 
   const [web3Id, setWeb3Id] = useState('');
 
@@ -84,14 +88,22 @@ export default function MyDataPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = myData.map((n) => n.name);
+      const newSelecteds = icpStoredSummaryData.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
+  const initialLoadICP = async () => {
+    readICP();
+  }
+
   const handleClick = (event, id) => {
+    // console.log(id);
+    // console.log(icpStoredSummaryData);
+    const filteredArray = icpStoredSummaryData.flatMap(({ id }) => id);
+    var tmpIndex = filteredArray.indexOf(id);
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
     if (selectedIndex === -1) {
@@ -106,8 +118,68 @@ export default function MyDataPage() {
         selected.slice(selectedIndex + 1)
       );
     }
+    //get data for row 
+    // console.log(selectedIndex);
+    let tmpVectorData = icpStoredData[tmpIndex];
+    readICPRow(tmpVectorData);
+
     setSelected(newSelected);
   };
+
+  const readICPRow = async (tmpVectorData) => {
+
+    var tmpDecryptValues =  await decryptData(tmpVectorData);
+    console.log(tmpDecryptValues);
+    const heartRateArray = tmpDecryptValues.flatMap(({ heartrate }) => heartrate);
+    const flowActivityArray = tmpDecryptValues.flatMap(({ flow_activity }) => flow_activity);
+    const timeStampArray = tmpDecryptValues.flatMap(({ timestamp }) => timestamp);
+
+    setTimeDataLabels([]);
+    setHeartRateData([]);
+    setFlowActivityData([]);
+
+    var tmpTimeDataLabels = [];
+    var tmpHeartRateData = [];
+    var tmpFlowActivityData = [];
+
+    // data.reverse();
+    //console.log(data)
+    if (timeStampArray.length > 1) {
+      for (let i = 0; i < timeStampArray.length - 1; i++) {
+
+        //time conversion for chart
+        var tmpDateTimeUTC = new Date(timeStampArray[i]*1000);
+        var tmpDateTime = convertUTCDateToLocalDate(tmpDateTimeUTC);
+        var stringTime="";
+        if (tmpDateTime.getHours() >= 12){
+          if (tmpDateTime.getMinutes() < 10){
+            stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+             ' '+ (tmpDateTime.getHours()-12) +':0'+tmpDateTime.getMinutes()+' PM';
+          } else {
+            stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+             ' '+ (tmpDateTime.getHours()-12) +':'+tmpDateTime.getMinutes()+' PM';
+          }
+        } else {
+          if (tmpDateTime.getMinutes() < 10){
+            stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+             ' '+ (tmpDateTime.getHours()) +':0'+tmpDateTime.getMinutes()+' AM';
+          } else {
+            stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
+             ' '+ (tmpDateTime.getHours()) +':'+tmpDateTime.getMinutes()+' AM';
+          }
+        }
+        tmpTimeDataLabels.push(stringTime);
+        tmpHeartRateData.push(parseInt(heartRateArray[i], 10));
+        tmpFlowActivityData.push(parseInt(flowActivityArray[i], 10));
+      }
+    }
+
+    //sets chart to data on upload completion
+    setTimeDataLabels(tmpTimeDataLabels);
+    setHeartRateData(tmpHeartRateData);
+    setFlowActivityData(tmpFlowActivityData);
+
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -124,24 +196,35 @@ export default function MyDataPage() {
   };
 
   const dataFiltered = applyFilter({
-    inputData: myData,
+    inputData: icpStoredSummaryData,
     comparator: getComparator(order, orderBy),
     filterName,
   });
 
   const notFound = !dataFiltered.length && !!filterName;
 
-  const options = [
-    'select device','blueberry','+ request a device'
-  ];
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const _onSelect = (el) => {
-    if(el.value == '+ request a device') window.open('https://form.typeform.com/to/WsBKRzkG')
-    else if(el.value != 'select device') setIsOpen(true);
-    setDevicesDropdown(el.value)
+  const loadICPData = () => {
+    var tmpIcpId = window.$icpId;
+    var tmpEthereumId = window.$ethereumId;
+    if (tmpIcpId === undefined && tmpEthereumId === undefined){
+      //display error popup
+      setWeb3Id("demo");
+      // console.log("web3 id not set!");
+    } else if (tmpIcpId !== "demo"){
+      setWeb3Id(tmpIcpId);
+      initialLoadICP();
+      // console.log("load icp data");
+    } else if (tmpEthereumId !== "demo"){
+      setWeb3Id(tmpEthereumId);
+      initialLoadICP();
+    }
   }
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  useEffect(() =>{
+    loadICPData();
+  },[]);
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -150,6 +233,10 @@ export default function MyDataPage() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const uploadBlueberryAction = () => {
+    setIsOpen(true);
+  };
 
   const handleSubmitBlueberryLogin = useCallback(async (e) => {
     e.preventDefault();
@@ -242,10 +329,10 @@ export default function MyDataPage() {
           } else {
             if (tmpDateTime.getMinutes() < 10){
               stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
-               ' '+ (tmpDateTime.getHours()-12) +':0'+tmpDateTime.getMinutes()+' AM';
+               ' '+ (tmpDateTime.getHours()) +':0'+tmpDateTime.getMinutes()+' AM';
             } else {
               stringTime += (tmpDateTime.getMonth()+1)+'/'+tmpDateTime.getDate()+'/'+tmpDateTime.getFullYear()+ 
-               ' '+ (tmpDateTime.getHours()-12) +':'+tmpDateTime.getMinutes()+' AM';
+               ' '+ (tmpDateTime.getHours()) +':'+tmpDateTime.getMinutes()+' AM';
             }
           }
           tmpTimeDataLabels.push(stringTime);
@@ -302,42 +389,18 @@ export default function MyDataPage() {
   };
 
   async function processBlueberryData(dataRaw, userId) {
-    var timestampData = [];
-    var flowActivityData = [];
-    var heartRateData = [];
-    var hrIntData = []
-
-    let options = {
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    };
-    for (let i = 0; i < dataRaw.length; i++) {
-      let tmpDictionary = dataRaw[i];
-      let tmpTimestamp = tmpDictionary.timestamp*1000.0;
-      let tmpFlowActivity = tmpDictionary.flow_activity;
-      let tmpHeartRate = tmpDictionary.heartrate;
-      let tmpHumanTime = new Intl.DateTimeFormat("en-US", options).format(new Date(tmpTimestamp)); 
-      timestampData.push(tmpHumanTime);
-      flowActivityData.push(tmpFlowActivity);
-      heartRateData.push(tmpHeartRate);
-      hrIntData.push(parseInt(tmpHeartRate));
-    }
-
     let encryptedVector = await encryptData(dataRaw);
     // console.log(encryptedVector);
     //check if icpId is not undefined
     var tmpIcpId = window.$icpId;
     var tmpEthereumId = window.$ethereumId;
-    if (tmpIcpId === undefined){
+    if (tmpIcpId === undefined && tmpEthereumId === undefined){
       //display error popup
       console.log("web3 id not set!");
-    } else if (!tmpIcpId.includes("demo")){
+    } else if (tmpIcpId !== "demo"){
       setWeb3Id(tmpIcpId);
       writeICP(window.$icpId, encryptedVector);
-    } else if (!tmpEthereumId.includes("demo")){
+    } else if (tmpEthereumId !== "demo"){
       setWeb3Id(tmpEthereumId);
       writeICP(window.$ethereumId, encryptedVector);
     }
@@ -352,20 +415,62 @@ export default function MyDataPage() {
     const timeConcatenateString = '' + year + month;
     const timeConcatenteInt = parseInt(timeConcatenateString, 10);
 
-    const storedValue = await mind_body.pushToArray(userStringId, vectorArray, timeConcatenteInt);
+    await mind_body.pushToArray(userStringId, vectorArray, timeConcatenteInt);
+
+    readICP();
   };
+
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
   const readICP = async () => {
     var userStringId = web3Id;
     const returnValueArray = await mind_body.getMapping(userStringId);
     // console.log(returnValueArray);
     if (returnValueArray.length > 0){
-      let reverseArray = returnValueArray.reverse();
-      let lastValue = reverseArray[0].reverse();
-      let tmpDecryptValues = await decryptData(lastValue[0]);
-      let tmpLastValue = tmpDecryptValues[0];
-      console.log(tmpLastValue);
+      var tmpIcpNetworkData = [];
+      var tmpArray = returnValueArray[0];
+      setIcpStoredData(tmpArray);
+      for (var i = 0; i < tmpArray.length-1; i++) { 
+        var tmpValueArray = tmpArray[i];
+        // console.log(tmpValueArray);
+        var tmpDecryptValues = await decryptData(tmpValueArray);
+        var tmpLastValue = tmpDecryptValues[0];
+        var tmpSize = (tmpValueArray.length * 4.0)/1000.0;
+        var tmpDate = new Date(tmpLastValue.timestamp*1000);
+        var tmpUId = uuidv4();
+        var tmpRecordInfo = {
+          "id": userStringId+"-"+tmpUId, 
+          "uniqueId": tmpUId, 
+          "dataType": "blueberry",
+          "date": tmpDate,
+          "dataSize": tmpSize,
+          "isVerified": "true"
+        };
+        tmpIcpNetworkData.push(tmpRecordInfo);
+        // console.log(tmpIcpNetworkData)
+      }
+      //load first record in chart
+      if (icpStoredData.length > 0){
+        let tmpVectorData = icpStoredData[0];
+        readICPRow(tmpVectorData);
+      }
+      setIcpStoredSummaryData(tmpIcpNetworkData);
     }
+    // append records in summary format
+    // {
+    //   id: recordId,
+    //   uniqueId: createUniqueId at Load,
+    //   dataType: "blueberry",
+    //   date: readFromLastRecord,
+    //   dateSize: sizeOfArrayInts,
+    //   isVerified: true
+    // }
+    // console.log(tmpIcpNetworkData);
   };
 
   async function encryptData(dataRaw){
@@ -433,7 +538,7 @@ export default function MyDataPage() {
         data.push(tmpDictionary);
     }
     // display in chart
-    console.log(data);
+    // console.log(data);
     return data;
   };
 
@@ -460,7 +565,7 @@ export default function MyDataPage() {
     const responseDataObject = JSON.parse(responseData);
     // console.log(responseDataObject);
     const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
-    console.log(outputArray);
+    // console.log(outputArray);
     await processBlueberryData(outputArray[0], localId);
 
     if (token != ""){
@@ -507,20 +612,20 @@ export default function MyDataPage() {
               
       </Link>
       <Stack direction="row" alignItems="center"  mb={5}>
-        <Button variant="contained" color="secondary" startIcon={<Iconify icon="" />}>
-          <Dropdown options={options} onChange={_onSelect} value={devicesDropdown} placeholder="select an option" />
-        </Button>
-        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
-              
-        </Link>
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          upload 24hr
+        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction}>
+          upload blueberry data
         </Button>
         <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
         </Link>
         <Button variant="contained" color="inherit" startIcon={<Iconify icon=""/>} onClick={readICP}>
-          get most recent record
+          get records
+        </Button>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill"/>} href="https://form.typeform.com/to/WsBKRzkG">
+          request device 
         </Button>
       </Stack>
       <Card>
@@ -536,17 +641,17 @@ export default function MyDataPage() {
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
-                rowCount={myData.length}
+                rowCount={icpStoredSummaryData.length}
                 numSelected={selected.length}
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'id', label: 'id' },
+                  { id: 'uniqueId', label: 'uniqueId' },
                   { id: 'datatype', label: 'data type' },
                   { id: 'date', label: 'date' },
                   { id: 'dataSize', label: 'data size (kb)' },
                   { id: 'isVerified', label: 'Verified', align: 'center' },
-                  { id: '' },
+                  { id: '', label: '' },
                 ]}
               />
               <TableBody>
@@ -560,14 +665,14 @@ export default function MyDataPage() {
                       date={row.date}
                       dataSize={row.dataSize}
                       isVerified={row.isVerified}
-                      selected={selected.indexOf(row.uniqueId) !== -1}
-                      handleClick={(event) => handleClick(event, row.uniqueId)}
+                      selected={selected.indexOf(row.id) !== -1}
+                      handleClick={(event) => handleClick(event, row.id)}
                     />
                   ))}
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, myData.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, icpStoredSummaryData.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -579,12 +684,32 @@ export default function MyDataPage() {
         <TablePagination
           page={page}
           component="div"
-          count={myData.length}
+          count={icpStoredSummaryData.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+      </Card>
+      <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+      </Link>
+      <Card>
+        <div style={{width: '100%', textAlign: 'center', margin: "0.5rem auto"}}>
+          <span style={{fontSize: '0.5em'}}>blueberry category labels:</span>
+          <div><span style={{fontSize: '0.5em'}}>manually enter from what you have set in your mobile app, required for proper encoding</span></div>
+          <div class="row">
+            <div><span style={{color: '#FFE933'}}>⬤</span><input type="text" placeholder="active" id="userState1"></input></div>
+            <div><span style={{color: '#7FE683'}}>⬤</span><input type="text" placeholder="dynamic" id="userState2"></input></div>
+            <div><span style={{color: '#33F9FF'}}>⬤</span><input type="text" placeholder="increasing" id="userState3"></input></div>
+          </div>
+          <div class="row">
+            <div><span style={{color: '#CA9EFF'}}>⬤</span><input type="text" placeholder="variable" id="userState4"></input></div>
+            <div><span style={{color: '#53BEF7'}}>⬤</span><input type="text" placeholder="resting" id="userState5"></input></div>
+            <div><span style={{color: '#ff9900'}}>⬤</span><input type="text" placeholder="intense" id="userState6"></input></div>
+          </div>
+          <Button id="updateBlueberryStates" variant="contained" color="primary" style={{width: "150px"}}>update</Button>
+        </div>
       </Card>
       <Modal
         isOpen={modalIsOpen}

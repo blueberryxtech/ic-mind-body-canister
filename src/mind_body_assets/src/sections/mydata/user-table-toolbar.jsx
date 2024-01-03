@@ -30,19 +30,8 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           {numSelected} selected
         </Typography>
       ) : (
-        <OutlinedInput
-          value={filterName}
-          onChange={onFilterName}
-          placeholder="search data..."
-          startAdornment={
-            <InputAdornment position="start">
-              <Iconify
-                icon="eva:search-fill"
-                sx={{ color: 'text.disabled', width: 20, height: 20 }}
-              />
-            </InputAdornment>
-          }
-        />
+        <Tooltip title="data">
+        </Tooltip>
       )}
 
       {numSelected > 0 ? (

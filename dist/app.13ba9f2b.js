@@ -685,12 +685,10 @@ function AppView() {
         setCanisterBalance(canisterBalanceValue.toString());
         var tmpIcpId = window.$icpId;
         var tmpEthereumId = window.$ethereumId;
-        if (tmpIcpId === undefined) {
-            //display error popup
-            setWeb3Id("demo");
-            console.log("web3 id not set!");
-        } else if (!tmpIcpId.includes("demo")) setWeb3Id(tmpIcpId);
-        else if (!tmpEthereumId.includes("demo")) setWeb3Id(tmpEthereumId);
+        if (tmpIcpId === undefined && tmpEthereumId === undefined) //display error popup
+        setWeb3Id("demo");
+        else if (tmpIcpId !== "demo") setWeb3Id(tmpIcpId);
+        else if (tmpEthereumId !== "demo") setWeb3Id(tmpEthereumId);
     };
     (0, _react.useEffect)(()=>{
         loadICPData();
@@ -727,7 +725,7 @@ function AppView() {
                         md: 6,
                         lg: 3,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            title: icpId,
+                            title: web3Id,
                             subtitle: "icp identity",
                             color: "success"
                         }, void 0, false, {

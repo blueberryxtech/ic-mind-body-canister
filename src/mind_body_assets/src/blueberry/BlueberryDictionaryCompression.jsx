@@ -1,4 +1,4 @@
-export function DictionaryToIntArray(dictionary, userCategoryEnum, cb) {
+export function DictionaryToIntArray(dictionary, userCategoryEnum) {
     // let tmpValues = {
     // 4 bytes, integer 1               "timestamp": timestamp, 
     // 1 byte, integer 2 - byte 1       "category": user_current_state, 
@@ -42,6 +42,7 @@ export function DictionaryToIntArray(dictionary, userCategoryEnum, cb) {
     var integer2 = byteArrayToInt(integer2_byteArray);
 
     let integer3_1 = parseInt(tmpObject.strain_intensity, 10);
+    // console.log(integer3_1);
     let integer3_2 = parseInt(tmpObject.eye_blink_rate, 10);
     let integer3_3 = parseInt(tmpObject.steps, 10);
     let integer3_4 = parseInt(tmpObject.data_quality, 10);
@@ -53,7 +54,7 @@ export function DictionaryToIntArray(dictionary, userCategoryEnum, cb) {
     return intArray;
 }
 
-export function IntArrayToDictionary(intArray, userCategoryEnum, cb) {
+export function IntArrayToDictionary(intArray, userCategoryEnum) {
     // let tmpValues = {
     // 4 bytes, integer 1               "timestamp": timestamp, 
     // 1 byte, integer 2 - byte 1       "category": user_current_state, 
@@ -89,6 +90,7 @@ export function IntArrayToDictionary(intArray, userCategoryEnum, cb) {
     let user_heart_rate = parseInt(int2ByteArray[3], 10);
 
     var int3ByteArray = intToByteArray(intArray[2]);
+    // console.log(int3ByteArray);
     let user_strain_intensity = parseInt(int3ByteArray[0], 10);
     let user_eye_blink_rate =  parseInt(int3ByteArray[1], 10);
     let user_steps = parseInt(int3ByteArray[2], 10);
@@ -108,7 +110,7 @@ export function IntArrayToDictionary(intArray, userCategoryEnum, cb) {
     return tmpValues;
 }
 
-export function AverageDictionaryToIntArray(dictionary, cb) {
+export function AverageDictionaryToIntArray(dictionary) {
     // let tmpValues = {
     // 4 bytes - "timestamp_start": query_start_time, 
     // 4 bytes - "timestamp_end": query_end_time,
@@ -144,7 +146,7 @@ export function AverageDictionaryToIntArray(dictionary, cb) {
     return intArray;
 }
 
-export function IntArrayToAverageDictionary(intArray, cb) {
+export function IntArrayToAverageDictionary(intArray) {
     // let tmpValues = {
     // 4 bytes - "timestamp_start": query_start_time, 
     // 4 bytes - "timestamp_end": query_end_time,
@@ -202,7 +204,7 @@ function intToByteArray(integer) {
     // we want to represent the input as a 8-bytes array
     var byteArray = [0, 0, 0, 0];
 
-    for ( var index = 0; index < byteArray.length; index ++ ) {
+    for (var index = 0; index < byteArray.length; index ++ ) {
         var byte = integer & 0xff;
         byteArray [ index ] = byte;
         integer = (integer - byte) / 256 ;
