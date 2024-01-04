@@ -737,7 +737,7 @@ function LoginView() {
         });
         if (details.connected) {
             window.$web3AddressId = details.session?.accountAddress;
-            console.log(details.session?.accountAddress);
+            //console.log(details.session?.accountAddress);
             setProof(details.proof?.proofString);
             setWeb3Address(details.session?.accountAddress);
         }
@@ -860,7 +860,7 @@ function LoginView() {
                                             sx: {
                                                 ml: 0.5
                                             },
-                                            children: "ethereum"
+                                            children: "web3"
                                         }, void 0, false, {
                                             fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
                                             lineNumber: 139,
@@ -921,7 +921,7 @@ function LoginView() {
                                     mb: 5
                                 },
                                 children: [
-                                    "ethereum identity:",
+                                    "web3 identity:",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
                                         subtitle: window.$web3AddressId,
                                         color: "success"
@@ -980,7 +980,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","../../../../declarations/mind_body":"1DbUn","0xsequence":"5cSAw","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/styles":"1lzai","../../theme/css":"jJA8o","../../components/logo":"cezYn","../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","socket.io-client":"8HBJR"}],"5cSAw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","../../../../declarations/mind_body":"1DbUn","0xsequence":"5cSAw","socket.io-client":"8HBJR","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/styles":"1lzai","../../theme/css":"jJA8o","../../components/logo":"cezYn","../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5cSAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initWallet", ()=>(0, _provider.initWallet));

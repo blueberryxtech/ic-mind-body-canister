@@ -67,7 +67,7 @@ export default function LearnMoreView() {
         <Card className="card-styles text-area" as="article">
           <div style={{marginLeft: "20px", marginRight: "20px"}}>
           <div style={{height: '20px'}}></div>
-          <div className="title">Blockchain systems are now crossing the point where storage cost is reaching <u style={{textDecorationColor: "green"}}>similar levels to top tech providers.</u></div>
+          <div className="title">Blockchain systems are now crossing the point where storage cost is dramatically reducing <u style={{textDecorationColor: "green"}}>to reasonable pricing, e.g. $5/Gib/year</u></div>
           <div style={{height: '20px'}}></div>
           <div className="title" style={{fontSize: '12px'}}>
               Blockchain enables an personalized encryption, control and copy format. With blockchain we can enable you to read, write, copy and delete your data in a seamless fashion.

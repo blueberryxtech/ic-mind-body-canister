@@ -27,7 +27,8 @@ service : {
   getIcpId: () -> (text) query;
   getMapping: (text) -> (opt NestedArray) query;
   getStoredDataNetworkSize: () -> (nat) query;
-  pushToArray: (text, vec int, int) -> () oneway;
+  pushToArray: (text, vec int, int) -> (nat);
+  removeAddress: (text) -> (nat);
   send_http_blueberry_proxy_get_raw_data: (text, text, text, text) -> (text);
   send_http_blueberry_proxy_login: (text, text) -> (text);
   transform: (TransformArgs) -> (CanisterHttpResponsePayload) query;

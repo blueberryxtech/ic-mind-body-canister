@@ -37,22 +37,19 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
 
       {numSelected > 0 ? (
         <Container>
-        <Tooltip title="Delete">
-          <IconButton>
-            <Iconify icon="eva:trash-2-fill" />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Export">
-          <IconButton onClick={exportData}>
-            <Iconify icon="material-symbols:download" />
-          </IconButton>
-        </Tooltip>
+          <Tooltip title="delete all records">
+            <IconButton onClick={deleteData}>
+              <Iconify icon="eva:trash-2-fill" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="export">
+            <IconButton onClick={exportData}>
+              <Iconify icon="material-symbols:download" />
+            </IconButton>
+          </Tooltip>
         </Container>
       ) : (
         <Tooltip title="Filter list">
-          <IconButton>
-            <Iconify icon="ic:round-filter-list" />
-          </IconButton>
         </Tooltip>
       )}
     </Toolbar>

@@ -51,7 +51,7 @@ export default function MyDataPage() {
 
   const [icpStoredSummaryData, setIcpStoredSummaryData] = useState([]);
 
-  const [web3Id, setWeb3Id] = useState('');
+  const [web3Id, setWeb3Id] = useState('demo');
 
   const [timeDataLabels, setTimeDataLabels] = useState([
                     '12/21/2023 8:45 AM',
@@ -80,6 +80,9 @@ export default function MyDataPage() {
   const [user_state_5, setUser_state_5] = useState("resting");
   const [user_state_6, setUser_state_6] = useState("intense");
 
+  const [passcodeKeyLocal, setPasscodeKeyLocal] = useState("1");
+  const [selectedRowIndex, setSelectedRowIndex] = useState("0");
+
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
     if (id !== '') {
@@ -97,7 +100,7 @@ export default function MyDataPage() {
     setSelected([]);
   };
 
-  const initialLoadICP = async () => {
+  const initialLoadICP = async() => {
     readICP();
   }
 
@@ -106,6 +109,7 @@ export default function MyDataPage() {
     // console.log(icpStoredSummaryData);
     const filteredArray = icpStoredSummaryData.flatMap(({ id }) => id);
     var tmpIndex = filteredArray.indexOf(id);
+    setSelectedRowIndex(tmpIndex.toString());
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
     if (selectedIndex === -1) {
@@ -132,7 +136,7 @@ export default function MyDataPage() {
 
   const readICPRow = async (tmpVectorData) => {
 
-    var tmpDecryptValues =  await decryptData(tmpVectorData);
+    var tmpDecryptValues = decryptData(tmpVectorData);
     setRowDecryptData(tmpDecryptValues);
 
     // console.log(tmpDecryptValues);
@@ -187,12 +191,23 @@ export default function MyDataPage() {
 
   }
 
-  const exportRowData = async(indexRow) => {
+  const exportRowData = async() => {
     //export data
     if (rowDecryptData.length > 0){
       export_metric_csv(rowDecryptData);
     }
-  }
+  };
+
+  const deleteAllData = async() => {
+    //delete data
+    var userStringId = web3Id;
+    // console.log(userStringId);
+    if (userStringId !== "demo" || !(userStringId === undefined)){
+      // console.log("delete data " + userStringId);
+      await mind_body.removeAddress(userStringId);
+      return readICP();
+    }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -218,25 +233,37 @@ export default function MyDataPage() {
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const loadICPData = () => {
+  const updateLocalId = () => {
     var tmpIcpId = window.$icpId;
     var tmpWeb3AddressId = window.$web3AddressId;
+    // console.log(tmpIcpId);
     if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
       //display error popup
       setWeb3Id("demo");
-      // console.log("web3 id not set!");
-    } else if (tmpIcpId !== "demo"){
+      console.log("web3 id not set!");
+    } else if (!tmpIcpId.includes("demo")){
       setWeb3Id(tmpIcpId);
-      initialLoadICP();
-      // console.log("load icp data");
-    } else if (tmpWeb3AddressId !== "demo"){
+    } else if (!tmpWeb3AddressId.includes("demo")){
       setWeb3Id(tmpWeb3AddressId);
-      initialLoadICP();
     }
+  }
+
+  const loadICPData = () => {
+    var tmpId = web3Id;
+    if (tmpId === undefined ){
+      //display error popup
+      setWeb3Id("demo");
+      console.log("web3 id not set!");
+    } else if (!tmpId.includes("demo")){
+      console.log(tmpId);
+      initialLoadICP();
+    } 
     loadLocalState();
+    loadLocalPasswordKey();
   }
 
   useEffect(() =>{
+    updateLocalId();
     loadICPData();
   },[]);
 
@@ -300,58 +327,69 @@ export default function MyDataPage() {
       setUser_state_6(tmpS6);
     }
     console.log(tmpS6);
-};
+  };
 
-function loadLocalState() {
+  function loadLocalState() {
 
-  if(localStorage.getItem('userState1') === null){
-    setUser_state_1("active");
-  } else {
-    var tmp_user_state_1 = localStorage.getItem('userState1');
-    setUser_state_1(tmp_user_state_1);
-  }
-  if(localStorage.getItem('userState2') === null){
-    setUser_state_2("dynamic");
-  } else {
-    var tmp_user_state_2 = localStorage.getItem('userState2');
-    setUser_state_2(tmp_user_state_2);
-  }
-  if(localStorage.getItem('userState3') === null){
-    setUser_state_3("increasing");
-  } else {
-    var tmp_user_state_3 = localStorage.getItem('userState3');
-    setUser_state_3(tmp_user_state_3);
-  }
-  if(localStorage.getItem('userState4') === null){
-    setUser_state_4("variable");
-  } else {
-    var tmp_user_state_4 = localStorage.getItem('userState4');
-    setUser_state_4(tmp_user_state_4);
-  }
-  if(localStorage.getItem('userState5') === null){
-    setUser_state_5("resting");
-  } else {
-    var tmp_user_state_5 = localStorage.getItem('userState5');
-    setUser_state_5(tmp_user_state_5);
-  }
-  if(localStorage.getItem('userState6') === null){
-    setUser_state_6("intense");
-  } else {
-    var tmp_user_state_6 = localStorage.getItem('userState6');
-    setUser_state_6(tmp_user_state_6);
-  }
-};
-
-const updatePasswordKey = () => {
-
-    var tmpKey_ = document.getElementById("passcodeKey")
-    var tmpKey = tmpKey_.value;
-
-    if (tmpKey != 0){
-      localStorage.setItem('passcodeKey', tmpKey);
-      console.log(tmpKey);
+    if(localStorage.getItem('userState1') === null){
+      setUser_state_1("active");
+    } else {
+      var tmp_user_state_1 = localStorage.getItem('userState1');
+      setUser_state_1(tmp_user_state_1);
     }
-};
+    if(localStorage.getItem('userState2') === null){
+      setUser_state_2("dynamic");
+    } else {
+      var tmp_user_state_2 = localStorage.getItem('userState2');
+      setUser_state_2(tmp_user_state_2);
+    }
+    if(localStorage.getItem('userState3') === null){
+      setUser_state_3("increasing");
+    } else {
+      var tmp_user_state_3 = localStorage.getItem('userState3');
+      setUser_state_3(tmp_user_state_3);
+    }
+    if(localStorage.getItem('userState4') === null){
+      setUser_state_4("variable");
+    } else {
+      var tmp_user_state_4 = localStorage.getItem('userState4');
+      setUser_state_4(tmp_user_state_4);
+    }
+    if(localStorage.getItem('userState5') === null){
+      setUser_state_5("resting");
+    } else {
+      var tmp_user_state_5 = localStorage.getItem('userState5');
+      setUser_state_5(tmp_user_state_5);
+    }
+    if(localStorage.getItem('userState6') === null){
+      setUser_state_6("intense");
+    } else {
+      var tmp_user_state_6 = localStorage.getItem('userState6');
+      setUser_state_6(tmp_user_state_6);
+    }
+  };
+
+  function loadLocalPasswordKey() {
+
+    if(localStorage.getItem('passcodeKey') === null){
+      setPasscodeKeyLocal(1);
+    } else {
+      var tmp_passcode_key = localStorage.getItem('passcodeKey');
+      setPasscodeKeyLocal(tmp_passcode_key);
+    }
+  }
+
+  const updatePasswordKey = () => {
+
+      var tmpKey_ = document.getElementById("passcodeKey")
+      var tmpKey = tmpKey_.value;
+
+      if (tmpKey !== 0){
+        localStorage.setItem('passcodeKey', tmpKey.toString());
+        setPasscodeKeyLocal(tmpKey.toString());
+        // console.log(tmpKey);
+      }
+  };
 
   const handleSubmitBlueberryLogin = useCallback(async (e) => {
     e.preventDefault();
@@ -557,21 +595,19 @@ const updatePasswordKey = () => {
 
   async function processBlueberryData(dataRaw, userId) {
     let encryptedVector = await encryptData(dataRaw);
-    // console.log(encryptedVector);
+    return processEncryptedVector(encryptedVector);
+  };
+
+  async function processEncryptedVector(encryptedVector){
     //check if icpId is not undefined
-    var tmpIcpId = window.$icpId;
-    var tmpWeb3AddressId = window.$web3AddressId;
-    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
+    var tmpWeb3Id = web3Id;
+    if (tmpWeb3Id === undefined){
       //display error popup
       console.log("web3 id not set!");
-    } else if (tmpIcpId !== "demo"){
-      setWeb3Id(tmpIcpId);
-      writeICP(window.$icpId, encryptedVector);
-    } else if (tmpWeb3AddressId !== "demo"){
-      setWeb3Id(tmpWeb3AddressId);
-      writeICP(window.$web3AddressId, encryptedVector);
-    }
-  };
+    } else if (tmpWeb3Id !== "demo"){
+      writeICP(tmpWeb3Id, encryptedVector);
+    } 
+  }
 
   async function writeICP(userStringId, vectorArray){
     // console.log(vectorArray);
@@ -584,7 +620,7 @@ const updatePasswordKey = () => {
 
     await mind_body.pushToArray(userStringId, vectorArray, timeConcatenteInt);
 
-    readICP();
+    return readICP();
   };
 
   function uuidv4() {
@@ -594,9 +630,17 @@ const updatePasswordKey = () => {
     });
   }
 
-  const readICP = async () => {
+  const readICP = async() => {
     var userStringId = web3Id;
-    const returnValueArray = await mind_body.getMapping(userStringId);
+    if (userStringId !== undefined){
+      // console.log(userStringId);
+      var returnValueArray = await mind_body.getMapping(userStringId);
+      // console.log(returnValueArray);
+      return readICPReturn(returnValueArray, userStringId);
+    }
+  };
+
+  const readICPReturn = async(returnValueArray, userStringId) => {
     // console.log(returnValueArray);
     if (returnValueArray.length > 0){
       var tmpIcpNetworkData = [];
@@ -605,7 +649,7 @@ const updatePasswordKey = () => {
       for (var i = 0; i < tmpArray.length; i++) { 
         var tmpValueArray = tmpArray[i];
         // console.log(tmpValueArray);
-        var tmpDecryptValues = await decryptData(tmpValueArray);
+        var tmpDecryptValues = decryptData(tmpValueArray);
         var tmpLastValue = tmpDecryptValues[0];
         var tmpSize = (tmpValueArray.length * 4.0)/1000.0;
         var tmpDate = new Date(tmpLastValue.timestamp*1000);
@@ -621,24 +665,23 @@ const updatePasswordKey = () => {
         tmpIcpNetworkData.push(tmpRecordInfo);
         // console.log(tmpIcpNetworkData)
       }
-      //load first record in chart
-      if (icpStoredData.length > 0){
-        let tmpVectorData = icpStoredData[0];
-        readICPRow(tmpVectorData);
-      }
-      setIcpStoredSummaryData(tmpIcpNetworkData);
+      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
+    } else {
+      setIcpStoredData([]);
+      var tmpIcpNetworkData = [];
+      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
     }
-    // append records in summary format
-    // {
-    //   id: recordId,
-    //   uniqueId: createUniqueId at Load,
-    //   dataType: "blueberry",
-    //   date: readFromLastRecord,
-    //   dateSize: sizeOfArrayInts,
-    //   isVerified: true
-    // }
-    // console.log(tmpIcpNetworkData);
-  };
+  }
+
+  const loadICPReturnedData = async(icpStoredData, icpNetworkData) => {
+    //load first record in chart
+    if (icpStoredData.length > 0){
+      let tmpVectorData = icpStoredData[0];
+      // console.log(tmpVectorData);
+      readICPRow(tmpVectorData);
+    }
+    setIcpStoredSummaryData(icpNetworkData);
+  }
 
   async function encryptData(dataRaw){
 
@@ -656,7 +699,8 @@ const updatePasswordKey = () => {
     if(localStorage.getItem('passcodeKey') === null){
       passcodeKey = 1;
     } else {
-      passcodeKey = localStorage.getItem('passcodeKey');
+      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
+      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
     }
 
     for (var i = 0; i < dataRaw.length; i++) {
@@ -671,7 +715,7 @@ const updatePasswordKey = () => {
     return compressedVectors
   };
 
-  async function decryptData(vector_iv){
+  function decryptData(vector_iv){
     let userCategoryEnum = {
       "state1": user_state_1, 
       "state2": user_state_2, 
@@ -686,7 +730,8 @@ const updatePasswordKey = () => {
     if(localStorage.getItem('passcodeKey') === null){
       passcodeKey = 1;
     } else {
-      passcodeKey = localStorage.getItem('passcodeKey');
+      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
+      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
     }
 
     // console.log(vector_iv);
@@ -798,9 +843,9 @@ const updatePasswordKey = () => {
           <div>
             <span style={{fontSize: "1.0em"}}>encryption key:</span>
             <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
-            <input type="number" placeholder="1" id="passcodeKey"></input>
+            <input type="number" placeholder={passcodeKeyLocal} id="passcodeKey"></input>
             <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
-            <Button variant="contained" color="primary" id="updatePasswordKey" style={{width: "150px"}} onClick={updatePasswordKey}>update key</Button>
+            <Button variant="contained" color="primary" style={{width: "150px"}} onClick={updatePasswordKey}>update key</Button>
           </div>
         </div>
       </Stack>
@@ -813,6 +858,7 @@ const updatePasswordKey = () => {
           filterName={filterName}
           onFilterName={handleFilterByName}
           exportData={exportRowData}
+          deleteData={deleteAllData}
         />
 
         <Scrollbar>
@@ -878,12 +924,12 @@ const updatePasswordKey = () => {
         <div style={{width: '100%', textAlign: 'center', margin: "0.5rem auto"}}>
           <span style={{fontSize: '0.5em'}}>blueberry category labels:</span>
           <div><span style={{fontSize: '0.5em'}}>manually enter from what you have set in your mobile app, required for proper encoding</span></div>
-          <div class="row">
+          <div className="row">
             <div><span style={{color: '#FFE933'}}>⬤</span><input type="text" placeholder={user_state_1} id="userState1"></input></div>
             <div><span style={{color: '#7FE683'}}>⬤</span><input type="text" placeholder={user_state_2} id="userState2"></input></div>
             <div><span style={{color: '#33F9FF'}}>⬤</span><input type="text" placeholder={user_state_3} id="userState3"></input></div>
           </div>
-          <div class="row">
+          <div className="row">
             <div><span style={{color: '#CA9EFF'}}>⬤</span><input type="text" placeholder={user_state_4} id="userState4"></input></div>
             <div><span style={{color: '#53BEF7'}}>⬤</span><input type="text" placeholder={user_state_5} id="userState5"></input></div>
             <div><span style={{color: '#ff9900'}}>⬤</span><input type="text" placeholder={user_state_6} id="userState6"></input></div>
@@ -910,7 +956,7 @@ const updatePasswordKey = () => {
                 <label className="input-label">password</label>
               </div>
               <div className="action">
-                <button className="action-button" type="submit">Login</button>
+                <button className="action-button" type="submit">login and upload</button>
               </div>
             </form>
           </div>

@@ -18,34 +18,17 @@ actor {
   type NestedArray = [Vector];
   type AddressMap = HashMap.HashMap<Text, NestedArray>;
 
+  //structure:
+  // "web3Id" : [uploadData1_ints,uploadData2_ints,...,uploadDataN_ints]
+  // uploadData1_ints = [int1, int2, int3,...,intN]
+
   stable var storedNetworkDataSize : Nat = 0;
 
   // Initialize the HashMap
   // stable storage - set mapping to per month hashmaps - potentially segment to weeks or days depending on sizing/timing requirements
   var addressMap : AddressMap = HashMap.HashMap<Text, NestedArray>(10, Text.equal, Text.hash);
 
-  // //https://internetcomputer.org/docs/current/motoko/main/upgrades
-  // public func updateStableDataMap() {
-  //   storedNetworkData := Iter.toArray(addressMap.entries());
-  // };
-
-  // public func resetStableDataMap() {
-  //   storedNetworkData := [];
-  // };
-
-  // public func loadStoreNetworkData() {
-  //   addressMap : AddressMap = HashMap.HashMap.fromIter<Text,NestedArray>(storedNetworkData.vals(), 10, Text.equal, Text.hash);
-  // };
-
-  // public func removeFromAddress(address: Text, removeIndex: Int) {
-  //   let currentArrays = addressMap.get(address);
-  //   let arrayIndexSize = currentArrays.size() - removeIndex;
-  //   let startIndex = removeIndex;
-  //   let subArray = Array.subArray<NestedArray>(currentArrays, startIndex, arrayIndexSize);
-  //   addressMap.put(address, updatedArrays);
-  // };
-
-  public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
+  public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) : async Nat {
     // assert(isCallerAllowed());                                   // Ensure the caller is allowed to call this method
     let tmpArraySize = Array.size(encryptedWindow) * 4;
     storedNetworkDataSize += tmpArraySize;
@@ -56,6 +39,12 @@ actor {
       case (?arrays) { Array.append(arrays, [encryptedWindow]) };   // If an entry exists, append the new array
     };
     addressMap.put(address, updatedArrays);
+    return 1;
+  };
+
+  public func removeAddress(address: Text) : async Nat {
+    addressMap.delete(address); 
+    return 1;
   };
 
   // Function to retrieve the array of arrays for a given address.

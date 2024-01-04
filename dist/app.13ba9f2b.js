@@ -701,71 +701,130 @@ function AppView() {
         id: "outer-container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
             maxWidth: "xl",
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                container: true,
-                spacing: 3,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                        xs: 12,
-                        md: 6,
-                        lg: 3,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            total: canisterBalance,
-                            subtitle: "ICP Cycles Available",
-                            color: "success"
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                    container: true,
+                    spacing: 3,
+                    sx: {
+                        marginBottom: 3
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
+                            variant: "subtitle",
+                            sx: {
+                                fontSize: "1.5em"
+                            },
+                            children: "Experiment: store wearable health data and exchange it for real value"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 50,
+                            lineNumber: 49,
                             columnNumber: 15
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 49,
-                        columnNumber: 13
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                        xs: 12,
-                        md: 6,
-                        lg: 3,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            total: storedNetworkDataTotal,
-                            subtitle: "bytes stored",
-                            color: "success"
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                            style: {
+                                position: "relative",
+                                height: "550px",
+                                width: "100%",
+                                marginTop: "20px"
+                            },
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
+                                src: "https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed",
+                                title: "Dashboard",
+                                frameborder: "0",
+                                loading: "lazy",
+                                webkitallowfullscreen: true,
+                                mozallowfullscreen: true,
+                                allowfullscreen: true,
+                                style: {
+                                    position: "absolute",
+                                    top: "0",
+                                    left: "0",
+                                    width: "100%",
+                                    height: "100%",
+                                    colorScheme: "light"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                lineNumber: 52,
+                                columnNumber: 103
+                            }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 57,
+                            lineNumber: 52,
                             columnNumber: 15
                         }, this)
-                    }, void 0, false, {
-                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 56,
-                        columnNumber: 13
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                        xs: 12,
-                        md: 6,
-                        lg: 3,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                            title: web3Id,
-                            subtitle: "web3 identity",
-                            color: "success"
+                    ]
+                }, void 0, true, {
+                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                    lineNumber: 48,
+                    columnNumber: 11
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                    container: true,
+                    spacing: 3,
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                            xs: 12,
+                            md: 6,
+                            lg: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                total: canisterBalance,
+                                subtitle: "ICP Cycles Available",
+                                color: "success"
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                lineNumber: 56,
+                                columnNumber: 15
+                            }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 64,
-                            columnNumber: 15
+                            lineNumber: 55,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                            xs: 12,
+                            md: 6,
+                            lg: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                total: storedNetworkDataTotal,
+                                subtitle: "bytes stored",
+                                color: "success"
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                lineNumber: 63,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 62,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                            xs: 12,
+                            md: 6,
+                            lg: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                title: web3Id,
+                                subtitle: "web3 identity",
+                                color: "success"
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                lineNumber: 70,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 69,
+                            columnNumber: 13
                         }, this)
-                    }, void 0, false, {
-                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                        lineNumber: 63,
-                        columnNumber: 13
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                lineNumber: 48,
-                columnNumber: 11
-            }, this)
-        }, void 0, false, {
+                    ]
+                }, void 0, true, {
+                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                    lineNumber: 54,
+                    columnNumber: 11
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
             lineNumber: 47,
             columnNumber: 9

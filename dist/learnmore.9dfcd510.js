@@ -965,16 +965,16 @@ function LearnMoreView() {
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
                                 children: [
-                                    "Blockchain systems are now crossing the point where storage cost is reaching ",
+                                    "Blockchain systems are now crossing the point where storage cost is dramatically reducing ",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
                                         style: {
                                             textDecorationColor: "green"
                                         },
-                                        children: "similar levels to top tech providers."
+                                        children: "to reasonable pricing, e.g. $5/Gib/year"
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                         lineNumber: 70,
-                                        columnNumber: 111
+                                        columnNumber: 124
                                     }, this)
                                 ]
                             }, void 0, true, {

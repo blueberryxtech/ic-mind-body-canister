@@ -23,7 +23,8 @@ export interface _SERVICE {
   'getIcpId' : ActorMethod<[], string>,
   'getMapping' : ActorMethod<[string], [] | [NestedArray]>,
   'getStoredDataNetworkSize' : ActorMethod<[], bigint>,
-  'pushToArray' : ActorMethod<[string, Array<bigint>, bigint], undefined>,
+  'pushToArray' : ActorMethod<[string, Array<bigint>, bigint], bigint>,
+  'removeAddress' : ActorMethod<[string], bigint>,
   'send_http_blueberry_proxy_get_raw_data' : ActorMethod<
     [string, string, string, string],
     string

@@ -72,7 +72,7 @@ export default function LoginView() {
     const details = await wallet.connect({app: 'blueberry', authorize: true})
     if (details.connected) {
       window.$web3AddressId = details.session?.accountAddress;
-      console.log(details.session?.accountAddress);
+      //console.log(details.session?.accountAddress);
       setProof(details.proof?.proofString);
       setWeb3Address(details.session?.accountAddress);
     }
@@ -137,7 +137,7 @@ export default function LoginView() {
               sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             >
               <Typography variant="subtitle2" sx={{ ml: 0.5 }}>
-                ethereum
+                web3
               </Typography>
             </Button>
           </Stack>
@@ -157,7 +157,7 @@ export default function LoginView() {
             />
           </Typography>
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            ethereum identity: 
+            web3 identity: 
             <AppWidgetSummary
               subtitle={window.$web3AddressId}
               color="success"
