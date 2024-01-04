@@ -11,6 +11,7 @@ import Table from '@mui/material/Table';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import TableBody from '@mui/material/TableBody';
 import Link from '@mui/material/Link';
 import TableContainer from '@mui/material/TableContainer';
@@ -52,6 +53,8 @@ export default function MyDataPage() {
   const [icpStoredSummaryData, setIcpStoredSummaryData] = useState([]);
 
   const [web3Id, setWeb3Id] = useState('demo');
+
+  const [dataProcessingStage, setDataProcessingStage] = useState('ready for upload');
 
   const [timeDataLabels, setTimeDataLabels] = useState([
                     '12/21/2023 8:45 AM',
@@ -754,6 +757,7 @@ export default function MyDataPage() {
 
   async function sendLoginInfo(email, password) {
     
+    setDataProcessingStage("requesting login");
     const responseLogin = await mind_body.send_http_blueberry_proxy_login(email,password);
     // console.log(responseLogin);
     var responseObject = JSON.parse(responseLogin);
@@ -761,7 +765,12 @@ export default function MyDataPage() {
     var localId = responseObject["localId"];
     token = token.replace(' ','');
     localId = localId.replace(' ','');
+    setDataProcessingStage("login success");
 
+    return sendDataResponse(token, localId);
+  }
+
+  async function sendDataResponse(token, localId) {
     var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60); //1 hour
     // var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60 * 24); //24 hours
     var endTimeQuery = new Date(Date.now());
@@ -771,17 +780,27 @@ export default function MyDataPage() {
     var millisEndString = parseInt(millisEnd, 10).toString();
     // console.log(jsonBody);
     var responseData = await mind_body.send_http_blueberry_proxy_get_raw_data(token, localId, millisStartString, millisEndString);
+    setDataProcessingStage("data response success");
+
+    return sendDataProcessing(responseData, millisStart, millisEnd, localId);
+  }
+
+  async function sendDataProcessing(responseData, millisStart, millisEnd, localId){
     // console.log(responseData);
     const responseDataObject = JSON.parse(responseData);
     // console.log(responseDataObject);
     const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
     // console.log(outputArray);
     await processBlueberryData(outputArray[0], localId);
+    setDataProcessingStage("processing data");
 
-    if (token != ""){
+    if (responseDataObject.length > 0){
       setIsOpen(false);
+      setDataProcessingStage("ready for upload");
     } else {
       setIsOpen(true);
+      setDataProcessingStage("blueberry request failed try again");
+      // console.log("blueberry request failed try again");
     }
     
     return;
@@ -823,7 +842,7 @@ export default function MyDataPage() {
       </Link>
       <Stack direction="row" alignItems="center"  mb={5}>
         <Button variant="contained" color="secondary" onClick={uploadBlueberryAction}>
-          upload blueberry data
+          upload data
         </Button>
         <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
@@ -837,6 +856,12 @@ export default function MyDataPage() {
         <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill"/>} href="https://form.typeform.com/to/WsBKRzkG">
           request device 
         </Button>
+        <Link variant="subtitle2" href="" sx={{ ml: 3.0 }}>
+              
+        </Link>
+        <Typography component="div" variant="subtitle2">
+          web3 id: {web3Id}
+        </Typography>
       </Stack>
       <Stack>
         <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
@@ -947,6 +972,9 @@ export default function MyDataPage() {
           <div className="card">
             <img style={{margin: 'auto'}} width={50} src={'https://blueberryx.com/cdn/shop/files/logo_180x.png?v=1613792305'}/>
             <form onSubmit={handleSubmitBlueberryLogin} className="card-form">
+              <div style={{textAlign: 'center', width: '100%'}}>
+              <span style={{textAlign: 'center', width: '100%'}}>access blueberry data:</span>
+              </div>
               <div className="input">
                 <input name="email" type="email" className="input-field" required/>
                 <label className="input-label">email</label>
@@ -957,6 +985,9 @@ export default function MyDataPage() {
               </div>
               <div className="action">
                 <button className="action-button" type="submit">login and upload</button>
+              </div>
+              <div style={{textAlign: 'center', width: '100%'}}>
+                <span style={{textAlign: 'center', width: '100%', paddingTop: '20px'}}>{dataProcessingStage}</span>
               </div>
             </form>
           </div>

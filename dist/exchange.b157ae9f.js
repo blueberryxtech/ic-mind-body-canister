@@ -641,14 +641,14 @@ $RefreshReg$(_c, "AppExchangePage");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-helmet-async":"hTtyd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../sections/exchange/view":"bO5Ys"}],"bO5Ys":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-helmet-async":"hTtyd","../sections/exchange/view":"bO5Ys","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bO5Ys":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AppExchangeView", ()=>(0, _appExchangeViewDefault.default));
 var _appExchangeView = require("./app-exchange-view");
 var _appExchangeViewDefault = parcelHelpers.interopDefault(_appExchangeView);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./app-exchange-view":"7MIqY"}],"7MIqY":[function(require,module,exports) {
+},{"./app-exchange-view":"7MIqY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7MIqY":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8e5d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -665,6 +665,10 @@ var _mindBody = require("../../../../../declarations/mind_body");
 var _theme = require("../../../theme");
 var _themeDefault = parcelHelpers.interopDefault(_theme);
 //UI
+var _button = require("@mui/material/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _link = require("@mui/material/Link");
+var _linkDefault = parcelHelpers.interopDefault(_link);
 var _container = require("@mui/material/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
 var _unstableGrid2 = require("@mui/material/Unstable_Grid2");
@@ -695,15 +699,15 @@ function AppExchangeView() {
                         sx: {
                             fontSize: "1.5em"
                         },
-                        children: "Coming soon: studies and data exchange opportunities"
+                        children: "Studies and data exchange opportunities"
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                        lineNumber: 23,
+                        lineNumber: 25,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                    lineNumber: 22,
+                    lineNumber: 24,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -714,71 +718,117 @@ function AppExchangeView() {
                             xs: 12,
                             md: 6,
                             lg: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                total: 100,
-                                subtitle: "Heart rate response to environments: participants needed for 1 month of data (anonymous)",
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                                lineNumber: 29,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                    total: 100,
+                                    footnote: "participants",
+                                    subtitle: "Heart rate response to environments: participants needed for 1 month of data (anonymous)",
+                                    color: "success"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 31,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                    variant: "contained",
+                                    color: "primary",
+                                    style: {
+                                        width: "150px"
+                                    },
+                                    href: "https://form.typeform.com/to/WsBKRzkG",
+                                    children: "join"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 37,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                            lineNumber: 28,
+                            lineNumber: 30,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                             xs: 12,
                             md: 6,
                             lg: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                total: 50,
-                                subtitle: "Attention in conversations: 10 logged data sets + conversations (anonymous)",
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                                lineNumber: 36,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                    total: 50,
+                                    footnote: "participants",
+                                    subtitle: "Attention in conversations: 10 logged data sets + conversations (anonymous)",
+                                    color: "success"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 42,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                    variant: "contained",
+                                    color: "primary",
+                                    style: {
+                                        width: "150px"
+                                    },
+                                    children: "coming soon"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 48,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                            lineNumber: 35,
+                            lineNumber: 41,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                             xs: 12,
                             md: 6,
                             lg: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                total: 400,
-                                subtitle: "Understanding stress in environments: participants, manual reporting + location (anonymous)",
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                                lineNumber: 43,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                    total: 400,
+                                    footnote: "participants",
+                                    subtitle: "Understanding stress: manual situation reporting + location (anonymous)",
+                                    color: "success"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 53,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                    variant: "contained",
+                                    color: "primary",
+                                    style: {
+                                        width: "150px"
+                                    },
+                                    children: "coming soon"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
+                                    lineNumber: 59,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                            lineNumber: 42,
+                            lineNumber: 52,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-                    lineNumber: 27,
+                    lineNumber: 29,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-            lineNumber: 21,
+            lineNumber: 23,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
-        lineNumber: 20,
+        lineNumber: 22,
         columnNumber: 7
     }, this);
 }
@@ -792,6 +842,6 @@ $RefreshReg$(_c, "AppExchangeView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["hBAKg","1xC6H"], null, "parcelRequire4831")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@mui/material/Button":"73csw","@mui/material/Link":"f1yGe"}]},["hBAKg","1xC6H"], null, "parcelRequire4831")
 
 //# sourceMappingURL=exchange.b157ae9f.js.map
