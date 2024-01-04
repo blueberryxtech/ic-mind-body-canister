@@ -17136,14 +17136,14 @@ const idlFactory = ({ IDL })=>{
             IDL.Text,
             IDL.Vec(IDL.Int),
             IDL.Int
-        ], [
-            IDL.Nat
-        ], []),
+        ], [], [
+            "oneway"
+        ]),
         "removeAddress": IDL.Func([
             IDL.Text
-        ], [
-            IDL.Nat
-        ], []),
+        ], [], [
+            "oneway"
+        ]),
         "send_http_blueberry_proxy_get_raw_data": IDL.Func([
             IDL.Text,
             IDL.Text,

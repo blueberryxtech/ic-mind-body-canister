@@ -32,8 +32,8 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 import { DictionaryToIntArray, IntArrayToDictionary, AverageDictionaryToIntArray, IntArrayToAverageDictionary } from '../../../blueberry/BlueberryDictionaryCompression'
 
 // ----------------------------------------------------------------------
-
 export default function MyDataPage() {
+
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -86,6 +86,30 @@ export default function MyDataPage() {
   const [passcodeKeyLocal, setPasscodeKeyLocal] = useState("1");
   const [selectedRowIndex, setSelectedRowIndex] = useState("0");
 
+  const dataFiltered = applyFilter({
+    inputData: icpStoredSummaryData,
+    comparator: getComparator(order, orderBy),
+    filterName,
+  });
+
+  const notFound = !dataFiltered.length && !!filterName;
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setPage(0);
+    setRowsPerPage(parseInt(event.target.value, 10));
+  };
+
+  const handleFilterByName = (event) => {
+    setPage(0);
+    setFilterName(event.target.value);
+  };
+
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
     if (id !== '') {
@@ -101,40 +125,6 @@ export default function MyDataPage() {
       return;
     }
     setSelected([]);
-  };
-
-  const initialLoadICP = async() => {
-    readICP();
-  }
-
-  const handleClick = (event, id) => {
-    // console.log(id);
-    // console.log(icpStoredSummaryData);
-    const filteredArray = icpStoredSummaryData.flatMap(({ id }) => id);
-    var tmpIndex = filteredArray.indexOf(id);
-    setSelectedRowIndex(tmpIndex.toString());
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    //get data for row 
-    // console.log(selectedIndex);
-    if (tmpIndex != -1){
-      let tmpVectorData = icpStoredData[tmpIndex];
-      readICPRow(tmpVectorData);
-    }
-
-    setSelected(newSelected);
   };
 
   const readICPRow = async (tmpVectorData) => {
@@ -191,8 +181,36 @@ export default function MyDataPage() {
     setTimeDataLabels(tmpTimeDataLabels);
     setHeartRateData(tmpHeartRateData);
     setFlowActivityData(tmpFlowActivityData);
+  };
 
-  }
+  const handleClick = (event, id) => {
+    // console.log(id);
+    // console.log(icpStoredSummaryData);
+    const filteredArray = icpStoredSummaryData.flatMap(({ id }) => id);
+    var tmpIndex = filteredArray.indexOf(id);
+    setSelectedRowIndex(tmpIndex.toString());
+    const selectedIndex = selected.indexOf(id);
+    let newSelected = [];
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+    //get data for row 
+    // console.log(selectedIndex);
+    if (tmpIndex != -1){
+      let tmpVectorData = icpStoredData[tmpIndex];
+      readICPRow(tmpVectorData);
+    }
+    setSelected(newSelected);
+  };
 
   const exportRowData = async() => {
     //export data
@@ -212,31 +230,7 @@ export default function MyDataPage() {
     }
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setPage(0);
-    setRowsPerPage(parseInt(event.target.value, 10));
-  };
-
-  const handleFilterByName = (event) => {
-    setPage(0);
-    setFilterName(event.target.value);
-  };
-
-  const dataFiltered = applyFilter({
-    inputData: icpStoredSummaryData,
-    comparator: getComparator(order, orderBy),
-    filterName,
-  });
-
-  const notFound = !dataFiltered.length && !!filterName;
-
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  const updateLocalId = () => {
+  function updateLocalId() {
     var tmpIcpId = window.$icpId;
     var tmpWeb3AddressId = window.$web3AddressId;
     // console.log(tmpIcpId);
@@ -249,11 +243,28 @@ export default function MyDataPage() {
     } else if (!tmpWeb3AddressId.includes("demo")){
       setWeb3Id(tmpWeb3AddressId);
     }
+    loadLocalState();
+    loadLocalPasswordKey();
+    loadICPData();
   }
 
-  const loadICPData = () => {
-    var tmpId = web3Id;
-    if (tmpId === undefined ){
+  function loadICPData() {
+    var tmpId = "demo";
+    var tmpIcpId = "demo";
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('icpId') !== null){
+      tmpIcpId = localStorage.getItem('icpId');
+    }
+    if(localStorage.getItem('web3AddressId') !== null){
+      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+    }
+    if (!tmpIcpId.includes("demo")){
+      tmpId = tmpIcpId;
+    } else if (!tmpWeb3AddressId.includes("demo")){
+      tmpId = tmpWeb3AddressId;
+    }
+    // console.log(tmpId);
+    if (tmpId === undefined){
       //display error popup
       setWeb3Id("demo");
       console.log("web3 id not set!");
@@ -261,14 +272,7 @@ export default function MyDataPage() {
       console.log(tmpId);
       initialLoadICP();
     } 
-    loadLocalState();
-    loadLocalPasswordKey();
   }
-
-  useEffect(() =>{
-    updateLocalId();
-    loadICPData();
-  },[]);
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -329,7 +333,6 @@ export default function MyDataPage() {
       localStorage.setItem('userState6', tmpS6);
       setUser_state_6(tmpS6);
     }
-    console.log(tmpS6);
   };
 
   function loadLocalState() {
@@ -465,6 +468,149 @@ export default function MyDataPage() {
     // console.log("metric - csv saved");
   };
 
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  const loadICPReturnedData = async(icpStoredData, icpNetworkData) => {
+    //load first record in chart
+    if (icpStoredData.length > 0){
+      let tmpVectorData = icpStoredData[0];
+      // console.log(tmpVectorData);
+      readICPRow(tmpVectorData);
+    }
+    setIcpStoredSummaryData(icpNetworkData);
+  }
+
+  const readICPReturn = async(returnValueArray, userStringId) => {
+    // console.log(returnValueArray);
+    if (returnValueArray.length > 0){
+      var tmpIcpNetworkData = [];
+      var tmpArray = returnValueArray[0];
+      setIcpStoredData(tmpArray);
+      for (var i = 0; i < tmpArray.length; i++) { 
+        var tmpValueArray = tmpArray[i];
+        // console.log(tmpValueArray);
+        var tmpDecryptValues = decryptData(tmpValueArray);
+        var tmpLastValue = tmpDecryptValues[0];
+        var tmpSize = (tmpValueArray.length * 4.0)/1000.0;
+        var tmpDate = new Date(tmpLastValue.timestamp*1000);
+        var tmpUId = uuidv4();
+        var tmpRecordInfo = {
+          "id": userStringId+"-"+tmpUId, 
+          "uniqueId": tmpUId, 
+          "dataType": "blueberry",
+          "date": tmpDate,
+          "dataSize": tmpSize,
+          "isVerified": "true"
+        };
+        tmpIcpNetworkData.push(tmpRecordInfo);
+        // console.log(tmpIcpNetworkData)
+      }
+      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
+    } else {
+      setIcpStoredData([]);
+      var tmpIcpNetworkData = [];
+      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
+    }
+  }
+
+  function encryptData(dataRaw){
+
+    let userCategoryEnum = {
+      "state1": user_state_1, 
+      "state2": user_state_2, 
+      "state3": user_state_3,
+      "state4": user_state_4,
+      "state5": user_state_5,
+      "state6": user_state_6
+    };
+
+    const compressedVectors = [];
+    var passcodeKey = 1;
+    if(localStorage.getItem('passcodeKey') === null){
+      passcodeKey = 1;
+    } else {
+      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
+      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
+    }
+
+    for (var i = 0; i < dataRaw.length; i++) {
+        let tmpDictionary = dataRaw[i];
+        let tmpIntArray = DictionaryToIntArray(tmpDictionary, userCategoryEnum);
+        for (let i = 0; i < tmpIntArray.length; i++) {
+          let tmpEncrypt = tmpIntArray[i]*passcodeKey;
+          compressedVectors.push(tmpEncrypt);
+        }
+    }
+
+    return compressedVectors;
+  };
+
+  function decryptData(vector_iv){
+    let userCategoryEnum = {
+      "state1": user_state_1, 
+      "state2": user_state_2, 
+      "state3": user_state_3,
+      "state4": user_state_4,
+      "state5": user_state_5,
+      "state6": user_state_6
+    }
+
+    const data = [];
+    var passcodeKey = 1;
+    if(localStorage.getItem('passcodeKey') === null){
+      passcodeKey = 1;
+    } else {
+      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
+      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
+    }
+
+    // console.log(vector_iv);
+    for (var i = 0; i < vector_iv.length-3; i+=3) {
+        var tmpVector = vector_iv.slice(i, i+3);
+        var decryptedVector = [];
+        for (let i = 0; i < tmpVector.length; i++) {
+          const largeInt = BigInt(tmpVector[i]);
+          const convertedInt = parseInt(largeInt);
+          let tmpConversion = convertedInt/passcodeKey;
+          let tmpInt = parseInt(tmpConversion, 10);
+          decryptedVector.push(tmpInt);
+        }
+        let tmpDictionary = IntArrayToDictionary(decryptedVector, userCategoryEnum);
+        data.push(tmpDictionary);
+    }
+    // console.log(data);
+    return data;
+  };
+
+  async function readICP() {
+    var tmpId = "demo";
+    var tmpIcpId = "demo";
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('icpId') !== null){
+      tmpIcpId = localStorage.getItem('icpId');
+    }
+    if(localStorage.getItem('web3AddressId') !== null){
+      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+    }
+    if (!tmpIcpId.includes("demo")){
+      tmpId = tmpIcpId;
+    } else if (!tmpWeb3AddressId.includes("demo")){
+      tmpId = tmpWeb3AddressId;
+    }
+    // console.log(tmpId);
+    if (tmpId !== undefined){
+      // console.log(userStringId);
+      var returnValueArray = await mind_body.getMapping(tmpId);
+      // console.log(returnValueArray);
+      return readICPReturn(returnValueArray, tmpId);
+    }
+  };
+
   function processBlueberryResponse(data, query_start_time, query_end_time){
 
       var dictionaryHistoryArray = []
@@ -596,19 +742,32 @@ export default function MyDataPage() {
       return returnArray;
   };
 
-  async function processBlueberryData(dataRaw, userId) {
-    let encryptedVector = await encryptData(dataRaw);
+  function processBlueberryData(dataRaw, userId) {
+    let encryptedVector = encryptData(dataRaw);
     return processEncryptedVector(encryptedVector);
   };
 
-  async function processEncryptedVector(encryptedVector){
+  function processEncryptedVector(encryptedVector){
     //check if icpId is not undefined
-    var tmpWeb3Id = web3Id;
-    if (tmpWeb3Id === undefined){
+    var tmpId = "demo";
+    var tmpIcpId = "demo";
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('icpId') !== null){
+      tmpIcpId = localStorage.getItem('icpId');
+    }
+    if(localStorage.getItem('web3AddressId') !== null){
+      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+    }
+    if (!tmpIcpId.includes("demo")){
+      tmpId = tmpIcpId;
+    } else if (!tmpWeb3AddressId.includes("demo")){
+      tmpId = tmpWeb3AddressId;
+    }
+    if (tmpId === undefined){
       //display error popup
       console.log("web3 id not set!");
-    } else if (tmpWeb3Id !== "demo"){
-      writeICP(tmpWeb3Id, encryptedVector);
+    } else if (tmpId !== "demo"){
+      writeICP(tmpId, encryptedVector);
     } 
   }
 
@@ -624,135 +783,6 @@ export default function MyDataPage() {
     await mind_body.pushToArray(userStringId, vectorArray, timeConcatenteInt);
 
     return readICP();
-  };
-
-  function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
-
-  const readICP = async() => {
-    var userStringId = web3Id;
-    if (userStringId !== undefined){
-      // console.log(userStringId);
-      var returnValueArray = await mind_body.getMapping(userStringId);
-      // console.log(returnValueArray);
-      return readICPReturn(returnValueArray, userStringId);
-    }
-  };
-
-  const readICPReturn = async(returnValueArray, userStringId) => {
-    // console.log(returnValueArray);
-    if (returnValueArray.length > 0){
-      var tmpIcpNetworkData = [];
-      var tmpArray = returnValueArray[0];
-      setIcpStoredData(tmpArray);
-      for (var i = 0; i < tmpArray.length; i++) { 
-        var tmpValueArray = tmpArray[i];
-        // console.log(tmpValueArray);
-        var tmpDecryptValues = decryptData(tmpValueArray);
-        var tmpLastValue = tmpDecryptValues[0];
-        var tmpSize = (tmpValueArray.length * 4.0)/1000.0;
-        var tmpDate = new Date(tmpLastValue.timestamp*1000);
-        var tmpUId = uuidv4();
-        var tmpRecordInfo = {
-          "id": userStringId+"-"+tmpUId, 
-          "uniqueId": tmpUId, 
-          "dataType": "blueberry",
-          "date": tmpDate,
-          "dataSize": tmpSize,
-          "isVerified": "true"
-        };
-        tmpIcpNetworkData.push(tmpRecordInfo);
-        // console.log(tmpIcpNetworkData)
-      }
-      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
-    } else {
-      setIcpStoredData([]);
-      var tmpIcpNetworkData = [];
-      loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
-    }
-  }
-
-  const loadICPReturnedData = async(icpStoredData, icpNetworkData) => {
-    //load first record in chart
-    if (icpStoredData.length > 0){
-      let tmpVectorData = icpStoredData[0];
-      // console.log(tmpVectorData);
-      readICPRow(tmpVectorData);
-    }
-    setIcpStoredSummaryData(icpNetworkData);
-  }
-
-  async function encryptData(dataRaw){
-
-    let userCategoryEnum = {
-      "state1": user_state_1, 
-      "state2": user_state_2, 
-      "state3": user_state_3,
-      "state4": user_state_4,
-      "state5": user_state_5,
-      "state6": user_state_6
-    };
-
-    const compressedVectors = [];
-    var passcodeKey = 1;
-    if(localStorage.getItem('passcodeKey') === null){
-      passcodeKey = 1;
-    } else {
-      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
-      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
-    }
-
-    for (var i = 0; i < dataRaw.length; i++) {
-        let tmpDictionary = dataRaw[i];
-        let tmpIntArray = DictionaryToIntArray(tmpDictionary, userCategoryEnum);
-        for (let i = 0; i < tmpIntArray.length; i++) {
-          let tmpEncrypt = tmpIntArray[i]*passcodeKey;
-          compressedVectors.push(tmpEncrypt);
-        }
-    }
-
-    return compressedVectors
-  };
-
-  function decryptData(vector_iv){
-    let userCategoryEnum = {
-      "state1": user_state_1, 
-      "state2": user_state_2, 
-      "state3": user_state_3,
-      "state4": user_state_4,
-      "state5": user_state_5,
-      "state6": user_state_6
-    }
-
-    const data = [];
-    var passcodeKey = 1;
-    if(localStorage.getItem('passcodeKey') === null){
-      passcodeKey = 1;
-    } else {
-      var tmpPasscodeKeyString = localStorage.getItem('passcodeKey');
-      passcodeKey = parseInt(tmpPasscodeKeyString, 10);
-    }
-
-    // console.log(vector_iv);
-    for (var i = 0; i < vector_iv.length-3; i+=3) {
-        var tmpVector = vector_iv.slice(i, i+3);
-        var decryptedVector = [];
-        for (let i = 0; i < tmpVector.length; i++) {
-          const largeInt = BigInt(tmpVector[i]);
-          const convertedInt = parseInt(largeInt);
-          let tmpConversion = convertedInt/passcodeKey;
-          let tmpInt = parseInt(tmpConversion, 10);
-          decryptedVector.push(tmpInt);
-        }
-        let tmpDictionary = IntArrayToDictionary(decryptedVector, userCategoryEnum);
-        data.push(tmpDictionary);
-    }
-    // console.log(data);
-    return data;
   };
 
   async function sendLoginInfo(email, password) {
@@ -791,7 +821,7 @@ export default function MyDataPage() {
     // console.log(responseDataObject);
     const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
     // console.log(outputArray);
-    await processBlueberryData(outputArray[0], localId);
+    processBlueberryData(outputArray[0], localId);
     setDataProcessingStage("processing data");
 
     if (responseDataObject.length > 0){
@@ -804,7 +834,15 @@ export default function MyDataPage() {
     }
     
     return;
-  }
+  };
+
+  const initialLoadICP = async() => {
+    readICP();
+  };
+
+  useEffect(() =>{
+    updateLocalId(); 
+  },[]);
 
   return (
     <Container>

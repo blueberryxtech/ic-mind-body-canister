@@ -730,11 +730,8 @@ function AppView() {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
                                 src: "https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed",
                                 title: "Dashboard",
-                                frameborder: "0",
+                                frameBorder: "0",
                                 loading: "lazy",
-                                webkitallowfullscreen: true,
-                                mozallowfullscreen: true,
-                                allowfullscreen: true,
                                 style: {
                                     position: "absolute",
                                     top: "0",

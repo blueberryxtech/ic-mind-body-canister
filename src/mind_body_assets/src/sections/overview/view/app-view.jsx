@@ -49,7 +49,7 @@ export default function AppView() {
               <Typography variant="subtitle" sx={{fontSize: "1.5em"}}>
                 Experiment: store wearable health data and exchange it for real value
               </Typography>
-              <Grid style={{position: "relative", height: "550px", width: "100%", marginTop: "20px"}}><iframe src="https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed" title="Dashboard" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", colorScheme: "light"}}></iframe></Grid>
+              <Grid style={{position: "relative", height: "550px", width: "100%", marginTop: "20px"}}><iframe src="https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed" title="Dashboard" frameBorder="0" loading="lazy" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", colorScheme: "light"}}></iframe></Grid>
           </Grid>
           <Grid container spacing={3}>
             <Grid xs={12} md={6} lg={3}>

@@ -64,6 +64,8 @@ export default function LoginView() {
     // get ICP-ID
     const icpIdValue = await mind_body.getIcpId();
     window.$icpId = icpIdValue;
+    localStorage.setItem('icpId', icpIdValue);
+
     setIcpId(icpIdValue);
   }
 
@@ -72,6 +74,7 @@ export default function LoginView() {
     const details = await wallet.connect({app: 'blueberry', authorize: true})
     if (details.connected) {
       window.$web3AddressId = details.session?.accountAddress;
+      localStorage.setItem('web3AddressId', details.session?.accountAddress);
       //console.log(details.session?.accountAddress);
       setProof(details.proof?.proofString);
       setWeb3Address(details.session?.accountAddress);

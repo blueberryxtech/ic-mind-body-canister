@@ -27,6 +27,8 @@ export default function AccountPopover() {
   const handleClose = () => {
     window.$icpId = "demo";
     window.$ethereumId = "demo";
+    localStorage.setItem('icpId', "");
+    localStorage.setItem('web3AddressId', "");
     setOpen(null);
   };
 

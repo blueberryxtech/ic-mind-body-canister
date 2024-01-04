@@ -28,7 +28,7 @@ actor {
   // stable storage - set mapping to per month hashmaps - potentially segment to weeks or days depending on sizing/timing requirements
   var addressMap : AddressMap = HashMap.HashMap<Text, NestedArray>(10, Text.equal, Text.hash);
 
-  public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) : async Nat {
+  public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
     // assert(isCallerAllowed());                                   // Ensure the caller is allowed to call this method
     let tmpArraySize = Array.size(encryptedWindow) * 4;
     storedNetworkDataSize += tmpArraySize;
@@ -39,12 +39,10 @@ actor {
       case (?arrays) { Array.append(arrays, [encryptedWindow]) };   // If an entry exists, append the new array
     };
     addressMap.put(address, updatedArrays);
-    return 1;
   };
 
-  public func removeAddress(address: Text) : async Nat {
+  public func removeAddress(address: Text) {
     addressMap.delete(address); 
-    return 1;
   };
 
   // Function to retrieve the array of arrays for a given address.

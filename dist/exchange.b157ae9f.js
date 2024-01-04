@@ -699,7 +699,7 @@ function AppExchangeView() {
                         sx: {
                             fontSize: "1.5em"
                         },
-                        children: "Studies and data exchange opportunities"
+                        children: "Data exchange opportunities"
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
                         lineNumber: 25,
@@ -736,7 +736,7 @@ function AppExchangeView() {
                                         width: "150px"
                                     },
                                     href: "https://form.typeform.com/to/WsBKRzkG",
-                                    children: "join"
+                                    children: "request to join"
                                 }, void 0, false, {
                                     fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
                                     lineNumber: 37,
@@ -842,6 +842,6 @@ $RefreshReg$(_c, "AppExchangeView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@mui/material/Button":"73csw","@mui/material/Link":"f1yGe"}]},["hBAKg","1xC6H"], null, "parcelRequire4831")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Button":"73csw","@mui/material/Link":"f1yGe","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["hBAKg","1xC6H"], null, "parcelRequire4831")
 
 //# sourceMappingURL=exchange.b157ae9f.js.map

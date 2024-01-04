@@ -23,10 +23,10 @@ export const idlFactory = ({ IDL }) => {
     'getStoredDataNetworkSize' : IDL.Func([], [IDL.Nat], ['query']),
     'pushToArray' : IDL.Func(
         [IDL.Text, IDL.Vec(IDL.Int), IDL.Int],
-        [IDL.Nat],
         [],
+        ['oneway'],
       ),
-    'removeAddress' : IDL.Func([IDL.Text], [IDL.Nat], []),
+    'removeAddress' : IDL.Func([IDL.Text], [], ['oneway']),
     'send_http_blueberry_proxy_get_raw_data' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [IDL.Text],

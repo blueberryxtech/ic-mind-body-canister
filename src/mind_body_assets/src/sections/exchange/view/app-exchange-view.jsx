@@ -23,7 +23,7 @@ export default function AppExchangeView() {
         <Container maxWidth="xl">
           <Grid container spacing={3} sx={{marginBottom: 3}}>
               <Typography variant="subtitle" sx={{fontSize: "1.5em"}}>
-                Studies and data exchange opportunities
+                Data exchange opportunities
               </Typography>
           </Grid>
           <Grid container spacing={3}>
@@ -35,7 +35,7 @@ export default function AppExchangeView() {
                 color="success"
               />
               <Button variant="contained" color="primary" style={{width: "150px"}} href="https://form.typeform.com/to/WsBKRzkG">
-                join
+                request to join
               </Button>
             </Grid>
             <Grid xs={12} md={6} lg={3}>
