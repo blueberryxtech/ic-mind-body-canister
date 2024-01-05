@@ -25,17 +25,24 @@ export default function AppView() {
     const storedNetworkDataTotal = await mind_body.getStoredDataNetworkSize();
     setStoredNetworkDataTotal(storedNetworkDataTotal);
 
-    var tmpIcpId = window.$icpId;
-    var tmpWeb3AddressId = window.$web3AddressId;
-    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('web3AddressId') !== null){
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
+    }
+    // console.log(tmpWeb3AddressId);
+    if (tmpWeb3AddressId === undefined){
       //display error popup
       setWeb3Id("demo");
       // console.log("web3 id not set!");
-    } else if (tmpIcpId !== "demo"){
-      setWeb3Id(tmpIcpId);
-    } else if (tmpWeb3AddressId !== "demo"){
+    } 
+    if (!tmpWeb3AddressId.includes("demo")){
       setWeb3Id(tmpWeb3AddressId);
+      // console.log("web3 id set!");
     }
+    window.$web3AddressId = tmpWeb3AddressId;
   }
 
   useEffect(() =>{
@@ -71,7 +78,7 @@ export default function AppView() {
             </Grid>
             <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary
-                title={web3Id}
+                title={window.$web3AddressId}
                 subtitle="web3 identity"
                 color="success">
               </AppWidgetSummary>

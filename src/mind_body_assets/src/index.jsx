@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-window.icpId = "demo";
 window.web3AddressId = "demo";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

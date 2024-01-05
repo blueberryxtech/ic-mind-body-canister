@@ -686,12 +686,16 @@ function AppView() {
         setCanisterBalance(canisterBalanceValue);
         const storedNetworkDataTotal = await (0, _mindBody.mind_body).getStoredDataNetworkSize();
         setStoredNetworkDataTotal(storedNetworkDataTotal);
-        var tmpIcpId = window.$icpId;
-        var tmpWeb3AddressId = window.$web3AddressId;
-        if (tmpIcpId === undefined && tmpWeb3AddressId === undefined) //display error popup
+        var tmpWeb3AddressId = "demo";
+        if (localStorage.getItem("web3AddressId") !== null) {
+            var tmpVal = localStorage.getItem("web3AddressId");
+            if (tmpVal !== "") tmpWeb3AddressId = localStorage.getItem("web3AddressId");
+        }
+        // console.log(tmpWeb3AddressId);
+        if (tmpWeb3AddressId === undefined) //display error popup
         setWeb3Id("demo");
-        else if (tmpIcpId !== "demo") setWeb3Id(tmpIcpId);
-        else if (tmpWeb3AddressId !== "demo") setWeb3Id(tmpWeb3AddressId);
+        if (!tmpWeb3AddressId.includes("demo")) setWeb3Id(tmpWeb3AddressId);
+        window.$web3AddressId = tmpWeb3AddressId;
     };
     (0, _react.useEffect)(()=>{
         loadICPData();
@@ -720,7 +724,7 @@ function AppView() {
                             children: "Experiment: user controlled wearable data storage and exchange"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 49,
+                            lineNumber: 56,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -745,12 +749,12 @@ function AppView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 52,
+                                lineNumber: 59,
                                 columnNumber: 103
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 52,
+                            lineNumber: 59,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
@@ -761,13 +765,13 @@ function AppView() {
                             children: "Store your wearable data on a blockchain to enable new ways to compare and exchange it for participation in studies."
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 53,
+                            lineNumber: 60,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 48,
+                    lineNumber: 55,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -784,24 +788,6 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 59,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 58,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
-                            xs: 12,
-                            md: 6,
-                            lg: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                total: storedNetworkDataTotal,
-                                subtitle: "bytes stored",
-                                color: "success"
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
                                 lineNumber: 66,
                                 columnNumber: 15
                             }, this)
@@ -815,8 +801,8 @@ function AppView() {
                             md: 6,
                             lg: 3,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
-                                title: web3Id,
-                                subtitle: "web3 identity",
+                                total: storedNetworkDataTotal,
+                                subtitle: "bytes stored",
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
@@ -827,22 +813,40 @@ function AppView() {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
                             lineNumber: 72,
                             columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                            xs: 12,
+                            md: 6,
+                            lg: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appWidgetSummaryDefault.default), {
+                                title: window.$web3AddressId,
+                                subtitle: "web3 identity",
+                                color: "success"
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                lineNumber: 80,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 79,
+                            columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 57,
+                    lineNumber: 64,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-            lineNumber: 47,
+            lineNumber: 54,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-        lineNumber: 46,
+        lineNumber: 53,
         columnNumber: 7
     }, this);
 }

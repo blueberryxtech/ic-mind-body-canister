@@ -13,9 +13,9 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'Exchange',
-    path: '/exchange',
-    icon: icon('ic_analytics'),
+    title: 'Web3 Login',
+    path: '/login',
+    icon: icon('ic_user'),
   },
   {
     title: 'My Data',
@@ -23,9 +23,9 @@ const navConfig = [
     icon: icon('ic_lock'),
   },
   {
-    title: 'Connect',
-    path: '/login',
-    icon: icon('ic_user'),
+    title: 'Exchange',
+    path: '/exchange',
+    icon: icon('ic_analytics'),
   },
   {
     title: 'Learn more',

@@ -25,8 +25,6 @@ import AppWidgetSummary from '../../modules/app-widget-summary';
 export default function LoginView() {
   const theme = useTheme();
 
-  const [icpId, setIcpId] = React.useState("");
-
   //web3 wallet
   const [proof, setProof] = React.useState("");
   const [web3Address, setWeb3Address] = React.useState("");
@@ -63,10 +61,9 @@ export default function LoginView() {
   const loadICPid = async () => {
     // get ICP-ID
     const icpIdValue = await mind_body.getIcpId();
-    window.$icpId = icpIdValue;
-    localStorage.setItem('icpId', icpIdValue);
-
-    setIcpId(icpIdValue);
+    window.$web3AddressId = icpIdValue;
+    localStorage.setItem('web3AddressId', icpIdValue);
+    setWeb3Address(icpIdValue);
   }
 
   const loginWeb3 = async () => {
@@ -105,7 +102,7 @@ export default function LoginView() {
             p: 5,
             width: 1,
             maxWidth: 420,
-            height: 420,
+            height: 320,
           }}
         >
           <Typography variant="h4">connect web3 identity</Typography>
@@ -150,15 +147,8 @@ export default function LoginView() {
             width: 1,
             marginTop: 5,
             maxWidth: 420,
-            height: 620,
+            height: 320,
           }}>
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            icp identity: 
-            <AppWidgetSummary
-              subtitle={window.$icpId}
-              color="success"
-            />
-          </Typography>
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             web3 identity: 
             <AppWidgetSummary

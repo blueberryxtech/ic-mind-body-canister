@@ -715,13 +715,13 @@ function LearnMoreView() {
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
                                 children: [
-                                    "Do you struggle with trust on who is in control of your data ",
+                                    "Do you wish you could exchange and control of your wearable ",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                         children: " "
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                         lineNumber: 32,
-                                        columnNumber: 95
+                                        columnNumber: 94
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
                                         style: {
@@ -818,7 +818,7 @@ function LearnMoreView() {
                                         lineNumber: 46,
                                         columnNumber: 34
                                     }, this),
-                                    " data is siloed, locked on your phone or stored in a non distributed database & out of your control."
+                                    " data is siloed, locked on your phone or stored in a non distributed database"
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
@@ -839,7 +839,7 @@ function LearnMoreView() {
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "Data is difficult to link with other records.  Sharing with people usually requires exporting by files or taking a screenshot. This process can be extremely frustrating. For example if you are a researcher looking to parse data, an individual looking to share with someone to get feedback/help or a business trying to collect and control data. 3rd party businesses are benefiting from your data however not sharing it back with you."
+                                children: "Data is difficult to link with other records and devices. Sharing with people usually requires exporting by files or taking a screenshot. This process can be extremely frustrating. For example if you are a researcher looking to parse data, an individual looking to share with someone to get feedback/help or a business trying to collect and control data. 3rd party businesses are benefiting from your data, this needs to change."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 49,
@@ -886,18 +886,18 @@ function LearnMoreView() {
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
                                 children: [
-                                    "We are building a suite of tools to ",
+                                    "A suite of tools to ",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
                                         style: {
                                             textDecorationColor: "orange"
                                         },
-                                        children: "take back control"
+                                        children: "enable deep control"
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                         lineNumber: 58,
-                                        columnNumber: 70
+                                        columnNumber: 54
                                     }, this),
-                                    " of health and fitness data."
+                                    " of health and fitness data"
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
@@ -918,7 +918,7 @@ function LearnMoreView() {
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "We believe health and fitness data storage should be as easily accessible as files are on your phone & computer. We also believe you should have control of how to encrypt your data and how to share / benefit from it."
+                                children: "Health and fitness data storage should be as easily accessible as files are on your phone & computer. You should have control of how to encrypt your data and how to share and benefit from it."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 61,
@@ -970,7 +970,7 @@ function LearnMoreView() {
                                         style: {
                                             textDecorationColor: "green"
                                         },
-                                        children: "to reasonable pricing, e.g. $5/Gib/year"
+                                        children: "to reasonable pricing, for example with the Internet Computer at $5/Gb/year"
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                         lineNumber: 70,
@@ -996,7 +996,7 @@ function LearnMoreView() {
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "Blockchain enables an personalized encryption, control and copy format. With blockchain we can enable you to read, write, copy and delete your data in a seamless fashion."
+                                children: "Blockchain enables an personalized encryption, control and copy format. With blockchain we can enable you to read, write and delete your data in a seamless fashion."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 72,
@@ -1020,6 +1020,55 @@ function LearnMoreView() {
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                     lineNumber: 67,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                    className: "card-styles text-area",
+                    as: "article",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            marginLeft: "20px",
+                            marginRight: "20px"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 80,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                                className: "title",
+                                href: "https://github.com/blueberryxtech/ic-mind-body-dashboard",
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                children: "build your own network on the Internet Computer, open source code link"
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 81,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 82,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                        lineNumber: 79,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                    lineNumber: 78,
                     columnNumber: 9
                 }, this)
             ]

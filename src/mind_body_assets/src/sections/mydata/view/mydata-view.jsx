@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 import TableBody from '@mui/material/TableBody';
 import Link from '@mui/material/Link';
 import TableContainer from '@mui/material/TableContainer';
@@ -231,16 +232,19 @@ export default function MyDataPage() {
   };
 
   function updateLocalId() {
-    var tmpIcpId = window.$icpId;
-    var tmpWeb3AddressId = window.$web3AddressId;
-    // console.log(tmpIcpId);
-    if (tmpIcpId === undefined && tmpWeb3AddressId === undefined){
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('web3AddressId') !== null){
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
+    }
+    if (tmpWeb3AddressId === undefined){
       //display error popup
       setWeb3Id("demo");
       console.log("web3 id not set!");
-    } else if (!tmpIcpId.includes("demo")){
-      setWeb3Id(tmpIcpId);
-    } else if (!tmpWeb3AddressId.includes("demo")){
+    }
+    if (!tmpWeb3AddressId.includes("demo")){
       setWeb3Id(tmpWeb3AddressId);
     }
     loadLocalState();
@@ -250,17 +254,14 @@ export default function MyDataPage() {
 
   function loadICPData() {
     var tmpId = "demo";
-    var tmpIcpId = "demo";
     var tmpWeb3AddressId = "demo";
-    if(localStorage.getItem('icpId') !== null){
-      tmpIcpId = localStorage.getItem('icpId');
-    }
     if(localStorage.getItem('web3AddressId') !== null){
-      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
     }
-    if (!tmpIcpId.includes("demo")){
-      tmpId = tmpIcpId;
-    } else if (!tmpWeb3AddressId.includes("demo")){
+    if (!tmpWeb3AddressId.includes("demo")){
       tmpId = tmpWeb3AddressId;
     }
     // console.log(tmpId);
@@ -269,8 +270,10 @@ export default function MyDataPage() {
       setWeb3Id("demo");
       console.log("web3 id not set!");
     } else if (!tmpId.includes("demo")){
-      console.log(tmpId);
-      initialLoadICP();
+      // console.log(tmpId);
+      if (tmpVal !== ""){
+        initialLoadICP();
+      }
     } 
   }
 
@@ -589,25 +592,23 @@ export default function MyDataPage() {
 
   async function readICP() {
     var tmpId = "demo";
-    var tmpIcpId = "demo";
     var tmpWeb3AddressId = "demo";
-    if(localStorage.getItem('icpId') !== null){
-      tmpIcpId = localStorage.getItem('icpId');
-    }
     if(localStorage.getItem('web3AddressId') !== null){
-      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
     }
-    if (!tmpIcpId.includes("demo")){
-      tmpId = tmpIcpId;
-    } else if (!tmpWeb3AddressId.includes("demo")){
+    if (!tmpWeb3AddressId.includes("demo")){
       tmpId = tmpWeb3AddressId;
     }
     // console.log(tmpId);
     if (tmpId !== undefined){
-      // console.log(userStringId);
-      var returnValueArray = await mind_body.getMapping(tmpId);
-      // console.log(returnValueArray);
-      return readICPReturn(returnValueArray, tmpId);
+      if (tmpId !== ""){      
+        var returnValueArray = await mind_body.getMapping(tmpId);
+        // console.log(returnValueArray);
+        return readICPReturn(returnValueArray, tmpId);
+      }
     }
   };
 
@@ -748,26 +749,25 @@ export default function MyDataPage() {
   };
 
   function processEncryptedVector(encryptedVector){
-    //check if icpId is not undefined
+    //check if web3 is not undefined
     var tmpId = "demo";
-    var tmpIcpId = "demo";
     var tmpWeb3AddressId = "demo";
-    if(localStorage.getItem('icpId') !== null){
-      tmpIcpId = localStorage.getItem('icpId');
-    }
     if(localStorage.getItem('web3AddressId') !== null){
-      tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
     }
-    if (!tmpIcpId.includes("demo")){
-      tmpId = tmpIcpId;
-    } else if (!tmpWeb3AddressId.includes("demo")){
+    if (!tmpWeb3AddressId.includes("demo")){
       tmpId = tmpWeb3AddressId;
     }
     if (tmpId === undefined){
       //display error popup
       console.log("web3 id not set!");
     } else if (tmpId !== "demo"){
-      writeICP(tmpId, encryptedVector);
+      if (tmpId !== "") {
+        writeICP(tmpId, encryptedVector);
+      }
     } 
   }
 
@@ -897,9 +897,22 @@ export default function MyDataPage() {
         <Link variant="subtitle2" href="" sx={{ ml: 3.0 }}>
               
         </Link>
-        <Typography component="div" variant="subtitle2">
-          web3 id: {web3Id}
-        </Typography>
+        <Tooltip title="web3 login required">
+          <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem'}}> 
+            <Typography noWrap sx={{
+              fontSize: {
+                lg: 12,
+                md: 11,
+                sm: 10,
+                xs: 10
+              },
+              wordWrap: 'break-word',
+              width: '11rem',
+            }}>
+               web3 id: {web3Id}
+            </Typography>
+          </div>
+        </Tooltip>
       </Stack>
       <Stack>
         <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
