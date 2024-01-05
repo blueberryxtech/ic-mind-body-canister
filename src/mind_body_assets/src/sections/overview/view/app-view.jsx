@@ -53,14 +53,13 @@ export default function AppView() {
       <div className="App" id="outer-container">
         <Container maxWidth="xl">
           <Grid container spacing={3} sx={{marginBottom: 3}} xs={12} md={12} lg={12}>
-              <Typography variant="subtitle" sx={{fontSize: "1.5em"}}>
+              <Typography variant="subtitle" sx={{fontSize: "1.5em", textAlign: "left"}}>
                 Experiment: user controlled wearable data storage and exchange
               </Typography>
-              <Grid style={{position: "relative", height: "500px", width: "100%", marginTop: "20px"}}><iframe src="https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed" title="Dashboard" frameBorder="0" loading="lazy" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", colorScheme: "light"}}></iframe></Grid>
-              <Typography variant="subtitle" sx={{fontSize: "1.0em"}}>
-                Store your wearable data on a blockchain to enable new ways to compare and exchange it for participation in studies.
+              <Typography variant="subtitle" sx={{fontSize: "1.0em", textAlign: "left"}}>
+                Storage via the Internet Computer, compare and exchange your data for value through participation in studies
               </Typography>
-          </Grid>
+              <Grid style={{position: "relative", height: window.innerWidth < 760 ? 250 : 500, width: "100%", marginTop: "20px"}}><iframe src="https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed" title="Dashboard" frameBorder="0" loading="lazy" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", colorScheme: "light"}}></iframe></Grid>          </Grid>
           <Grid container spacing={3}>
             <Grid xs={12} md={6} lg={3}>
               <AppWidgetSummary

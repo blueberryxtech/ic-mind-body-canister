@@ -719,7 +719,8 @@ function AppView() {
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
                             variant: "subtitle",
                             sx: {
-                                fontSize: "1.5em"
+                                fontSize: "1.5em",
+                                textAlign: "left"
                             },
                             children: "Experiment: user controlled wearable data storage and exchange"
                         }, void 0, false, {
@@ -727,10 +728,22 @@ function AppView() {
                             lineNumber: 56,
                             columnNumber: 15
                         }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
+                            variant: "subtitle",
+                            sx: {
+                                fontSize: "1.0em",
+                                textAlign: "left"
+                            },
+                            children: "Storage via the Internet Computer, compare and exchange your data for value through participation in studies"
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 59,
+                            columnNumber: 15
+                        }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                             style: {
                                 position: "relative",
-                                height: "500px",
+                                height: window.innerWidth < 760 ? 250 : 500,
                                 width: "100%",
                                 marginTop: "20px"
                             },
@@ -749,25 +762,15 @@ function AppView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 59,
-                                columnNumber: 103
+                                lineNumber: 62,
+                                columnNumber: 131
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 59,
+                            lineNumber: 62,
                             columnNumber: 15
                         }, this),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
-                            variant: "subtitle",
-                            sx: {
-                                fontSize: "1.0em"
-                            },
-                            children: "Store your wearable data on a blockchain to enable new ways to compare and exchange it for participation in studies."
-                        }, void 0, false, {
-                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 60,
-                            columnNumber: 15
-                        }, this)
+                        "          "
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
@@ -788,12 +791,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 66,
+                                lineNumber: 65,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 65,
+                            lineNumber: 64,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -806,12 +809,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 73,
+                                lineNumber: 72,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 72,
+                            lineNumber: 71,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -824,18 +827,18 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 80,
+                                lineNumber: 79,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 79,
+                            lineNumber: 78,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 64,
+                    lineNumber: 63,
                     columnNumber: 11
                 }, this)
             ]
