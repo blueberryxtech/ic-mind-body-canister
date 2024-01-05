@@ -708,13 +708,16 @@ function AppView() {
                     sx: {
                         marginBottom: 3
                     },
+                    xs: 12,
+                    md: 12,
+                    lg: 12,
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
                             variant: "subtitle",
                             sx: {
                                 fontSize: "1.5em"
                             },
-                            children: "Experiment: store wearable health data and exchange it for real value"
+                            children: "Experiment: user controlled wearable data storage and exchange"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
                             lineNumber: 49,
@@ -723,7 +726,7 @@ function AppView() {
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
                             style: {
                                 position: "relative",
-                                height: "550px",
+                                height: "500px",
                                 width: "100%",
                                 marginTop: "20px"
                             },
@@ -749,6 +752,17 @@ function AppView() {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
                             lineNumber: 52,
                             columnNumber: 15
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
+                            variant: "subtitle",
+                            sx: {
+                                fontSize: "1.0em"
+                            },
+                            children: "Store your wearable data on a blockchain to enable new ways to compare and exchange it for participation in studies."
+                        }, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 53,
+                            columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
@@ -770,12 +784,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 56,
+                                lineNumber: 59,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 55,
+                            lineNumber: 58,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -788,12 +802,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 63,
+                                lineNumber: 66,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 62,
+                            lineNumber: 65,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -806,18 +820,18 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 70,
+                                lineNumber: 73,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 69,
+                            lineNumber: 72,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 54,
+                    lineNumber: 57,
                     columnNumber: 11
                 }, this)
             ]
