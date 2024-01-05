@@ -89,6 +89,8 @@ export default function MyDataPage() {
 
   const [numberHours, setNumberHours] = useState(1);
 
+  var numberLocalHours = 1;
+
   const dataFiltered = applyFilter({
     inputData: icpStoredSummaryData,
     comparator: getComparator(order, orderBy),
@@ -287,13 +289,15 @@ export default function MyDataPage() {
     setIsOpen(false);
   }
 
-  const uploadBlueberryAction1hr = () => {
+  function uploadBlueberryAction1hr() {
     setNumberHours(1);
+    numberLocalHours = 1;
     setIsOpen(true);
   };
 
-  const uploadBlueberryAction12hrs = () => {
+  function uploadBlueberryAction12hrs() {
     setNumberHours(12);
+    numberLocalHours = 12;
     setIsOpen(true);
   };
 
@@ -809,8 +813,9 @@ export default function MyDataPage() {
   }
 
   async function sendDataResponse(token, localId) {
-    var numberOfHours = numberHours;
     //response is stable for 1, 12 hour
+    var numberOfHours = numberHours;
+    // console.log(numberOfHours);
     var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60 * numberOfHours);      
     var endTimeQuery = new Date(Date.now());
     var millisStart = startTimeQuery.getTime()/1000.0;
