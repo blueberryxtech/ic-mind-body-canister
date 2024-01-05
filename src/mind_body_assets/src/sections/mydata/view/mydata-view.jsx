@@ -87,6 +87,8 @@ export default function MyDataPage() {
   const [passcodeKeyLocal, setPasscodeKeyLocal] = useState("1");
   const [selectedRowIndex, setSelectedRowIndex] = useState("0");
 
+  const [numberHours, setNumberHours] = useState(1);
+
   const dataFiltered = applyFilter({
     inputData: icpStoredSummaryData,
     comparator: getComparator(order, orderBy),
@@ -285,7 +287,13 @@ export default function MyDataPage() {
     setIsOpen(false);
   }
 
-  const uploadBlueberryAction = () => {
+  const uploadBlueberryAction1hr = () => {
+    setNumberHours(1);
+    setIsOpen(true);
+  };
+
+  const uploadBlueberryAction12hrs = () => {
+    setNumberHours(12);
     setIsOpen(true);
   };
 
@@ -801,8 +809,9 @@ export default function MyDataPage() {
   }
 
   async function sendDataResponse(token, localId) {
-    var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60); //1 hour
-    // var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60 * 24); //24 hours
+    var numberOfHours = numberHours;
+    //response is stable for 1, 12 hour
+    var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60 * numberOfHours);      
     var endTimeQuery = new Date(Date.now());
     var millisStart = startTimeQuery.getTime()/1000.0;
     var millisEnd = endTimeQuery.getTime()/1000.0;
@@ -879,8 +888,14 @@ export default function MyDataPage() {
               
       </Link>
       <Stack direction="row" alignItems="center"  mb={5}>
-        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction}>
-          upload data
+        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction1hr}>
+          upload 1hr
+        </Button>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction12hrs}>
+          upload 12hr
         </Button>
         <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
