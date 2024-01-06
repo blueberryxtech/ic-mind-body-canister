@@ -28,7 +28,7 @@ service : {
   getMapping: (text) -> (opt NestedArray) query;
   getStoredDataNetworkSize: () -> (nat) query;
   pushToArray: (text, vec int, int) -> () oneway;
-  removeAddress: (text) -> () oneway;
+  removeAddress: (text, nat) -> () oneway;
   send_http_blueberry_proxy_get_raw_data: (text, text, text, text) -> (text);
   send_http_blueberry_proxy_login: (text, text) -> (text);
   transform: (TransformArgs) -> (CanisterHttpResponsePayload) query;

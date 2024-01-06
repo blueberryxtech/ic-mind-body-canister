@@ -4,6 +4,7 @@ import { mind_body } from "../../../../../declarations/mind_body"
 
 import Modal from 'react-modal';
 import Dropdown from 'react-dropdown';
+import DateTimePicker from 'react-datetime-picker';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -88,8 +89,11 @@ export default function MyDataPage() {
   const [selectedRowIndex, setSelectedRowIndex] = useState("0");
 
   const [numberHours, setNumberHours] = useState(1);
+  const [addressTotalDataSize, setAddressTotalDataSize] = useState(0);
 
-  var numberLocalHours = 1;
+  const [startTime, setStartTime] = useState(new Date(Date.now() - 1000 * 60 * 60)); //default to last 60 minutes of data
+  const [endTime, setEndTime] = useState(new Date());
+  const [dataQueryFeedback, setDataQueryFeedback] = useState('');
 
   const dataFiltered = applyFilter({
     inputData: icpStoredSummaryData,
@@ -230,7 +234,7 @@ export default function MyDataPage() {
     // console.log(userStringId);
     if (userStringId !== "demo" || !(userStringId === undefined)){
       // console.log("delete data " + userStringId);
-      await mind_body.removeAddress(userStringId);
+      await mind_body.removeAddress(userStringId, addressTotalDataSize);
       return readICP();
     }
   };
@@ -282,28 +286,28 @@ export default function MyDataPage() {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
+    //access variables
   }
 
   function closeModal() {
     setIsOpen(false);
-  }
-
-  function uploadBlueberryAction1hr() {
-    setNumberHours(1);
-    numberLocalHours = 1;
-    setIsOpen(true);
   };
 
-  function uploadBlueberryAction12hrs() {
-    setNumberHours(12);
-    numberLocalHours = 12;
-    setIsOpen(true);
+  function uploadBlueberryAction() {
+    // console.log(startTime);
+    var millisStart = startTime.getTime()/1000.0;
+    var millisEnd = endTime.getTime()/1000.0
+    if ((millisEnd - millisStart) > 12*60*60){
+      setDataQueryFeedback("Presently we only allow a maximum period of 12 hours per request, please change your search to 12 hours or less");
+    } else {
+      setIsOpen(true);
+      setDataQueryFeedback("");
+    }
   };
 
   const updateBlueberryStates = () => {
 
-    var tmpS1_ = document.getElementById("userState1")
+    var tmpS1_ = document.getElementById("userState1");
     var tmpS1 = tmpS1_.value;
 
     if (tmpS1 != ""){
@@ -311,7 +315,7 @@ export default function MyDataPage() {
       setUser_state_1(tmpS1);
     }
 
-    var tmpS2_ = document.getElementById("userState2")
+    var tmpS2_ = document.getElementById("userState2");
     var tmpS2 = tmpS2_.value;
 
     if (tmpS2 != ""){
@@ -319,7 +323,7 @@ export default function MyDataPage() {
       setUser_state_2(tmpS2);
     }
 
-    var tmpS3_ = document.getElementById("userState3")
+    var tmpS3_ = document.getElementById("userState3");
     var tmpS3 = tmpS3_.value;
 
     if (tmpS3 != ""){
@@ -327,14 +331,14 @@ export default function MyDataPage() {
       setUser_state_3(tmpS3);
     }
 
-    var tmpS4_ = document.getElementById("userState4")
+    var tmpS4_ = document.getElementById("userState4");
     var tmpS4 = tmpS4_.value;
     if (tmpS4 != ""){
       localStorage.setItem('userState4', tmpS4);
       setUser_state_4(tmpS4);
     }
 
-    var tmpS5_ = document.getElementById("userState5")
+    var tmpS5_ = document.getElementById("userState5");
     var tmpS5 = tmpS5_.value;
 
     if (tmpS5 != ""){
@@ -342,7 +346,7 @@ export default function MyDataPage() {
       setUser_state_5(tmpS5);
     }
 
-    var tmpS6_ = document.getElementById("userState6")
+    var tmpS6_ = document.getElementById("userState6");
     var tmpS6 = tmpS6_.value;
     if (tmpS6 != ""){
       localStorage.setItem('userState6', tmpS6);
@@ -505,6 +509,7 @@ export default function MyDataPage() {
     if (returnValueArray.length > 0){
       var tmpIcpNetworkData = [];
       var tmpArray = returnValueArray[0];
+      var totalDataSize = 0;
       setIcpStoredData(tmpArray);
       for (var i = 0; i < tmpArray.length; i++) { 
         var tmpValueArray = tmpArray[i];
@@ -512,6 +517,7 @@ export default function MyDataPage() {
         var tmpDecryptValues = decryptData(tmpValueArray);
         var tmpLastValue = tmpDecryptValues[0];
         var tmpSize = (tmpValueArray.length * 4.0)/1000.0;
+        totalDataSize += tmpValueArray.length * 4;
         var tmpDate = new Date(tmpLastValue.timestamp*1000);
         var tmpUId = uuidv4();
         var tmpRecordInfo = {
@@ -525,6 +531,7 @@ export default function MyDataPage() {
         tmpIcpNetworkData.push(tmpRecordInfo);
         // console.log(tmpIcpNetworkData)
       }
+      setAddressTotalDataSize(totalDataSize);
       loadICPReturnedData(icpStoredData, tmpIcpNetworkData);
     } else {
       setIcpStoredData([]);
@@ -702,11 +709,11 @@ export default function MyDataPage() {
                ' '+ (tmpDateTime.getHours()) +':'+tmpDateTime.getMinutes()+' AM';
             }
           }
-          tmpTimeDataLabels.push(stringTime);
-          tmpHeartRateData.push(parseInt(user_heart_rate, 10));
-          tmpFlowActivityData.push(parseInt(user_flow_activity, 10));
 
           if (timestamp >= query_start_time && timestamp <= query_end_time) {
+            tmpTimeDataLabels.push(stringTime);
+            tmpHeartRateData.push(parseInt(user_heart_rate, 10));
+            tmpFlowActivityData.push(parseInt(user_flow_activity, 10));
             recordCount += 1.0
             sumHeartRate += user_heart_rate
             sumFlowActivity += user_flow_activity
@@ -813,19 +820,13 @@ export default function MyDataPage() {
   }
 
   async function sendDataResponse(token, localId) {
-    //response is stable for 1, 12 hour
-    var numberOfHours = numberHours;
-    // console.log(numberOfHours);
-    var startTimeQuery = new Date(Date.now() - 1000 * 60 * 60 * numberOfHours);      
-    var endTimeQuery = new Date(Date.now());
-    var millisStart = startTimeQuery.getTime()/1000.0;
-    var millisEnd = endTimeQuery.getTime()/1000.0;
+    var millisStart = startTime.getTime()/1000.0;
+    var millisEnd = endTime.getTime()/1000.0
     var millisStartString = parseInt(millisStart, 10).toString();
     var millisEndString = parseInt(millisEnd, 10).toString();
-    // console.log(jsonBody);
+    // console.log(millisStart);
     var responseData = await mind_body.send_http_blueberry_proxy_get_raw_data(token, localId, millisStartString, millisEndString);
     setDataProcessingStage("data response success");
-
     return sendDataProcessing(responseData, millisStart, millisEnd, localId);
   }
 
@@ -892,33 +893,9 @@ export default function MyDataPage() {
       <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
       </Link>
-      <Stack direction="row" alignItems="center"  mb={5}>
-        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction1hr}>
-          upload 1hr
-        </Button>
-        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
-              
-        </Link>
-        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction12hrs}>
-          upload 12hr
-        </Button>
-        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
-              
-        </Link>
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon=""/>} onClick={readICP}>
-          get records
-        </Button>
-        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
-              
-        </Link>
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill"/>} href="https://form.typeform.com/to/WsBKRzkG">
-          request device 
-        </Button>
-        <Link variant="subtitle2" href="" sx={{ ml: 3.0 }}>
-              
-        </Link>
+      <Stack direction="row" alignItems="center" mb={3}>
         <Tooltip title="web3 login required">
-          <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem'}}> 
+          <div style={{overflow: "hidden", textOverflow: "ellipsis", width: '11rem', textAlign: "left"}}> 
             <Typography noWrap sx={{
               fontSize: {
                 lg: 12,
@@ -933,17 +910,35 @@ export default function MyDataPage() {
             </Typography>
           </div>
         </Tooltip>
+        <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
+        <DateTimePicker onChange={date => setStartTime(date)} value={startTime} id="startTimePicker"/>
+        <DateTimePicker onChange={date => setEndTime(date)} value={endTime} id="endTimePicker"/>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        <Button variant="contained" color="secondary" onClick={uploadBlueberryAction}>
+          upload
+        </Button>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        </div>
       </Stack>
       <Stack>
-        <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
-          <div>
-            <span style={{fontSize: "1.0em"}}>encryption key:</span>
-            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
-            <input type="number" placeholder={passcodeKeyLocal} id="passcodeKey"></input>
-            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
-            <Button variant="contained" color="primary" style={{width: "150px"}} onClick={updatePasswordKey}>update key</Button>
-          </div>
+        <div style={{textAlign: 'left', width: '100%', margin: '10px', fontSize: '0.7em'}}>
+          <span style={{textAlign: 'left', width: '100%'}}>{dataQueryFeedback}</span>
         </div>
+      </Stack>
+      <Stack direction="row" alignItems="center"  mb={3}>
+        <Button variant="contained" color="inherit" startIcon={<Iconify icon=""/>} onClick={readICP}>
+          get records
+        </Button>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill"/>} href="https://form.typeform.com/to/WsBKRzkG">
+          request device 
+        </Button>
       </Stack>
       <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
@@ -1016,6 +1011,17 @@ export default function MyDataPage() {
       <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
       </Link>
+      <Stack direction="row" alignItems="center" mb={3}>
+        <div style={{width: "100%", textAlign: "center", margin: "0.5rem auto"}}>
+          <div>
+            <span style={{fontSize: "0.7em"}}>encrypt your data with password key:</span>
+            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
+            <input type="number" placeholder={passcodeKeyLocal} id="passcodeKey"></input>
+            <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}></Link>
+            <Button variant="contained" color="primary" style={{width: "150px"}} onClick={updatePasswordKey}>update key</Button>
+          </div>
+        </div>
+      </Stack>
       <Card>
         <div style={{width: '100%', textAlign: 'center', margin: "0.5rem auto"}}>
           <span style={{fontSize: '0.5em'}}>blueberry category labels:</span>

@@ -26,7 +26,7 @@ export const idlFactory = ({ IDL }) => {
         [],
         ['oneway'],
       ),
-    'removeAddress' : IDL.Func([IDL.Text], [], ['oneway']),
+    'removeAddress' : IDL.Func([IDL.Text, IDL.Nat], [], ['oneway']),
     'send_http_blueberry_proxy_get_raw_data' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [IDL.Text],

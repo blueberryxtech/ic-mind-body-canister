@@ -584,7 +584,7 @@ parcelHelpers.export(exports, "mind_body", ()=>mind_body);
 var _agent = require("@dfinity/agent");
 // Imports and re-exports candid interface
 var _mindBodyDidJs = require("./mind_body.did.js");
-const canisterId = "pvznn-pyaaa-aaaan-qlljq-cai";
+const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
 const createActor = (canisterId, options = {})=>{
     const agent = options.agent || new (0, _agent.HttpAgent)({
         ...options.agentOptions
@@ -17140,7 +17140,8 @@ const idlFactory = ({ IDL })=>{
             "oneway"
         ]),
         "removeAddress": IDL.Func([
-            IDL.Text
+            IDL.Text,
+            IDL.Nat
         ], [], [
             "oneway"
         ]),

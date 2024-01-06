@@ -41,7 +41,10 @@ actor {
     addressMap.put(address, updatedArrays);
   };
 
-  public func removeAddress(address: Text) {
+  public func removeAddress(address: Text, sizeOfData: Nat) {
+    if (sizeOfData <= storedNetworkDataSize){
+      storedNetworkDataSize -= sizeOfData;
+    };
     addressMap.delete(address); 
   };
 
