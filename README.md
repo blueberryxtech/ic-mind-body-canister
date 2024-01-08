@@ -1,4 +1,4 @@
-# ic-mind-body-dashboard
+# ic-mind-body-canister
 
 ## About:
 This repository provides tooling for a user controlled method for hosting wearable data on a blockchain network through the [Internet Computer](https://internetcomputer.org), Blueberry was used as an example.
