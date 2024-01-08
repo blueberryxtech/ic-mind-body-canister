@@ -31,8 +31,8 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           {numSelected} selected
         </Typography>
       ) : (
-        <Tooltip title="data">
-        </Tooltip>
+        <Typography component="div" variant="subtitle1">
+        </Typography>
       )}
 
       {numSelected > 0 ? (
@@ -49,8 +49,8 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           </Tooltip>
         </Container>
       ) : (
-        <Tooltip title="Filter list">
-        </Tooltip>
+        <Typography component="div" variant="subtitle1">
+        </Typography>
       )}
     </Toolbar>
   );

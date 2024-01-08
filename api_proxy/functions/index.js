@@ -4,13 +4,27 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const request = require('request');
 
-const app = express()
-var temporaryTokenStore = "";
-var temporaryDataObject = [];
-var loginPingCount = 0;
-var queryPingCount = 0;
-var loginPingBoolean = false;
-var queryPingBoolean = false;
+const app = express();
+
+var temporaryUID1 = "";
+var temporaryUID2 = "";
+var temporaryUID3 = "";
+
+var temporaryTokenStore1 = "";
+var temporaryTokenStore2 = "";
+var temporaryTokenStore3 = "";
+
+var temporaryDataObject1 = [];
+var temporaryDataObject2 = [];
+var temporaryDataObject3 = [];
+
+var loginPingBoolean1 = false;
+var loginPingBoolean2 = false;
+var loginPingBoolean3 = false;
+
+var queryPingBoolean1 = false;
+var queryPingBoolean2 = false;
+var queryPingBoolean2 = false;
 
 app.use(cors({ origin: true }));
 app.use(bodyParser.json())
@@ -23,7 +37,7 @@ app.get("/loginForce", (req, res) => {
 	var requestTimeOut = 30000;
 	var userEmail = req.query.email;
 	var userPassword = req.query.password;
-	const API_KEY = "google_firebase_api_key"
+	const API_KEY = "AIzaSyB3bZIT7sW2Sy5wQfRzkZzoLbEOixGDF14"
 	const apiURL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY;
 
 	var url = apiURL;
@@ -41,17 +55,50 @@ app.get("/loginForce", (req, res) => {
 		var data = JSON.parse(body);
 		//console.log(data);
 		if (!data["error"]) {
-			if (loginPingBoolean === false){
-				loginPingBoolean = true;
-				temporaryTokenStore = data.idToken;
+			var user_id = data.localId;
+			if (loginPingBoolean1 === false && user_id !== temporaryUID2 && user_id !== temporaryUID3){
+				loginPingBoolean1 = true;
+				temporaryTokenStore1 = data.idToken;
+				temporaryUID1 = data.localId;
 				setTimeout(() => {
-					loginPingBoolean = false;
+					temporaryUID1 = "";
+					temporaryTokenStore1 = "";
+					loginPingBoolean1 = false;
+				  },requestTimeOut
+				);
+			} else if (loginPingBoolean2 === false && user_id !== temporaryUID1 && user_id !== temporaryUID3){
+				loginPingBoolean2 = true;
+				temporaryTokenStore2 = data.idToken;
+				temporaryUID2 = data.localId;
+				setTimeout(() => {
+					temporaryUID2 = "";
+					temporaryTokenStore2 = "";
+					loginPingBoolean2 = false;
+				  },requestTimeOut
+				);
+			} else if (loginPingBoolean3 === false && user_id !== temporaryUID1 && user_id !== temporaryUID2){
+				loginPingBoolean3 = true;
+				temporaryTokenStore3 = data.idToken;
+				temporaryUID3 = data.localId;
+				setTimeout(() => {
+					temporaryUID3 = "";
+					temporaryTokenStore3 = "";
+					loginPingBoolean3 = false;
 				  },requestTimeOut
 				);
 			}
-			var user_id = data.localId
-			let responseData = '{ "idToken": "' + temporaryTokenStore + '","localId": "' + user_id + '"}'
-			res.send(responseData);
+			if (user_id === temporaryUID1){
+				let responseData = '{ "idToken": "' + temporaryTokenStore1 + '","localId": "' + temporaryUID1 + '"}'
+				res.send(responseData);
+			}
+			if (user_id === temporaryUID2){
+				let responseData = '{ "idToken": "' + temporaryTokenStore2 + '","localId": "' + temporaryUID2 + '"}'
+				res.send(responseData);
+			}
+			if (user_id === temporaryUID3){
+				let responseData = '{ "idToken": "' + temporaryTokenStore3 + '","localId": "' + temporaryUID3 + '"}'
+				res.send(responseData);
+			}
 		} 
 	});
 	
@@ -73,19 +120,28 @@ app.get("/queryForce", (req, res) => {
 	  structuredQuery: {
 	    from: [{ collectionId : 'time_data' }],
 	    orderBy: { direction: 'DESCENDING', field: { fieldPath: 'timestamp'}},
+	    where: {
+            fieldFilter: {
+                field: {
+                    fieldPath: 'timestamp'
+                },
+                op: 'LESS_THAN',
+                value: {
+                    doubleValue: query_end_time,
+                }
+            }
+        },
 	    limit: numberOfDocuments,
 	  }, newTransaction: {}
-	}
-
-	const querySend = JSON.stringify(queryFormat);
+	};
 
 	var userID = req.query.userID;
 	var token = req.query.idToken;
-	//set API_KEY value, PROJECT_NAME value, COLLECTION_ID value as setup with firebase database
-	const API_KEY = "google_firebase_api_key"
-	const PROJECT_COLLECTION_STRUCTURE = "PROJECT_NAME/databases/(default)/documents/COLLECTION_ID/"
 
-	const url = "https://firestore.googleapis.com/v1/projects/" + PROJECT_COLLECTION_STRUCTURE + userID + ":runQuery?key="+API_KEY;
+	var PROJECT_NAME = "FIREBASE_PROJECT_NAME";
+	var COLLECTION_NAME = "FIREBASE_COLLECTION_NAME"
+
+	const url = "https://firestore.googleapis.com/v1/projects/" + PROJECT_NAME + "/databases/(default)/documents/" + COLLECTION_NAME + "/" + userID + ":runQuery?key=API_KEY";
 
 	var headers = { 
 		"Authorization": "Bearer " + token,
@@ -100,8 +156,8 @@ app.get("/queryForce", (req, res) => {
 		//remove last record in array "transaction": unique
 		//remove potentially "readTime" from each record
 		if (body.length > 2){
-			if (queryPingBoolean === false){
-				queryPingBoolean = true;
+			if (queryPingBoolean1 === false && userID !== temporaryUID2 && userID !== temporaryUID3){
+				queryPingBoolean1 = true;
 				body.reverse();
 				body.pop();
 				for (let i = 0; i < body.length; i++) {
@@ -109,13 +165,52 @@ app.get("/queryForce", (req, res) => {
 					delete tmpDictionary['readTime'];
 					body[i] = tmpDictionary;
 				}
-				temporaryDataObject = body;
+				temporaryDataObject1 = body;
 				setTimeout(() => {
-					queryPingBoolean = false;
+					queryPingBoolean1 = false;
+					temporaryDataObject1 = [];
 				  },requestTimeOut
 				);
+			} else if (queryPingBoolean2 === false && userID !== temporaryUID1 && userID !== temporaryUID3){
+				queryPingBoolean2 = true;
+				body.reverse();
+				body.pop();
+				for (let i = 0; i < body.length; i++) {
+					let tmpDictionary = body[i];
+					delete tmpDictionary['readTime'];
+					body[i] = tmpDictionary;
+				}
+				temporaryDataObject2 = body;
+				setTimeout(() => {
+					queryPingBoolean2 = false;
+					temporaryDataObject2 = [];
+				  },requestTimeOut
+				);
+			} else if (queryPingBoolean3 === false && userID !== temporaryUID1 && userID !== temporaryUID2){
+				queryPingBoolean3 = true;
+				body.reverse();
+				body.pop();
+				for (let i = 0; i < body.length; i++) {
+					let tmpDictionary = body[i];
+					delete tmpDictionary['readTime'];
+					body[i] = tmpDictionary;
+				}
+				temporaryDataObject3 = body;
+				setTimeout(() => {
+					queryPingBoolean3 = false;
+					temporaryDataObject3 = [];
+				  },requestTimeOut
+				);
+			};
+			if (userID === temporaryUID1){
+				res.send(temporaryDataObject1);
 			}
-			res.send(temporaryDataObject);
+			if (userID === temporaryUID2){
+				res.send(temporaryDataObject2);
+			}
+			if (userID === temporaryUID3){
+				res.send(temporaryDataObject3);
+			}
 		}
 	});
 	

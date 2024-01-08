@@ -91,9 +91,12 @@ export default function MyDataPage() {
   const [numberHours, setNumberHours] = useState(1);
   const [addressTotalDataSize, setAddressTotalDataSize] = useState(0);
 
-  const [startTime, setStartTime] = useState(new Date(Date.now() - 1000 * 60 * 60)); //default to last 60 minutes of data
+  const [startTime, setStartTime] = useState(new Date(Date.now() - 1000 * 60 * 60));
   const [endTime, setEndTime] = useState(new Date());
   const [dataQueryFeedback, setDataQueryFeedback] = useState('');
+
+  var tmpStartTime = 0;
+  var tmpEndTime = 0;
 
   const dataFiltered = applyFilter({
     inputData: icpStoredSummaryData,
@@ -285,6 +288,15 @@ export default function MyDataPage() {
     } 
   }
 
+  function updateTimes(){
+    // console.log(startTime);
+    // console.log(endTime);
+    tmpStartTime = startTime.getTime();
+    tmpEndTime = endTime.getTime();
+    localStorage.setItem('localStartTime', parseInt(tmpStartTime/1000.0,10).toString());
+    localStorage.setItem('localEndTime', parseInt(tmpEndTime/1000.0,10).toString());
+  }
+
   function afterOpenModal() {
     //access variables
   }
@@ -294,10 +306,19 @@ export default function MyDataPage() {
   };
 
   function uploadBlueberryAction() {
-    // console.log(startTime);
-    var millisStart = startTime.getTime()/1000.0;
-    var millisEnd = endTime.getTime()/1000.0
-    if ((millisEnd - millisStart) > 12*60*60){
+    var millisStartString = parseInt(((new Date(Date.now() - 1000 * 60 * 60)).getTime()/1000.0),10).toString();
+    var millisEndString = parseInt(((new Date(Date.now() - 1000 * 60 * 60)).getTime()/1000.0),10).toString();
+    if(localStorage.getItem('localStartTime') !== null){
+      millisStartString = localStorage.getItem('localStartTime');
+    }
+    if(localStorage.getItem('localEndTime') !== null){
+      millisEndString = localStorage.getItem('localEndTime');
+    }
+    var millisStart = parseInt(millisStartString, 10);
+    var millisEnd = parseInt(millisEndString, 10);
+    if (millisStart > millisEnd) {
+      setDataQueryFeedback("Start time must be before end time");
+    } else if ((millisEnd - millisStart) > 12*60*60){
       setDataQueryFeedback("Presently we only allow a maximum period of 12 hours per request, please change your search to 12 hours or less");
     } else {
       setIsOpen(true);
@@ -633,6 +654,9 @@ export default function MyDataPage() {
 
   function processBlueberryResponse(data, query_start_time, query_end_time){
 
+      // console.log(query_start_time);
+      // console.log(query_end_time);
+
       var dictionaryHistoryArray = []
       var recordCount = 0.0
       var sumHeartRate = 0.0
@@ -651,7 +675,6 @@ export default function MyDataPage() {
       setHeartRateData([]);
       setFlowActivityData([]);
 
-      // data.reverse();
       //console.log(data)
       if (data.length > 1) {
         for (let i = 0; i < data.length - 1; i++) {
@@ -762,9 +785,11 @@ export default function MyDataPage() {
       return returnArray;
   };
 
-  function processBlueberryData(dataRaw, userId) {
-    let encryptedVector = encryptData(dataRaw);
-    return processEncryptedVector(encryptedVector);
+  function processBlueberryData(dataRaw) {
+    if (dataRaw !== undefined){
+      let encryptedVector = encryptData(dataRaw);
+      return processEncryptedVector(encryptedVector);
+    }
   };
 
   function processEncryptedVector(encryptedVector){
@@ -804,6 +829,47 @@ export default function MyDataPage() {
     return readICP();
   };
 
+  function sendDataProcessing(responseData, millisStart, millisEnd){
+    // console.log(responseData);
+    const responseDataObject = JSON.parse(responseData);
+    // console.log(responseDataObject);
+    const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
+    // console.log(outputArray);
+    processBlueberryData(outputArray[0]);
+    setDataProcessingStage("processing data");
+
+    if (responseDataObject.length > 0){
+      setIsOpen(false);
+      setDataProcessingStage("ready for upload");
+    } else {
+      setIsOpen(true);
+      setDataProcessingStage("blueberry request failed try again");
+      // console.log("blueberry request failed try again");
+    }
+    
+    return;
+  };
+
+  async function sendDataResponse(token, localId) {
+    var millisStartString = parseInt(((new Date(Date.now() - 1000 * 60 * 60)).getTime()/1000.0),10).toString();
+    var millisEndString = parseInt(((new Date(Date.now() - 1000 * 60 * 60)).getTime()/1000.0),10).toString();
+    if(localStorage.getItem('localStartTime') !== null){
+      millisStartString = localStorage.getItem('localStartTime');
+    }
+    if(localStorage.getItem('localEndTime') !== null){
+      millisEndString = localStorage.getItem('localEndTime');
+    }
+    var millisStart = parseInt(millisStartString, 10);
+    var millisEnd = parseInt(millisEndString, 10);
+    // console.log(millisStart);
+    // console.log(millisStartString);
+    // console.log(millisEnd);
+    // console.log(millisEndString);
+    var responseData = await mind_body.send_http_blueberry_proxy_get_raw_data(token, localId, millisStartString, millisEndString);
+    setDataProcessingStage("data response success");
+    return sendDataProcessing(responseData, millisStart, millisEnd);
+  };
+
   async function sendLoginInfo(email, password) {
     
     setDataProcessingStage("requesting login");
@@ -817,38 +883,6 @@ export default function MyDataPage() {
     setDataProcessingStage("login success");
 
     return sendDataResponse(token, localId);
-  }
-
-  async function sendDataResponse(token, localId) {
-    var millisStart = startTime.getTime()/1000.0;
-    var millisEnd = endTime.getTime()/1000.0
-    var millisStartString = parseInt(millisStart, 10).toString();
-    var millisEndString = parseInt(millisEnd, 10).toString();
-    // console.log(millisStart);
-    var responseData = await mind_body.send_http_blueberry_proxy_get_raw_data(token, localId, millisStartString, millisEndString);
-    setDataProcessingStage("data response success");
-    return sendDataProcessing(responseData, millisStart, millisEnd, localId);
-  }
-
-  async function sendDataProcessing(responseData, millisStart, millisEnd, localId){
-    // console.log(responseData);
-    const responseDataObject = JSON.parse(responseData);
-    // console.log(responseDataObject);
-    const outputArray = processBlueberryResponse(responseDataObject, millisStart, millisEnd);
-    // console.log(outputArray);
-    processBlueberryData(outputArray[0], localId);
-    setDataProcessingStage("processing data");
-
-    if (responseDataObject.length > 0){
-      setIsOpen(false);
-      setDataProcessingStage("ready for upload");
-    } else {
-      setIsOpen(true);
-      setDataProcessingStage("blueberry request failed try again");
-      // console.log("blueberry request failed try again");
-    }
-    
-    return;
   };
 
   const initialLoadICP = async() => {
@@ -911,8 +945,14 @@ export default function MyDataPage() {
           </div>
         </Tooltip>
         <div style={{width: "100%", textAlign: "left", margin: "0.5rem auto"}}>
-        <DateTimePicker onChange={date => setStartTime(date)} value={startTime} id="startTimePicker"/>
-        <DateTimePicker onChange={date => setEndTime(date)} value={endTime} id="endTimePicker"/>
+        <DateTimePicker onChange={date => {setStartTime(date); updateTimes()}} value={startTime}/>
+        <DateTimePicker onChange={date => {setEndTime(date); updateTimes()}} value={endTime}/>
+        <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
+              
+        </Link>
+        <Button variant="contained" color="secondary" onClick={updateTimes}>
+          update time
+        </Button>
         <Link variant="subtitle2" href="" sx={{ ml: 0.5 }}>
               
         </Link>

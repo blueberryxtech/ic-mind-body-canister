@@ -1,13 +1,14 @@
-export function CostEstimationHTTPs(numberBytesSent: any, numberBytesReturned: any) {
+export function CostEstimationHTTPs(numberBytesSent, numberBytesReturned) {
     //https://internetcomputer.org/docs/current/developer-docs/gas-cost
     // var costHTTPsOutCall13Node = 0.000000006806072*numberBytesSent;
     var costHTTPsResponse13Node = 0.000000013612144*numberBytesReturned;
     var totalCostEstimate = costHTTPsResponse13Node + costHTTPsResponse13Node;
-    console.log(totalCostEstimate);
-    console.log(numberBytesSent)
+    // console.log(totalCostEstimate);
+    // console.log(numberBytesSent)
+    return totalCostEstimate;
 }
 
-export function CostEstimationXNET(numberRecords: any, numberBytesTransmittedPerRecord: any) {
+export function CostEstimationXNET(numberRecords, numberBytesTransmittedPerRecord) {
     //https://internetcomputer.org/docs/current/developer-docs/gas-cost
     var costXNETCalls = 0.0000003403036*numberRecords;
     var costXNETByteTransmission = 0.00000000130886*numberBytesTransmittedPerRecord*numberRecords;
@@ -25,7 +26,8 @@ export function CostEstimationXNET(numberRecords: any, numberBytesTransmittedPer
     // costXNETGByteStoredPerYear = 0.00000016622522*0.00001564621925*365.0*24.0*60.0*60.0 = $0.00008201871013
     // totalCost = $0.000020418216 + $0.000021988848 + $0.00008201871013 = $0.0001244257741
     // estimate for 1 month at 8 hours per day = 30*8*$0.0001244257741 = $0.02986218578
-    console.log(totalCostEstimate);
+    // console.log(totalCostEstimate);
+    return totalCostEstimate;
 }
 
 export default {

@@ -734,8 +734,19 @@ function AppView() {
                                 fontSize: "1.0em",
                                 textAlign: "left"
                             },
-                            children: "Storage via the Internet Computer, compare and exchange your data for value through participation in studies"
-                        }, void 0, false, {
+                            children: [
+                                "Storage via the ",
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                                    href: "https://internetcomputer.org/",
+                                    children: "Internet Computer"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                                    lineNumber: 60,
+                                    columnNumber: 33
+                                }, this),
+                                ", compare and exchange your data for value through participation in studies"
+                            ]
+                        }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
                             lineNumber: 59,
                             columnNumber: 15

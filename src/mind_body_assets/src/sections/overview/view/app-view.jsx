@@ -57,7 +57,7 @@ export default function AppView() {
                 Experiment: user controlled wearable data storage and exchange
               </Typography>
               <Typography variant="subtitle" sx={{fontSize: "1.0em", textAlign: "left"}}>
-                Storage via the Internet Computer, compare and exchange your data for value through participation in studies
+                Storage via the <a href="https://internetcomputer.org/">Internet Computer</a>, compare and exchange your data for value through participation in studies
               </Typography>
               <Grid style={{position: "relative", height: window.innerWidth < 760 ? 250 : 500, width: "100%", marginTop: "20px"}}><iframe src="https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed" title="Dashboard" frameBorder="0" loading="lazy" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", colorScheme: "light"}}></iframe></Grid>          </Grid>
           <Grid container spacing={3}>

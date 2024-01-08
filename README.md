@@ -1,6 +1,9 @@
 # ic-mind-body-dashboard
 
+## About:
 This repository provides tooling for a user controlled method for hosting wearable data on a blockchain network through the [Internet Computer](https://internetcomputer.org), Blueberry was used as an example.
+
+A web toolkit (server and web application interface) for storing fitness, heart, motion and cognitive data on blockchain to enable people and businesses to take control of their data.
 
 ## Architechture:
 
@@ -34,6 +37,13 @@ This repository provides tooling for a user controlled method for hosting wearab
 ### mainnet test application:
 * frontend: https://pa64a-oqaaa-aaaan-qllka-cai.icp0.io/
 * backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=pvznn-pyaaa-aaaan-qlljq-cai
+
+## 🔑 Key Components
+- /src/mind_body/main.mo - contains HTTP outcall requests to proxy API, put and delete functions for single data hashmap
+- /scr/mind_body_assets/src/sections/mydata/view/mydata-view.jsx - contains front end API call requests to motoko backend, encryption and decryption of data and plotting of data into table & chart format
+- /src/mind_body_assets/src/sections/login/login-view.jsx - contains web3 identity setting
+- /src/mind_body_assets/src/blueberry/BlueberryDictionaryCompression.jsx - compressing data into a vectorized for to and from dictionary format
+- /src/mind_body_assets/src/blueberry/CostEstimation.jsx - fixed cost estimation based on publically available rates on ICP's website
 
 ## 🛠️ Technology Stack
 

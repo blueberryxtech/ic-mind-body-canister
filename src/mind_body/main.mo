@@ -116,7 +116,7 @@ actor {
   public func send_http_blueberry_proxy_login(email: Text, password: Text) : async Text {
 
     //LOCAL: "aaaaa-aa"
-    let ic : Types.IC = actor ("aaaaa-aa");
+    let ic : Types.IC = actor("aaaaa-aa");
 
     let host : Text = "us-central1-blueberry-x-proj.cloudfunctions.net";
     // let url = "https://us-central1-blueberry-x-proj.cloudfunctions.net/app/loginForce"; 
@@ -165,7 +165,7 @@ actor {
   public func send_http_blueberry_proxy_get_raw_data(idToken: Text, userID: Text, startMillis: Text, endMillis: Text) : async Text {
 
     //LOCAL: "aaaaa-aa"
-    let ic : Types.IC = actor ("aaaaa-aa");
+    let ic : Types.IC = actor("aaaaa-aa");
 
     let host : Text = "us-central1-blueberry-x-proj.cloudfunctions.net";
     let url = "https://us-central1-blueberry-x-proj.cloudfunctions.net/app/queryForce?startMillis=" # startMillis # "&endMillis=" # endMillis # "&userID=" # userID # "&idToken=" # idToken ;
@@ -216,6 +216,6 @@ actor {
     //let seed : Blob = "\14\C9\72\09\03\D4\D5\72\82\95\E5\43\AF\FA\A9\44\49\2F\25\56\13\F3\6E\C7\B0\87\DC\76\08\69\14\CF";
     //let valInt : Int = Random.rangeFrom(32, seed) // => 348746249
     //let uuidString : Text = "UUID-" # Int.toText(valInt);
-    return "UUID-348746249";
+    return "UUID-112358132";
   }
 };

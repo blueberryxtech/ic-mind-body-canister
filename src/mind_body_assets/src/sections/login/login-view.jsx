@@ -5,7 +5,6 @@ import { AuthClient } from "@dfinity/auth-client";
 import { HttpAgent } from "@dfinity/agent";
 import { mind_body, createActor } from "../../../../declarations/mind_body";
 import { sequence } from '0xsequence';
-import socketIOClient from "socket.io-client";
 
 //UI
 import Box from '@mui/material/Box';
@@ -28,7 +27,6 @@ export default function LoginView() {
   //web3 wallet
   const [proof, setProof] = React.useState("");
   const [web3Address, setWeb3Address] = React.useState("");
-  const [socket, setSocket] = React.useState(null);
 
   sequence.initWallet({defaultNetwork: 'mainnet'})
 
