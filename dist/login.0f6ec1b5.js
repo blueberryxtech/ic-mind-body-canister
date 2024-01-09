@@ -665,6 +665,7 @@ var _authClient = require("@dfinity/auth-client");
 var _agent = require("@dfinity/agent");
 var _mindBody = require("../../../../declarations/mind_body");
 var _0Xsequence = require("0xsequence");
+var _components = require("../../routes/components");
 //UI
 var _box = require("@mui/material/Box");
 var _boxDefault = parcelHelpers.interopDefault(_box);
@@ -725,6 +726,7 @@ function LoginView() {
         window.$web3AddressId = icpIdValue;
         localStorage.setItem("web3AddressId", icpIdValue);
         setWeb3Address(icpIdValue);
+        window.location.href = "/mydata";
     };
     const loginWeb3 = async ()=>{
         const wallet = (0, _0Xsequence.sequence).getWallet();
@@ -740,6 +742,19 @@ function LoginView() {
             setWeb3Address(details.session?.accountAddress);
         }
     };
+    const checkLoginState = async ()=>{
+        var tmpWeb3AddressId = "demo";
+        if (localStorage.getItem("web3AddressId") !== null) {
+            var tmpVal = localStorage.getItem("web3AddressId");
+            if (tmpVal !== "") tmpWeb3AddressId = localStorage.getItem("web3AddressId");
+        }
+        if (!tmpWeb3AddressId.includes("demo")) // logged in
+        // <Link component={RouterLink} href="/login" >
+        window.location.href = "/mydata";
+    };
+    (0, _react.useEffect)(()=>{
+        checkLoginState();
+    }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _boxDefault.default), {
         sx: {
             ...(0, _css.bgGradient)({
@@ -763,7 +778,7 @@ function LoginView() {
                 }
             }, void 0, false, {
                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                lineNumber: 89,
+                lineNumber: 111,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _stackDefault.default), {
@@ -786,7 +801,7 @@ function LoginView() {
                                 children: "connect web3 identity"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                lineNumber: 106,
+                                lineNumber: 128,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
@@ -806,13 +821,13 @@ function LoginView() {
                                         children: "Get started"
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                        lineNumber: 110,
+                                        lineNumber: 132,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                lineNumber: 108,
+                                lineNumber: 130,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _stackDefault.default), {
@@ -836,12 +851,12 @@ function LoginView() {
                                             children: "ICP"
                                         }, void 0, false, {
                                             fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                            lineNumber: 124,
+                                            lineNumber: 146,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                        lineNumber: 116,
+                                        lineNumber: 138,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -861,24 +876,24 @@ function LoginView() {
                                             children: "web3"
                                         }, void 0, false, {
                                             fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                            lineNumber: 137,
+                                            lineNumber: 159,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                        lineNumber: 129,
+                                        lineNumber: 151,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                lineNumber: 115,
+                                lineNumber: 137,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                        lineNumber: 98,
+                        lineNumber: 120,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
@@ -902,24 +917,24 @@ function LoginView() {
                                     color: "success"
                                 }, void 0, false, {
                                     fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                                    lineNumber: 152,
+                                    lineNumber: 174,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                            lineNumber: 150,
+                            lineNumber: 172,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                        lineNumber: 143,
+                        lineNumber: 165,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                lineNumber: 97,
+                lineNumber: 119,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _stackDefault.default), {
@@ -930,17 +945,17 @@ function LoginView() {
                 }
             }, void 0, false, {
                 fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-                lineNumber: 159,
+                lineNumber: 181,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/mind_body_assets/src/sections/login/login-view.jsx",
-        lineNumber: 80,
+        lineNumber: 102,
         columnNumber: 5
     }, this);
 }
-_s(LoginView, "y8xqPJSvG4ZwEQlBuWFzgs3vwVA=", false, function() {
+_s(LoginView, "A908OeCQqC0DFF1MDkD5ZFiHNjU=", false, function() {
     return [
         (0, _styles.useTheme)
     ];
@@ -954,7 +969,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","../../../../declarations/mind_body":"1DbUn","0xsequence":"5cSAw","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/styles":"1lzai","../../theme/css":"jJA8o","../../components/logo":"cezYn","../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5cSAw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@dfinity/auth-client":"d9Vw7","@dfinity/agent":"5Kuav","../../../../declarations/mind_body":"1DbUn","0xsequence":"5cSAw","../../routes/components":"3Ghlz","@mui/material/Box":"eQD0H","@mui/material/Link":"f1yGe","@mui/material/Card":"hWYZ3","@mui/material/Stack":"cuThX","@mui/material/Button":"73csw","@mui/material/Typography":"faxSz","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/styles":"1lzai","../../theme/css":"jJA8o","../../components/logo":"cezYn","../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5cSAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initWallet", ()=>(0, _provider.initWallet));

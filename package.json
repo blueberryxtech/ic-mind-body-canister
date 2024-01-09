@@ -9,7 +9,7 @@
     "Canister"
   ],
   "scripts": {
-    "build": "",
+    "build": "parcel src/mind_body_assets/src/index.html",
     "prebuild": "npm run generate",
     "start": "npm run dev",
     "cleanup": "rm -rf .dfx; rm -rf dist; rm -rf .parcel-cache",

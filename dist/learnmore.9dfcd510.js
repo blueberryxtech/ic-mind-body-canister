@@ -700,7 +700,8 @@ function LearnMoreView() {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         style: {
                             marginLeft: "20px",
-                            marginRight: "20px"
+                            marginRight: "20px",
+                            textAlign: "left"
                         },
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -714,35 +715,17 @@ function LearnMoreView() {
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
-                                children: [
-                                    "Do you wish you could exchange and control of your wearable ",
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        children: " "
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 32,
-                                        columnNumber: 94
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
-                                        style: {
-                                            textDecorationColor: "blue"
-                                        },
-                                        children: "fitness, health, body, and cognitive"
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 33,
-                                        columnNumber: 11
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        children: " "
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 34,
-                                        columnNumber: 11
-                                    }, this),
-                                    "data?"
-                                ]
-                            }, void 0, true, {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "lightblue"
+                                    },
+                                    children: "Empowering individuals to unleash the power of health and fitness data"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 32,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 32,
                                 columnNumber: 11
@@ -753,7 +736,7 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 36,
+                                lineNumber: 34,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -761,10 +744,10 @@ function LearnMoreView() {
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "What if there was a way to take back control ensure you are the only one with the key and enable new ways to share, interact and benefit with your data."
+                                children: "In a landscape where health and fitness data's worth remains largely untapped, this paper introduces a new standard for storing health and fitness data on blockchain concept. This standard grants individuals control over their data, facilitates seamless sharing, and introduces incentives for active participation."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 37,
+                                lineNumber: 35,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -773,7 +756,7 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 40,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -793,7 +776,8 @@ function LearnMoreView() {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         style: {
                             marginLeft: "20px",
-                            marginRight: "20px"
+                            marginRight: "20px",
+                            textAlign: "left"
                         },
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -802,47 +786,44 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 45,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
-                                        style: {
-                                            textDecorationColor: "purple"
-                                        },
-                                        children: "Fitness, cognitive and health"
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 46,
-                                        columnNumber: 34
-                                    }, this),
-                                    " data is siloed, locked on your phone or stored in a non distributed database"
-                                ]
-                            }, void 0, true, {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "blue"
+                                    },
+                                    children: "Introduction:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 44,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 44,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 46,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                style: {
-                                    height: "20px"
-                                }
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 48,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "Data is difficult to link with other records and devices. Sharing with people usually requires exporting by files or taking a screenshot. This process can be extremely frustrating. For example if you are a researcher looking to parse data, an individual looking to share with someone to get feedback/help or a business trying to collect and control data. 3rd party businesses are benefiting from your data, this needs to change."
+                                children: "Despite the significant value of health and fitness data, individuals grapple with challenges like incomplete datasets, data silos, and a lack of incentives for maintaining consistent records. The proposed solution is a user-owned IoT network, empowering individuals to control, share, and benefit from their health and fitness data."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 49,
+                                lineNumber: 47,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -851,18 +832,18 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 52,
+                                lineNumber: 50,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                        lineNumber: 44,
+                        lineNumber: 42,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                    lineNumber: 43,
+                    lineNumber: 41,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
@@ -871,7 +852,8 @@ function LearnMoreView() {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         style: {
                             marginLeft: "20px",
-                            marginRight: "20px"
+                            marginRight: "20px",
+                            textAlign: "left"
                         },
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -880,48 +862,44 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 57,
+                                lineNumber: 55,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
-                                children: [
-                                    "A suite of tools to ",
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
-                                        style: {
-                                            textDecorationColor: "orange"
-                                        },
-                                        children: "enable deep control"
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 58,
-                                        columnNumber: 54
-                                    }, this),
-                                    " of health and fitness data"
-                                ]
-                            }, void 0, true, {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "orange"
+                                    },
+                                    children: "The Problem:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 56,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 56,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 58,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                style: {
-                                    height: "20px"
-                                }
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 60,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
                                 style: {
                                     fontSize: "12px"
                                 },
-                                children: "Health and fitness data storage should be as easily accessible as files are on your phone & computer. You should have control of how to encrypt your data and how to share and benefit from it."
+                                children: "Health, fitness, and cognitive data often reside in proprietary databases, accessible to individuals only through mobiles app or APIs or unclear storage used whereby the business benefits from the users data. Existing sharing methods hinder collaboration among researchers, individuals, and businesses. The need for a solution that democratizes data ownership and facilitates seamless sharing is crucial."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 61,
+                                lineNumber: 59,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -930,18 +908,18 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 64,
+                                lineNumber: 62,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                        lineNumber: 56,
+                        lineNumber: 54,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                    lineNumber: 55,
+                    lineNumber: 53,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
@@ -950,9 +928,36 @@ function LearnMoreView() {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         style: {
                             marginLeft: "20px",
-                            marginRight: "20px"
+                            marginRight: "20px",
+                            textAlign: "left"
                         },
                         children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 67,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "green"
+                                    },
+                                    children: "The Solution:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 68,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 68,
+                                columnNumber: 11
+                            }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 style: {
                                     height: "20px"
@@ -964,20 +969,11 @@ function LearnMoreView() {
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
-                                children: [
-                                    "Blockchain systems are now crossing the point where storage cost is dramatically reducing ",
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
-                                        style: {
-                                            textDecorationColor: "green"
-                                        },
-                                        children: "to reasonable pricing, for example with the Internet Computer at $5/Gb/year"
-                                    }, void 0, false, {
-                                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                        lineNumber: 70,
-                                        columnNumber: 124
-                                    }, this)
-                                ]
-                            }, void 0, true, {
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "Our suite of tools seeks to revolutionize health and fitness data management, envisioning a system where data storage is as accessible as files on a phone or computer. Blockchain technology is pivotal, providing personalized encryption, control, and a seamless user experience for reading, writing, copying, and deleting data."
+                            }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 70,
                                 columnNumber: 11
@@ -988,38 +984,18 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 71,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "title",
-                                style: {
-                                    fontSize: "12px"
-                                },
-                                children: "Blockchain enables an personalized encryption, control and copy format. With blockchain we can enable you to read, write and delete your data in a seamless fashion."
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 72,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                style: {
-                                    height: "20px"
-                                }
-                            }, void 0, false, {
-                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 75,
+                                lineNumber: 73,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                        lineNumber: 68,
+                        lineNumber: 66,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                    lineNumber: 67,
+                    lineNumber: 65,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
@@ -1028,9 +1004,36 @@ function LearnMoreView() {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         style: {
                             marginLeft: "20px",
-                            marginRight: "20px"
+                            marginRight: "20px",
+                            textAlign: "left"
                         },
                         children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 78,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "purple"
+                                    },
+                                    children: "Roadmap:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 79,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 79,
+                                columnNumber: 11
+                            }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 style: {
                                     height: "20px"
@@ -1040,16 +1043,16 @@ function LearnMoreView() {
                                 lineNumber: 80,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "title",
-                                href: "https://github.com/blueberryxtech/ic-mind-body-dashboard",
-                                target: "_blank",
-                                rel: "noopener noreferrer",
-                                children: "build your own network on the Internet Computer, open source code link"
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "Direct from smartphone to blockchain storage: Establishing a secure and direct connection from users' devices to blockchain storage, ensuring a user-friendly and efficient data transfer process. Integration with multiple Health & Fitness Devices: collaborating with HealthKit, Google/Fitbit, Apple Watch, Whoop, and Oura Ring for seamless integration of device-generated data into the blockchain network."
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
                                 lineNumber: 81,
-                                columnNumber: 13
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 style: {
@@ -1057,18 +1060,279 @@ function LearnMoreView() {
                                 }
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                                lineNumber: 82,
+                                lineNumber: 84,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "Anonymized Search & Comparison Tools: Developing user-friendly tools for searching and comparing anonymized health and fitness data, fostering collaborative research without compromising individual privacy."
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 85,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 88,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "Data Marketplace and Reward System: Creating an anonymized data store where users contribute data for market research, receiving rewards when their data is transferred. Coaching and Feedback Exercises: Incorporating coaching and feedback exercises to encourage consistent health data input, providing valuable insights for users."
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 89,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                        lineNumber: 79,
+                        lineNumber: 77,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
-                    lineNumber: 78,
+                    lineNumber: 76,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                    className: "card-styles text-area",
+                    as: "article",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            marginLeft: "20px",
+                            marginRight: "20px",
+                            textAlign: "left"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 96,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "gold"
+                                    },
+                                    children: "Market Insights:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 97,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 97,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 98,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "The global brain and body data market is expanding rapidly, with an estimated worth of [insert relevant statistics here]. This underlines the significance of addressing challenges in data ownership and incentivizing user participation to unlock the full potential of this burgeoning market."
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 99,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 102,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                        lineNumber: 95,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                    lineNumber: 94,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                    className: "card-styles text-area",
+                    as: "article",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            marginLeft: "20px",
+                            marginRight: "20px",
+                            textAlign: "left"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 107,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("u", {
+                                    style: {
+                                        textDecorationColor: "cyan"
+                                    },
+                                    children: "Conclusion:"
+                                }, void 0, false, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 108,
+                                    columnNumber: 34
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 108,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 109,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "title",
+                                style: {
+                                    fontSize: "12px"
+                                },
+                                children: "This user-owned IoT network marks a paradigm shift in health and fitness data management. By returning control to individuals, incentivizing data sharing, and leveraging blockchain technology, we aspire to dismantle data silos, ushering in an era of collaborative research, personalized health insights, and individual empowerment."
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 110,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 113,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                        lineNumber: 106,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                    lineNumber: 105,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                    className: "card-styles text-area",
+                    as: "article",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            marginLeft: "20px",
+                            marginRight: "20px",
+                            textAlign: "left"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 118,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                                className: "title",
+                                href: "https://github.com/blueberryxtech/ic-mind-body-canister",
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                    variant: "contained",
+                                    color: "primary",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                            src: "https://cdn.shopify.com/s/files/1/0304/7905/7027/files/github-logo-w.png?v=1704815042",
+                                            width: "32px",
+                                            alt: "github"
+                                        }, void 0, false, {
+                                            fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                            lineNumber: 121,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            style: {
+                                                width: "10px"
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                            lineNumber: 122,
+                                            columnNumber: 15
+                                        }, this),
+                                        "available on github"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                    lineNumber: 120,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 119,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                style: {
+                                    height: "20px"
+                                }
+                            }, void 0, false, {
+                                fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                                lineNumber: 126,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                        lineNumber: 117,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/mind_body_assets/src/sections/learnmore/view/learnmore-view.jsx",
+                    lineNumber: 116,
                     columnNumber: 9
                 }, this)
             ]

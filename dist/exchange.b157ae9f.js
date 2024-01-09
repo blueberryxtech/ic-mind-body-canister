@@ -736,7 +736,7 @@ function AppExchangeView() {
                                         width: "150px"
                                     },
                                     href: "https://form.typeform.com/to/WsBKRzkG",
-                                    children: "request to join"
+                                    children: "join waitlist"
                                 }, void 0, false, {
                                     fileName: "src/mind_body_assets/src/sections/exchange/view/app-exchange-view.jsx",
                                     lineNumber: 37,

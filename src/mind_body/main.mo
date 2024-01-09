@@ -8,6 +8,7 @@ import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
 import Error "mo:base/Error";
 import Random "mo:base/Random";
+// import HashMap "mo:motoko-hash-map/Map"; //explore in future
 
 //import the custom types you have in Types.mo
 import Types "types";
@@ -18,7 +19,7 @@ actor {
   type NestedArray = [Vector];
   type AddressMap = HashMap.HashMap<Text, NestedArray>;
 
-  //structure:
+  // structure:
   // "web3Id" : [uploadData1_ints,uploadData2_ints,...,uploadDataN_ints]
   // uploadData1_ints = [int1, int2, int3,...,intN]
 

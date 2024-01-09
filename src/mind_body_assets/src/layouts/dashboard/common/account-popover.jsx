@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-
 import { RouterLink } from '../../../routes/components';
 
 import Box from '@mui/material/Box';
@@ -79,11 +78,11 @@ export default function AccountPopover() {
           disableRipple
           disableTouchRipple
           onClick={handleClose}
+          component={RouterLink} 
+          href="/login"
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
-        <Link component={RouterLink} href="/login" >
-          Logout
-        </Link>
+        <Typography variant="body2">log out</Typography>
         </MenuItem>
       </Popover>
     </>

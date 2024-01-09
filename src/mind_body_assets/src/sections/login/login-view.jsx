@@ -5,6 +5,8 @@ import { AuthClient } from "@dfinity/auth-client";
 import { HttpAgent } from "@dfinity/agent";
 import { mind_body, createActor } from "../../../../declarations/mind_body";
 import { sequence } from '0xsequence';
+import { RouterLink } from '../../routes/components';
+import { forwardRef } from 'react';
 
 //UI
 import Box from '@mui/material/Box';
@@ -62,6 +64,7 @@ export default function LoginView() {
     window.$web3AddressId = icpIdValue;
     localStorage.setItem('web3AddressId', icpIdValue);
     setWeb3Address(icpIdValue);
+    window.location.href = '/mydata';
   }
 
   const loginWeb3 = async () => {
@@ -75,6 +78,25 @@ export default function LoginView() {
       setWeb3Address(details.session?.accountAddress);
     }
   }
+
+  const checkLoginState = async () => {
+    var tmpWeb3AddressId = "demo";
+    if(localStorage.getItem('web3AddressId') !== null){
+      var tmpVal = localStorage.getItem('web3AddressId');
+      if (tmpVal !== ""){
+        tmpWeb3AddressId = localStorage.getItem('web3AddressId');
+      }
+    }
+    if (!tmpWeb3AddressId.includes("demo")){
+      // logged in
+      // <Link component={RouterLink} href="/login" >
+      window.location.href = '/mydata'
+    }
+  }
+
+  useEffect(() =>{
+    checkLoginState();
+  },[]);
 
   return (
     <Box

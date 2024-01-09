@@ -35,7 +35,7 @@ export default function AppExchangeView() {
                 color="success"
               />
               <Button variant="contained" color="primary" style={{width: "150px"}} href="https://form.typeform.com/to/WsBKRzkG">
-                request to join
+                join waitlist
               </Button>
             </Grid>
             <Grid xs={12} md={6} lg={3}>

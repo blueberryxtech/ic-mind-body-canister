@@ -667,6 +667,8 @@ var _themeDefault = parcelHelpers.interopDefault(_theme);
 //UI
 var _container = require("@mui/material/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
+var _button = require("@mui/material/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _unstableGrid2 = require("@mui/material/Unstable_Grid2");
 var _unstableGrid2Default = parcelHelpers.interopDefault(_unstableGrid2);
 var _typography = require("@mui/material/Typography");
@@ -725,7 +727,7 @@ function AppView() {
                             children: "Experiment: user controlled wearable data storage and exchange"
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 56,
+                            lineNumber: 57,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _typographyDefault.default), {
@@ -741,51 +743,77 @@ function AppView() {
                                     children: "Internet Computer"
                                 }, void 0, false, {
                                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                    lineNumber: 60,
+                                    lineNumber: 61,
                                     columnNumber: 33
                                 }, this),
                                 ", compare and exchange your data for value through participation in studies"
                             ]
                         }, void 0, true, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 59,
+                            lineNumber: 60,
                             columnNumber: 15
                         }, this),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                            lineNumber: 63,
+                            columnNumber: 15
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            className: "title",
+                            href: "https://form.typeform.com/to/WsBKRzkG",
+                            target: "_blank",
+                            rel: "noopener noreferrer",
                             style: {
-                                position: "relative",
-                                height: window.innerWidth < 760 ? 250 : 500,
-                                width: "100%",
-                                marginTop: "20px"
+                                paddingTop: "20px"
                             },
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
-                                src: "https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed",
-                                title: "Dashboard",
-                                frameBorder: "0",
-                                loading: "lazy",
-                                style: {
-                                    position: "absolute",
-                                    top: "0",
-                                    left: "0",
-                                    width: "100%",
-                                    height: "100%",
-                                    colorScheme: "light"
-                                }
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                variant: "contained",
+                                color: "primary",
+                                children: "join waitlist"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 62,
-                                columnNumber: 131
+                                lineNumber: 65,
+                                columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 62,
+                            lineNumber: 64,
                             columnNumber: 15
-                        }, this),
-                        "          "
+                        }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 55,
+                    lineNumber: 56,
+                    columnNumber: 11
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
+                    style: {
+                        position: "relative",
+                        height: window.innerWidth < 760 ? 250 : 500,
+                        width: "100%",
+                        marginTop: "20px"
+                    },
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
+                        src: "https://demo.arcade.software/tdqTw20W3lN63ab4Fcus?embed",
+                        title: "Dashboard",
+                        frameBorder: "0",
+                        loading: "lazy",
+                        style: {
+                            position: "absolute",
+                            top: "0",
+                            left: "0",
+                            width: "100%",
+                            height: "100%",
+                            colorScheme: "light"
+                        }
+                    }, void 0, false, {
+                        fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                        lineNumber: 70,
+                        columnNumber: 127
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
+                    lineNumber: 70,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -802,12 +830,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 65,
+                                lineNumber: 73,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 64,
+                            lineNumber: 72,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -820,12 +848,12 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 72,
+                                lineNumber: 80,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 71,
+                            lineNumber: 79,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _unstableGrid2Default.default), {
@@ -838,29 +866,29 @@ function AppView() {
                                 color: "success"
                             }, void 0, false, {
                                 fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                                lineNumber: 79,
+                                lineNumber: 87,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                            lineNumber: 78,
+                            lineNumber: 86,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-                    lineNumber: 63,
+                    lineNumber: 71,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-            lineNumber: 54,
+            lineNumber: 55,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/mind_body_assets/src/sections/overview/view/app-view.jsx",
-        lineNumber: 53,
+        lineNumber: 54,
         columnNumber: 7
     }, this);
 }
@@ -874,6 +902,6 @@ $RefreshReg$(_c, "AppView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["8Oqxv","1xC6H"], null, "parcelRequire4831")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../../../declarations/mind_body":"1DbUn","../../../theme":"4MQu5","@mui/material/Container":"75pQf","@mui/material/Button":"73csw","@mui/material/Unstable_Grid2":"2ssQQ","@mui/material/Typography":"faxSz","react-bootstrap":"3AD9A","../../../modules/app-widget-summary":"f0v58","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["8Oqxv","1xC6H"], null, "parcelRequire4831")
 
 //# sourceMappingURL=app.13ba9f2b.js.map
