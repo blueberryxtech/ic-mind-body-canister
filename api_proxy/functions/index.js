@@ -22,7 +22,7 @@ app.get("/loginForce", (req, res) => {
 	var requestTimeOut = 45000;
 	var userEmail = req.query.email;
 	var userPassword = req.query.password;
-	const API_KEY = "AIzaSyB3bZIT7sW2Sy5wQfRzkZzoLbEOixGDF14"
+	const API_KEY = "API_KEY"
 	const apiURL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY;
 
 	var url = apiURL;
