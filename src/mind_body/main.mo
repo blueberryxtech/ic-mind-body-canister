@@ -29,6 +29,18 @@ actor {
   // stable storage - set mapping to per month hashmaps - potentially segment to weeks or days depending on sizing/timing requirements
   var addressMap : AddressMap = HashMap.HashMap<Text, NestedArray>(10, Text.equal, Text.hash);
 
+  // study map
+  // structure
+  // studyMap = { "web3Id": "studyId", ... }
+
+  // exchange map
+  // map of "web3Id": "record-ID" to temporary hold for participation in study
+  // hold until confirmed transfer
+  // structure:
+  // "studyId": [ "web3Id": "record-ID", ... ]
+  // confirm transfer from AddressMap to new ID
+  // provide value for participation
+
   public func pushToArray(address: Text, encryptedWindow: [Int], dateInt: Int) {
     // assert(isCallerAllowed());                                   // Ensure the caller is allowed to call this method
     let tmpArraySize = Array.size(encryptedWindow) * 4;
@@ -65,6 +77,10 @@ actor {
   public query (message) func getIcpId() : async Text {
     return Principal.toText(message.caller);
   };
+
+  //data check prior to upload
+  //hashmap of each uploadData1_ints = [int1, int2, int3,...,intN] within a web3Id
+  //loop through all hashs for each "web3Id" or all "web3Id" to ensure no replications 
 
   //function to transform the response
   public query func transform(raw : Types.TransformArgs) : async Types.CanisterHttpResponsePayload {
