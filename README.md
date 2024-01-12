@@ -28,7 +28,7 @@ A web toolkit (server and web application interface) for storing fitness, heart,
 * ensure "build": "", is set in package.json
 
 ### manually edit /dist for favicon:
-* add  <link rel="icon" href="./favicon.ico" />
+* add `<link rel="icon" href="./favicon.ico" />` to dist/index.html
 * add your favicon.ico to dist folder
 
 ### mainnet deployment
