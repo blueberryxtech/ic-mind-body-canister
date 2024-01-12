@@ -39,11 +39,11 @@ A web toolkit (server and web application interface) for storing fitness, heart,
 * backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=pvznn-pyaaa-aaaan-qlljq-cai
 
 ## 🔑 Key Components
-- /src/mind_body/main.mo - contains HTTP outcall requests to proxy API, put and delete functions for single data hashmap
-- /scr/mind_body_assets/src/sections/mydata/view/mydata-view.jsx - contains front end API call requests to motoko backend, encryption and decryption of data and plotting of data into table & chart format
-- /src/mind_body_assets/src/sections/login/login-view.jsx - contains web3 identity setting
-- /src/mind_body_assets/src/blueberry/BlueberryDictionaryCompression.jsx - compressing data into a vectorized for to and from dictionary format
-- /src/mind_body_assets/src/blueberry/CostEstimation.jsx - fixed cost estimation based on publically available rates on ICP's website
+- [main.mo](https://github.com/blueberryxtech/ic-mind-body-canister/tree/master/src/mind_body/main.mo) - HTTP outcall requests to proxy API, put and delete functions for single data hashmap
+- [mydata-view.jsx](https://github.com/blueberryxtech/ic-mind-body-canister/tree/master/scr/mind_body_assets/src/sections/mydata/view/mydata-view.jsx) - front end API call requests to motoko backend, encryption and decryption of data and plotting of data into table & chart format
+- [login-view.jsx](https://github.com/blueberryxtech/ic-mind-body-canister/tree/master/src/mind_body_assets/src/sections/login/login-view.jsx) - web3 identity setting
+- [BlueberryDictionaryCompression.jsx](https://github.com/blueberryxtech/ic-mind-body-canister/tree/master/src/mind_body_assets/src/blueberry/BlueberryDictionaryCompression.jsx) - compressing data into a vectorized for to and from dictionary format
+- [CostEstimation.jsx](https://github.com/blueberryxtech/ic-mind-body-canister/tree/master/src/mind_body_assets/src/blueberry/CostEstimation.jsx) - fixed cost estimation based on publically available rates on ICP's website
 
 ## 🛠️ Technology Stack
 
